@@ -5,7 +5,7 @@ public enum Pages {
     ABOUT("about", "/PlantShop/html/about/about.jsp"),
     STORE("store", "/PlantShop/html/store/store.jsp"),
     LOGIN("login", "/PlantShop/html/login/login.jsp"),
-    SIGN_UP("register", "/PlantShop/html/login/register.jsp"),
+    REGISTER("register", "/PlantShop/html/login/register.jsp"),
     ACCOUNT("account", "/PlantShop/html/account/account.jsp"),
     MANAGE("manage", "/PlantShop/html/manage/manage.jsp"),
     ERROR("error", "/PlantShop/html/error/error.jsp");

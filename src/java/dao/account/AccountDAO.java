@@ -1,9 +1,10 @@
-package dao;
+package dao.account;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import obj.Account;
+
+import obj.account.Account;
 import security.HashUtils;
 import util.DBUtils;
 import util.SQLBuilder;

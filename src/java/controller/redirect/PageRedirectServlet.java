@@ -23,9 +23,7 @@ public class PageRedirectServlet extends HttpServlet {
         String url = "";
 
         for (Pages page : Pages.values()) {
-            String currentPage = page.getPage();
-
-            if (pageRequested.equals(currentPage)) {
+            if (pageRequested.equals(page.getPage())) {
                 url = page.getURL();
                 request.getSession().setAttribute("page", page.getPage());
                 break;

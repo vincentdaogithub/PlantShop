@@ -1,4 +1,4 @@
-package obj;
+package obj.account;
 
 import java.io.Serializable;
 
@@ -32,16 +32,6 @@ public class Account implements Serializable {
         this.accountPhone = accountPhone;
         this.accountStatus = accountStatus;
         this.accountRole = accountRole;
-    }
-
-    public Account(String accountEmail, String accountPassword, String accountFullName, String accountPhone) {
-        this.accountID = 0;
-        this.accountEmail = accountEmail;
-        this.accountPassword = accountPassword;
-        this.accountFullName = accountFullName;
-        this.accountPhone = accountPhone;
-        this.accountStatus = 1;
-        this.accountRole = 0;
     }
 
     /**
