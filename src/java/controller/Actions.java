@@ -1,13 +1,13 @@
 package controller;
 
-public enum Action {
+public enum Actions {
     LOGIN("login", "/LoginServlet"),
     REGISTER("register", "/RegisterServlet");
 
     private final String action;
     private final String url;
 
-    Action(String action, String url) {
+    Actions(String action, String url) {
         this.action = action;
         this.url = url;
     }

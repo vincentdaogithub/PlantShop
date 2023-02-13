@@ -24,18 +24,18 @@ public class RegisterServlet extends HttpServlet {
         String phone = request.getParameter("phone");
 
         if (email == null || password == null || fullname == null) {
-            response.sendRedirect(Pages.ERROR.getURL());
+            getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
             return;
         }
 
         Account account = AccountFactory.build(email, password, fullname, phone, Accounts.USER);
 
         if (!AccountDAO.addAccount(account)) {
-            response.sendRedirect(Pages.ERROR.getURL());
+            getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
             return;
         }
 
         request.getSession().setAttribute("account", AccountDAO.getAccount(email, password));
-        response.sendRedirect(Pages.HOME.getURL());
+        getServletContext().getRequestDispatcher(Pages.HOME.getURL()).forward(request, response);
     }
 }

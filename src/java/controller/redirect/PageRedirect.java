@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class PageRedirectServlet extends HttpServlet {
+public class PageRedirect extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -16,25 +16,18 @@ public class PageRedirectServlet extends HttpServlet {
 
         if (pageRequested == null) {
             request.getSession().setAttribute("page", Pages.HOME.getPage());
-            response.sendRedirect(Pages.HOME.getURL());
+            getServletContext().getRequestDispatcher(Pages.HOME.getURL()).forward(request, response);
             return;
         }
-
-        String url = "";
 
         for (Pages page : Pages.values()) {
             if (pageRequested.equals(page.getPage())) {
-                url = page.getURL();
                 request.getSession().setAttribute("page", page.getPage());
-                break;
+                getServletContext().getRequestDispatcher(page.getURL()).forward(request, response);
+                return;
             }
         }
 
-        if (url.isEmpty()) {
-            response.sendRedirect(Pages.ERROR.getURL());
-            return;
-        }
-
-        response.sendRedirect(url);
+        getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
     }
 }

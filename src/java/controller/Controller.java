@@ -16,19 +16,19 @@ public class Controller extends HttpServlet {
         String actionInput = request.getParameter("action");
 
         if (actionInput == null) {
-            response.sendRedirect(Pages.ERROR.getURL());
+            getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
             return;
         }
 
         actionInput = actionInput.trim();
 
-        for (Action action : Action.values()) {
+        for (Actions action : Actions.values()) {
             if (actionInput.equals(action.getAction())) {
                 getServletContext().getRequestDispatcher(action.getURL()).forward(request, response);
                 return;
             }
         }
 
-        response.sendRedirect(Pages.ERROR.getURL());
+        getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
     }
 }

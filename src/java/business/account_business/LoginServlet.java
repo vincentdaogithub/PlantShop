@@ -20,17 +20,17 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         if (email == null || password == null) {
-            response.sendRedirect(Pages.ERROR.getURL());
+            getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
         }
 
         Account account = AccountDAO.getAccount(email, password);
 
         if (account == null) {
-            response.sendRedirect(Pages.ERROR.getURL());
+            getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
             return;
         }
 
         request.getSession().setAttribute("account", account);
-        response.sendRedirect(Pages.HOME.getURL());
+        getServletContext().getRequestDispatcher(Pages.HOME.getURL()).forward(request, response);
     }
 }

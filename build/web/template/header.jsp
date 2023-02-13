@@ -4,7 +4,7 @@
 <header>
     <nav>
         <div class="banner">
-            <a href="/PlantShop/PageRedirectServlet?page=home">
+            <a href="/PlantShop/PageRedirect?page=home">
                 <img src="/PlantShop/img/logo/logo_white.png" alt="website logo" />
             </a>
         </div>
@@ -16,7 +16,7 @@
                 </c:when>
                     
                 <c:otherwise>
-                    <a href="/PlantShop/PageRedirectServlet?page=home">Home</a>
+                    <a href="/PlantShop/PageRedirect?page=home">Home</a>
                 </c:otherwise>
             </c:choose>
                     
@@ -26,7 +26,7 @@
                 </c:when>
                     
                 <c:otherwise>
-                    <a href="/PlantShop/PageRedirectServlet?page=about">About</a>
+                    <a href="/PlantShop/PageRedirect?page=about">About</a>
                 </c:otherwise>
             </c:choose>
                     
@@ -36,7 +36,7 @@
                 </c:when>
                     
                 <c:otherwise>
-                    <a href="/PlantShop/PageRedirectServlet?page=store">Store</a>
+                    <a href="/PlantShop/PageRedirect?page=store">Store</a>
                 </c:otherwise>
             </c:choose>
             
@@ -49,7 +49,7 @@
                         </c:when>
 
                         <c:otherwise>
-                            <a href="/PlantShop/PageRedirectServlet?page=account">Account</a>
+                            <a href="/PlantShop/PageRedirect?page=account">Account</a>
                         </c:otherwise>
                     </c:choose>
                 </c:when>
@@ -61,7 +61,7 @@
                         </c:when>
 
                         <c:otherwise>
-                            <a href="/PlantShop/PageRedirectServlet?page=manage">Manage</a>
+                            <a href="/PlantShop/PageRedirect?page=manage">Manage</a>
                         </c:otherwise>
                     </c:choose>
                 </c:when>
@@ -73,7 +73,7 @@
                         </c:when>
 
                         <c:otherwise>
-                            <a href="/PlantShop/PageRedirectServlet?page=login">Login</a>
+                            <a href="/PlantShop/PageRedirect?page=login">Login</a>
                         </c:otherwise>
                     </c:choose>
                 </c:otherwise>

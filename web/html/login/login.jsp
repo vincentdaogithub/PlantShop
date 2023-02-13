@@ -37,7 +37,7 @@
                         <input type="hidden" name="action" value="login" />
                         <input type="submit" value="Login" />
 
-                        <a class="sign-up" href="/PlantShop/PageRedirectServlet?page=register">
+                        <a class="register" href="/PlantShop/PageRedirect?page=register">
                             New to the store? Sign up instead.
                         </a>
                     </div>

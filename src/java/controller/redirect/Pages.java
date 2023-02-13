@@ -1,14 +1,14 @@
 package controller.redirect;
 
 public enum Pages {
-    HOME("home", "/PlantShop/index.jsp"),
-    ABOUT("about", "/PlantShop/html/about/about.jsp"),
-    STORE("store", "/PlantShop/html/store/store.jsp"),
-    LOGIN("login", "/PlantShop/html/login/login.jsp"),
-    REGISTER("register", "/PlantShop/html/login/register.jsp"),
-    ACCOUNT("account", "/PlantShop/html/account/account.jsp"),
-    MANAGE("manage", "/PlantShop/html/manage/manage.jsp"),
-    ERROR("error", "/PlantShop/html/error/error.jsp");
+    HOME("home", "/index.jsp"),
+    ABOUT("about", "/html/about/about.jsp"),
+    STORE("store", "/html/store/store.jsp"),
+    LOGIN("login", "/html/login/login.jsp"),
+    REGISTER("register", "/html/login/register.jsp"),
+    ACCOUNT("account", "/html/account/account.jsp"),
+    MANAGE("manage", "/html/manage/manage.jsp"),
+    ERROR("error", "/html/error/error.jsp");
 
     private final String page;
     private final String url;
