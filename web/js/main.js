@@ -57,7 +57,6 @@ function addEventListeners(element, events, func, funcArgs) {
 }
 
 window.addEventListener("resize", function () {
-    responsiveFontSize();
     setNavBar();
     setHorizontalLayout();
 });
@@ -79,7 +78,6 @@ addEventListeners(backToTop, ["mouseenter", "mouseleave", "click"], imgsOpacityT
 // funcs for page layouts
 
 function init() {
-    responsiveFontSize();
     setNavBar();
     setHorizontalLayout();
     setSocialLinks();
@@ -101,21 +99,6 @@ function setNavBar() {
         var child = navBar.children[i];
         child.style.width = childWidthEqual + "%";
         child.style.lineHeight = navBar.offsetHeight + "px";
-    }
-}
-
-function responsiveFontSize() {
-    var fontSizeRange = maxFontSize - minFontSize;
-    var screenWidth = html.offsetWidth;
-
-    if (screenWidth <= smallDeviceBreakpoint) {
-        html.style.fontSize = minFontSize + "px";
-    } else if (smallDeviceBreakpoint < screenWidth && screenWidth <= largeDeviceBreakPoint) {
-        html.style.fontSize = minFontSize + fontSizeRange
-                * ((screenWidth - smallDeviceBreakpoint) / (largeDeviceBreakPoint - smallDeviceBreakpoint))
-                + "px";
-    } else {
-        html.style.fontSize = maxFontSize + "px";
     }
 }
 

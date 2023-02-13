@@ -22,7 +22,7 @@ main {
 
 .login-form {
     width: 50%;
-    height: 50vh;
+    height: 80vh;
 
     color: #FFF;
     background-color: #00000077;
@@ -91,4 +91,10 @@ input[type="submit"] {
     color: #FFF;
     font-size: 0.7rem;
     text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+    .login-form {
+        width: 100%;
+    }
 }
