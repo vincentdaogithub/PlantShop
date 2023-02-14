@@ -22,7 +22,7 @@
             <section class="login-form">
                 <form action="/PlantShop/Controller" method="post">
                     <div class="form-container">
-                        <h2>Login</h2>
+                        <h2>Register</h2>
 
                         <div class="input-container">
                             <label for="email">Email:</label><br />
@@ -35,17 +35,17 @@
                         </div>
 
                         <div class="input-container">
-                            <label for="fullname">Password:</label><br />
+                            <label for="fullname">Full Name:</label><br />
                             <input id="fullname" type="text" name="fullname" placeholder="fullname..." required />
                         </div>
 
                         <div class="input-container">
-                            <label for="phone">Password:</label><br />
+                            <label for="phone">Phone Number:</label><br />
                             <input id="phone" type="tel" name="phone" placeholder="phone..." required />
                         </div>
     
                         <input type="hidden" name="action" value="register" />
-                        <input type="submit" value="Login" />
+                        <input type="submit" value="Register" />
                     </div>
                 </form>
             </section>

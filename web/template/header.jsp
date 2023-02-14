@@ -72,6 +72,10 @@
                             <p>Login</p>
                         </c:when>
 
+                        <c:when test="${sessionScope.page == 'register'}">
+                            <p>Login</p>
+                        </c:when>
+
                         <c:otherwise>
                             <a href="/PlantShop/PageRedirect?page=login">Login</a>
                         </c:otherwise>
