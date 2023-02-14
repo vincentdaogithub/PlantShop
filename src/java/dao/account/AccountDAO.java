@@ -3,7 +3,6 @@ package dao.account;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import obj.account.Account;
 import security.HashUtils;
 import util.DBUtils;
@@ -15,8 +14,20 @@ public class AccountDAO {
             return null;
         }
 
-        try {
-            ResultSet results = getAccountsByEmail(email);
+        SQLBuilder builder = new SQLBuilder();
+        builder.addLine("SELECT *");
+        builder.addLine("FROM Accounts");
+        builder.addLine("WHERE email = ?");
+        builder.addLine("COLLATE Latin1_General_CS_AS");
+        String query = builder.toString();
+
+        try (
+            Connection connection = DBUtils.makeConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                    query, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ) {
+            statement.setString(1, email);
+            ResultSet results = statement.executeQuery();
 
             if (results == null) {
                 return null;
@@ -43,7 +54,11 @@ public class AccountDAO {
         }
     }
 
-    public static final ResultSet getAccountsByEmail(String email) {
+    public static final boolean addAccount(Account account) {
+        if (account == null) {
+            throw new NullPointerException();
+        }
+
         SQLBuilder builder = new SQLBuilder();
         builder.addLine("SELECT *");
         builder.addLine("FROM Accounts");
@@ -56,21 +71,8 @@ public class AccountDAO {
             PreparedStatement statement = connection.prepareStatement(
                     query, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ) {
-            statement.setString(1, email);
-            return statement.executeQuery();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-            return null;
-        }
-    }
-
-    public static final boolean addAccount(Account account) {
-        if (account == null) {
-            throw new NullPointerException();
-        }
-
-        try {
-            ResultSet results = getAccountsByEmail(account.getAccountEmail());
+            statement.setString(1, account.getAccountEmail());
+            ResultSet results = statement.executeQuery();
 
             if (results == null || results.next()) {
                 return false;
@@ -81,17 +83,17 @@ public class AccountDAO {
         }
 
 
-        SQLBuilder builder = new SQLBuilder();
+        builder = new SQLBuilder();
         builder.addLine("INSERT INTO Accounts (email, password, fullname, phone, status, role)");
         builder.addLine("VALUES (?, ?, ?, ?, ?, ?)");
-        String query = builder.toString();
+        query = builder.toString();
 
         try (
             Connection connection = DBUtils.makeConnection();
             PreparedStatement statement = connection.prepareStatement(query);
         ) {
             statement.setString(1, account.getAccountEmail());
-            statement.setString(2, account.getAccountPassword());
+            statement.setString(2, HashUtils.hashPassword(account.getAccountPassword()));
             statement.setString(3, account.getAccountFullName());
             statement.setString(4, account.getAccountPhone());
             statement.setInt(5, account.getAccountStatus());

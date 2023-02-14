@@ -10,11 +10,11 @@
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>business.LoginServlet</servlet-class>
+        <servlet-class>business.account.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>business.RegisterServlet</servlet-class>
+        <servlet-class>business.account.RegisterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PageRedirect</servlet-name>
