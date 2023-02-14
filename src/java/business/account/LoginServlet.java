@@ -1,5 +1,6 @@
 package business.account;
 
+import controller.Servlets;
 import controller.redirect.Pages;
 import dao.account.AccountDAO;
 import obj.account.Account;
@@ -9,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -18,19 +20,23 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        HttpSession session = request.getSession();
 
         if (email == null || password == null) {
-            getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
+            session.setAttribute("page", Pages.ERROR.getPage());
+            getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+            return;
         }
 
         Account account = AccountDAO.getAccount(email, password);
 
         if (account == null) {
-            getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
-            return;
+            session.setAttribute("page", Pages.ERROR.getPage());
+            getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+        } else {
+            session.setAttribute("account", account);
+            session.setAttribute("page", Pages.HOME.getPage());
+            getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
         }
-
-        request.getSession().setAttribute("account", account);
-        getServletContext().getRequestDispatcher(Pages.HOME.getURL()).forward(request, response);
     }
 }

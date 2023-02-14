@@ -5,7 +5,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import controller.Servlets;
 import controller.redirect.Pages;
 import dao.account.AccountDAO;
 import dao.account.AccountFactory;
@@ -22,20 +24,24 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String fullname = request.getParameter("fullname");
         String phone = request.getParameter("phone");
+        HttpSession session = request.getSession();
 
         if (email == null || password == null || fullname == null || phone == null) {
-            getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
+            session.setAttribute("page", Pages.ERROR.getPage());
+            getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
             return;
         }
 
         Account account = AccountFactory.build(email, password, fullname, phone, Accounts.USER);
 
         if (!AccountDAO.addAccount(account)) {
-            getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
+            session.setAttribute("page", Pages.ERROR.getPage());
+            getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
             return;
         }
 
         request.getSession().setAttribute("account", AccountDAO.getAccount(email, password));
-        getServletContext().getRequestDispatcher(Pages.HOME.getURL()).forward(request, response);
+        session.setAttribute("page", Pages.HOME.getPage());
+        getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
     }
 }
