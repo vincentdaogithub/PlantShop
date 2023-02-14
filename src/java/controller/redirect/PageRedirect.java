@@ -46,7 +46,7 @@ public class PageRedirect extends HttpServlet {
         getServletContext().getRequestDispatcher(Pages.HOME.getURL()).forward(request, response);
     }
 
-    private final Pages getPage(String pageString) {
+    private Pages getPage(String pageString) {
         for (Pages page : Pages.values()) {
             if (pageString.equals(page.getPage())) {
                 return page;
