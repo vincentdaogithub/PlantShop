@@ -78,12 +78,20 @@ input {
 input[type="submit"] {
     display: block;
     width: 80%;
-    margin: 0 auto 1rem;
+    margin: 1rem auto 1rem;
 
-    color: #000;
-    background-color: #FFF;
+    color: #FFF;
+    background-color: #000;    
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
+
+    transition: color 0.5s ease-out,
+                background-color 0.5s ease-out;
+}
+
+input[type="submit"]:hover {
+    color: #000;
+    background-color: #FFF;
 }
 
 .register {
