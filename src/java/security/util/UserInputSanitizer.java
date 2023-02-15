@@ -1,4 +1,4 @@
-package security;
+package security.util;
 
 public class UserInputSanitizer {
     public static final String sanitizeInput(String input) {

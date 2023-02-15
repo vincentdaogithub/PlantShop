@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import obj.account.Account;
-import security.HashUtils;
+import security.util.HashUtils;
 import util.DBUtils;
 import util.SQLBuilder;
 
