@@ -1,21 +1,23 @@
 package controller.redirect;
 
 public enum Pages {
-    HOME("home", "/index.jsp"),
-    ABOUT("about", "/html/about/about.jsp"),
-    STORE("store", "/html/store/store.jsp"),
-    LOGIN("login", "/html/login/login.jsp"),
-    REGISTER("register", "/html/login/register.jsp"),
-    ACCOUNT("account", "/html/account/account.jsp"),
-    MANAGE("manage", "/html/manage/manage.jsp"),
-    ERROR("error", "/html/error/error.jsp");
+    HOME("home", "/index.jsp", Authentications.OPEN),
+    ABOUT("about", "/html/about.jsp", Authentications.OPEN),
+    STORE("store", "/html/store/store.jsp", Authentications.OPEN),
+    LOGIN("login", "/html/login/login.jsp", Authentications.OPEN),
+    REGISTER("register", "/html/login/register.jsp", Authentications.OPEN),
+    PROFILE("account", "/html/user/profile.jsp", Authentications.USER),
+    MANAGE("manage", "/html/admin/manage.jsp", Authentications.ADMIN),
+    ERROR("error", "/html/error.jsp", Authentications.SERVER);
 
     private final String page;
     private final String url;
+    private final Authentications authen;
 
-    Pages(String page, String url) {
+    Pages(String page, String url, Authentications authen) {
         this.page = page;
         this.url = url;
+        this.authen = authen;
     }
 
     public String getPage() {
@@ -24,5 +26,23 @@ public enum Pages {
 
     public String getURL() {
         return this.url;
+    }
+
+    public final Authentications getAuthentication() {
+        return this.authen;
+    }
+
+    public static final Pages convertStringToPage(String pageToConvert) {
+        if (pageToConvert == null) {
+            return null;
+        }
+
+        for (Pages pageElement : Pages.values()) {
+            if (pageToConvert.equals(pageElement.getPage())) {
+                return pageElement;
+            }
+        }
+
+        return null;
     }
 }

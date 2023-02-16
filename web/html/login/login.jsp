@@ -12,7 +12,7 @@
     </head>
 
     <body onload="init()">
-        <jsp:include page="/template/header.jsp" />
+        <jsp:include page="/html/template/header.jsp" />
         
         <main>
             <div class="bg-img-container">
@@ -45,7 +45,7 @@
             </section>
         </main>
 
-        <jsp:include page="/template/footer.jsp" />
+        <jsp:include page="/html/template/footer.jsp" />
     </body>
 
     <script src="/PlantShop/js/main.min.js"></script>
