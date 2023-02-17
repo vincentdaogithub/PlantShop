@@ -7,62 +7,56 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import obj.account.Account;
+import security.filter.Accesses;
 
 public class PageRedirect extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String requestParam = request.getParameter("page");
+
         HttpSession session = request.getSession();
-        String sessionPage = (String) session.getAttribute("page");
-        Account account = (Account) session.getAttribute("account");
 
-        if (requestParam != null) {
-            Pages page = Pages.convertStringToPage(requestParam);
+        if (request.getAttribute("requestPage") == null) {
+            Pages page = Pages.convertStringToPage(request.getParameter("page"));
 
             if (page == null) {
-                getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
+                session.setAttribute("currentPage", Pages.ERROR.getURL());
+                request.getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
                 return;
             }
 
-            int authenCode = page.getAuthentication().getCode();
-
-            if (authenCode >= 0 && (account == null || account.getAccountRole() != authenCode)) {
-                session.setAttribute("page", Pages.ERROR.getPage());
-                getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
-                return;
-            }
-
-            session.setAttribute("page", page.getPage());
-            getServletContext().getRequestDispatcher(page.getURL()).forward(request, response);
-            return;
+            request.setAttribute("requestPage", page);
         }
 
-        if (sessionPage != null) {
-            Pages page = Pages.convertStringToPage(sessionPage);
+        Pages requestPage = (Pages) request.getAttribute("requestPage");
+        int authenCode = requestPage.getAuthentication().getCode();
 
-            if (page == null) {
-                getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
+        if (authenCode >= 0) {
+            Accesses pageAuthen = (Accesses) request.getAttribute("pageAuthentication");
+
+            if (pageAuthen == null) {
+                request.setAttribute("pageAuthentication", Accesses.REQUESTING);
+                getServletContext().getRequestDispatcher(requestPage.getURL()).forward(request, response);
                 return;
             }
 
-            int authenCode = page.getAuthentication().getCode();
+            switch (pageAuthen) {
+                case APPROVED:
+                    break;
 
-            if (authenCode >= 0 && (account == null || account.getAccountRole() != authenCode)) {
-                session.setAttribute("page", Pages.ERROR.getPage());
-                getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
-                return;
+                case DENIED:
+                    session.setAttribute("currentPage", Pages.ERROR.getPage());
+                    getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
+                    return;
+
+                case REQUESTING:
+                    throw new ServletException();
             }
-
-            session.setAttribute("page", page.getPage());
-            getServletContext().getRequestDispatcher(page.getURL()).forward(request, response);
-            return;
         }
 
-        session.setAttribute("page", Pages.HOME.getPage());
-        getServletContext().getRequestDispatcher(Pages.HOME.getURL()).forward(request, response);
+        session.setAttribute("currentPage", requestPage.getPage());
+        getServletContext().getRequestDispatcher(requestPage.getURL()).forward(request, response);
     }
 
     @Override

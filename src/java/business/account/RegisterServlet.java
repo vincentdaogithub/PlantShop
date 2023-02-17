@@ -27,7 +27,7 @@ public class RegisterServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (email == null || password == null || fullname == null || phone == null) {
-            session.setAttribute("page", Pages.ERROR.getPage());
+            request.setAttribute("requestPage", Pages.ERROR);
             getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
             return;
         }
@@ -35,13 +35,13 @@ public class RegisterServlet extends HttpServlet {
         Account account = AccountFactory.build(email, password, fullname, phone, Accounts.USER);
 
         if (!AccountDAO.addAccount(account)) {
-            session.setAttribute("page", Pages.ERROR.getPage());
+            request.setAttribute("requestPage", Pages.ERROR);
             getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
             return;
         }
 
-        request.getSession().setAttribute("account", AccountDAO.getAccount(email, password));
-        session.setAttribute("page", Pages.HOME.getPage());
+        session.setAttribute("account", AccountDAO.getAccount(email, password));
+        request.setAttribute("requestPage", Pages.HOME);
         getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
     }
 }

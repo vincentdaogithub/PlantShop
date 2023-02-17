@@ -1,5 +1,7 @@
 package controller.redirect;
 
+import security.filter.Authentications;
+
 public enum Pages {
     HOME("home", "/index.jsp", Authentications.OPEN),
     ABOUT("about", "/html/about.jsp", Authentications.OPEN),

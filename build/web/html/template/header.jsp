@@ -11,7 +11,7 @@
 
         <div class="nav-bar">
             <c:choose>
-                <c:when test="${sessionScope.page == 'home' || sessionScope.page == null}">
+                <c:when test="${sessionScope.currentPage == null || sessionScope.currentPage == 'home'}">
                     <p>Home</p>
                 </c:when>
                     
@@ -21,7 +21,7 @@
             </c:choose>
 
             <c:choose>
-                <c:when test="${sessionScope.page == 'about'}">
+                <c:when test="${sessionScope.currentPage == 'about'}">
                     <p>About</p>
                 </c:when>
                     
@@ -31,7 +31,7 @@
             </c:choose>
 
             <c:choose>
-                <c:when test="${sessionScope.page == 'store'}">
+                <c:when test="${sessionScope.currentPage == 'store'}">
                     <p>Store</p>
                 </c:when>
                     
@@ -43,7 +43,7 @@
             <c:choose>
                 <c:when test="${sessionScope.account.accountRole == 0}">
                     <c:choose>
-                        <c:when test="${sessionScope.page == 'account'}">
+                        <c:when test="${sessionScope.currentPage == 'profile'}">
                             <p>Profile</p>
                         </c:when>
 
@@ -55,7 +55,7 @@
 
                 <c:when test="${sessionScope.account.accountRole == 1}">
                     <c:choose>
-                        <c:when test="${sessionScope.page == 'manage'}">
+                        <c:when test="${sessionScope.currentPage == 'manage'}">
                             <p>Manage</p>
                         </c:when>
 
@@ -67,7 +67,7 @@
 
                 <c:otherwise>
                     <c:choose>
-                        <c:when test="${sessionScope.page == 'login'}">
+                        <c:when test="${sessionScope.currentPage == 'login'}">
                             <p>Login</p>
                         </c:when>
 

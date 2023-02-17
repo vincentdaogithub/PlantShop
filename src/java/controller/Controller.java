@@ -16,7 +16,8 @@ public class Controller extends HttpServlet {
         String actionInput = request.getParameter("action");
 
         if (actionInput == null) {
-            getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
+            request.setAttribute("requestPage", Pages.ERROR);
+            request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
             return;
         }
 
@@ -29,6 +30,7 @@ public class Controller extends HttpServlet {
             }
         }
 
-        getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
+        request.setAttribute("requestPage", Pages.ERROR);
+        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
     }
 }

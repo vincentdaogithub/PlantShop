@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (email == null || password == null) {
-            session.setAttribute("page", Pages.ERROR.getPage());
+            request.setAttribute("requestPage", Pages.ERROR);
             getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
             return;
         }
@@ -31,11 +31,11 @@ public class LoginServlet extends HttpServlet {
         Account account = AccountDAO.getAccount(email, password);
 
         if (account == null) {
-            session.setAttribute("page", Pages.ERROR.getPage());
+            request.setAttribute("requestPage", Pages.ERROR);
             getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
         } else {
             session.setAttribute("account", account);
-            session.setAttribute("page", Pages.HOME.getPage());
+            request.setAttribute("requestPage", Pages.HOME);
             getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
         }
     }

@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/PlantShop/css/main.min.css" />
         <link rel="stylesheet" href="/PlantShop/css/login/login.min.css" />
-        <title>Viridis - Login</title>
+        <title>Viridis - Register</title>
     </head>
 
     <body onload="init()">
