@@ -21,6 +21,7 @@ public class PageRedirectFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
+
         request.setAttribute("requestPage", Pages.ERROR);
         request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
     }

@@ -46,9 +46,8 @@ public class PageRedirect extends HttpServlet {
                     break;
 
                 case DENIED:
-                    session.setAttribute("currentPage", Pages.ERROR.getPage());
-                    getServletContext().getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
-                    return;
+                    requestPage = Pages.ERROR;
+                    break;
 
                 case REQUESTING:
                     throw new ServletException();
@@ -62,12 +61,14 @@ public class PageRedirect extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         processRequest(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         processRequest(request, response);
     }
 }
