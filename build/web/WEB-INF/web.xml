@@ -17,7 +17,7 @@
         <filter-name>PageAuthenticationFilter</filter-name>
         <url-pattern>/html/user/*</url-pattern>
         <url-pattern>/html/admin/*</url-pattern>
-        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
     <servlet>
         <servlet-name>PageRedirect</servlet-name>

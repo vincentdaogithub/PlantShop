@@ -1,6 +1,5 @@
 package security.filter;
 
-import controller.Servlets;
 import controller.redirect.Pages;
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -27,10 +26,8 @@ public class PageAuthenticationFilter implements Filter {
 
         Accesses access = (Accesses) request.getAttribute("pageAuthentication");
 
-        if (access == null) {
+        if (access == null || access != Accesses.REQUESTING) {
             throw new ServletException();
-        } else if (access == Accesses.APPROVED || access == Accesses.DENIED) {
-            return;
         }
 
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
@@ -43,8 +40,6 @@ public class PageAuthenticationFilter implements Filter {
         } else {
             request.setAttribute("pageAuthentication", Accesses.APPROVED);
         }
-
-        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
     }
 
     @Override

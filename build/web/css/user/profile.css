@@ -1,8 +1,5 @@
 main {
     width: 100%;
-    color: #FFF;
-    background-color: #000;
-
     margin: 0;
 }
 
@@ -30,12 +27,13 @@ main {
     width: 40vh;
     height: 40vh;
     margin: 0 auto;
+    border: 0.1rem solid #000;
 
     position: relative;
     overflow: hidden;
 }
 
-.img-container>img {
+.img-container > img {
     width: auto;
     height: 100%;
 
@@ -55,6 +53,7 @@ main {
 
 .profile-information {
     width: 80%;
+
     position: absolute;
     top: 50%;
     left: 50%;
@@ -66,23 +65,29 @@ main {
     overflow: hidden;
 }
 
-.profile-field>label,
-.profile-field>input {
-    display: block;
+.profile-field > label,
+.profile-field > input {
     width: 50%;
+    font-size: 1.5rem;
+
+    display: block;
     float: left;
     box-sizing: border-box;
 }
 
-.profile-field>label {
-    width: 30%;
+.profile-field > label {
+    width: 50%;
 }
 
-.profile-field>input {
-    width: 70%;
+.profile-field > input {
+    width: 50%;
+    font-family: 'Courier New', Courier, monospace;
 
     border: none;
     padding: 0;
-    color: #FFF;
-    background-color: #000;
+    background: transparent;
+}
+
+.profile-field > input:focus {
+    outline: 0;
 }

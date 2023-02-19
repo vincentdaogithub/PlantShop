@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import security.filter.Accesses;
 
 public class PageRedirect extends HttpServlet {
@@ -33,13 +32,10 @@ public class PageRedirect extends HttpServlet {
         int authenCode = requestPage.getAuthentication().getCode();
 
         if (authenCode >= 0) {
-            Accesses pageAuthen = (Accesses) request.getAttribute("pageAuthentication");
+            request.setAttribute("pageAuthentication", Accesses.REQUESTING);
+            getServletContext().getRequestDispatcher(requestPage.getURL()).include(request, response);
 
-            if (pageAuthen == null) {
-                request.setAttribute("pageAuthentication", Accesses.REQUESTING);
-                getServletContext().getRequestDispatcher(requestPage.getURL()).forward(request, response);
-                return;
-            }
+            Accesses pageAuthen = (Accesses) request.getAttribute("pageAuthentication");
 
             switch (pageAuthen) {
                 case APPROVED:

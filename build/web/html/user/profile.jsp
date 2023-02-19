@@ -1,4 +1,4 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" language="java"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -13,16 +13,16 @@
 
     <body onload="init()">
         <jsp:include page="/html/template/header.jsp" />
-        
+
         <main>
             <section class="profile-container">
                 <div class="profile-img-container">
-					<div class="profile-img-content">
-						<h2 class="hello-user">Hello, ${sessionScope.account.accountFullName}</h2>
-						<div class="img-container">
-							<img class="profile-img" src="https://dummyimage.com/600x400/ffffff/000000" alt="profile image" />
-						</div>
-					</div>
+                    <div class="profile-img-content">
+                        <h2 class="hello-user">Hello, ${sessionScope.account.fullname}</h2>
+                        <div class="img-container">
+                            <img class="profile-img" src="https://dummyimage.com/600x400/ffffff/000000" alt="profile image" />
+                        </div>
+                    </div>
                 </div>
 
                 <div class="profile-information-container">
@@ -55,4 +55,5 @@
     </body>
 
     <script src="/PlantShop/js/main.min.js"></script>
+
 </html>

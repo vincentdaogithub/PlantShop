@@ -26,6 +26,7 @@
 
 .intro-title {
     padding: 1rem;
+    color: #FFF;
     background-color: #00000077;
 
     position: absolute;
@@ -59,9 +60,9 @@ section > p {
     overflow: hidden;
 }
 
-.content-text:nth-child(2n) {
-    color: #000;
-    background-color: #FFF;
+.content-text:nth-of-type(odd) {
+    color: #FFF;
+    background-color: #000;
 }
 
 .content-img > img {
