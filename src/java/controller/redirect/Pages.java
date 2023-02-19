@@ -8,7 +8,7 @@ public enum Pages {
     STORE("store", "/html/store/store.jsp", Authentications.OPEN),
     LOGIN("login", "/html/login/login.jsp", Authentications.OPEN),
     REGISTER("register", "/html/login/register.jsp", Authentications.OPEN),
-    PROFILE("account", "/html/user/profile.jsp", Authentications.USER),
+    PROFILE("profile", "/html/user/profile.jsp", Authentications.USER),
     MANAGE("manage", "/html/admin/manage.jsp", Authentications.ADMIN),
     ERROR("error", "/html/error.jsp", Authentications.SERVER);
 

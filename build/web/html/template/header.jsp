@@ -41,19 +41,19 @@
             </c:choose>
             
             <c:choose>
-                <c:when test="${sessionScope.account.accountRole == 0}">
+                <c:when test="${sessionScope.account.role == 0}">
                     <c:choose>
                         <c:when test="${sessionScope.currentPage == 'profile'}">
                             <p>Profile</p>
                         </c:when>
 
                         <c:otherwise>
-                            <a href="/PlantShop/PageRedirect?page=account">Profile</a>
+                            <a href="/PlantShop/PageRedirect?page=profile">Profile</a>
                         </c:otherwise>
                     </c:choose>
                 </c:when>
 
-                <c:when test="${sessionScope.account.accountRole == 1}">
+                <c:when test="${sessionScope.account.role == 1}">
                     <c:choose>
                         <c:when test="${sessionScope.currentPage == 'manage'}">
                             <p>Manage</p>

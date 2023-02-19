@@ -24,7 +24,7 @@ public class PageAuthenticationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        
+
         Accesses access = (Accesses) request.getAttribute("pageAuthentication");
 
         if (access == null) {
@@ -38,7 +38,7 @@ public class PageAuthenticationFilter implements Filter {
         Account account = (Account) session.getAttribute("account");
         Pages requestPage = (Pages) request.getAttribute("requestPage");
 
-        if (account == null || requestPage == null || account.getAccountRole() != requestPage.getAuthentication().getCode()) {
+        if (account == null || requestPage == null || account.getRole() != requestPage.getAuthentication().getCode()) {
             request.setAttribute("pageAuthentication", Accesses.DENIED);
         } else {
             request.setAttribute("pageAuthentication", Accesses.APPROVED);

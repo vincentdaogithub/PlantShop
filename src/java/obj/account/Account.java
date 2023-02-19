@@ -5,130 +5,130 @@ import java.io.Serializable;
 public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private int accountID;
-    private String accountEmail;
-    private String accountPassword;
-    private String accountFullName;
-    private String accountPhone;
-    private int accountStatus;
-    private int accountRole;
+    private int ID;
+    private String email;
+    private String password;
+    private String fullname;
+    private String phone;
+    private int status;
+    private int role;
 
     public Account() {
-        this.accountID = 0;
-        this.accountEmail = "";
-        this.accountPassword = "";
-        this.accountFullName = "";
-        this.accountPhone = "";
-        this.accountStatus = 0;
-        this.accountRole = 0;
+        this.ID = 0;
+        this.email = "";
+        this.password = "";
+        this.fullname = "";
+        this.phone = "";
+        this.status = 0;
+        this.role = 0;
     }
 
-    public Account(int accountID, String accountEmail, String accountPassword, String accountFullName,
-            String accountPhone, int accountStatus, int accountRole) {
-        this.accountID = accountID;
-        this.accountEmail = accountEmail;
-        this.accountPassword = accountPassword;
-        this.accountFullName = accountFullName;
-        this.accountPhone = accountPhone;
-        this.accountStatus = accountStatus;
-        this.accountRole = accountRole;
+    public Account(int ID, String email, String password, String fullname,
+            String phone, int status, int role) {
+        this.ID = ID;
+        this.email = email;
+        this.password = password;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.status = status;
+        this.role = role;
     }
 
     /**
      * @return the accountID
      */
-    public int getAccountID() {
-        return accountID;
+    public int getID() {
+        return ID;
     }
 
     /**
-     * @param accountID the accountID to set
+     * @param ID the accountID to set
      */
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     /**
      * @return the accountEmail
      */
-    public String getAccountEmail() {
-        return accountEmail;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * @param accountEmail the accountEmail to set
+     * @param email the accountEmail to set
      */
-    public void setAccountEmail(String accountEmail) {
-        this.accountEmail = accountEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
      * @return the accountPassword
      */
-    public String getAccountPassword() {
-        return accountPassword;
+    public String getPassword() {
+        return password;
     }
 
     /**
-     * @param accountPassword the accountPassword to set
+     * @param password the accountPassword to set
      */
-    public void setAccountPassword(String accountPassword) {
-        this.accountPassword = accountPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
      * @return the accountFullName
      */
-    public String getAccountFullName() {
-        return accountFullName;
+    public String getFullname() {
+        return fullname;
     }
 
     /**
-     * @param accountFullName the accountFullName to set
+     * @param fullname the accountFullName to set
      */
-    public void setAccountFullName(String accountFullName) {
-        this.accountFullName = accountFullName;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     /**
      * @return the accountPhone
      */
-    public String getAccountPhone() {
-        return accountPhone;
+    public String getPhone() {
+        return phone;
     }
 
     /**
-     * @param accountPhone the accountPhone to set
+     * @param phone the accountPhone to set
      */
-    public void setAccountPhone(String accountPhone) {
-        this.accountPhone = accountPhone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     /**
      * @return the accountStatus
      */
-    public int getAccountStatus() {
-        return accountStatus;
+    public int getStatus() {
+        return status;
     }
 
     /**
-     * @param accountStatus the accountStatus to set
+     * @param status the accountStatus to set
      */
-    public void setAccountStatus(int accountStatus) {
-        this.accountStatus = accountStatus;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     /**
      * @return the accountRole
      */
-    public int getAccountRole() {
-        return accountRole;
+    public int getRole() {
+        return role;
     }
 
     /**
-     * @param accountRole the accountRole to set
+     * @param role the accountRole to set
      */
-    public void setAccountRole(int accountRole) {
-        this.accountRole = accountRole;
+    public void setRole(int role) {
+        this.role = role;
     }
 }

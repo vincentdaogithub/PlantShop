@@ -22,10 +22,9 @@ public class AccountDAO {
         String query = builder.toString();
 
         try (
-            Connection connection = DBUtils.makeConnection();
-            PreparedStatement statement = connection.prepareStatement(
-                    query, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        ) {
+                Connection connection = DBUtils.makeConnection();
+                PreparedStatement statement = connection.prepareStatement(
+                        query, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);) {
             statement.setString(1, email);
             ResultSet results = statement.executeQuery();
 
@@ -36,14 +35,13 @@ public class AccountDAO {
             if (results.next() && results.isLast()) {
                 if (HashUtils.checkPassword(password, results.getString("password"))) {
                     return new Account(
-                        results.getInt("accID"),
-                        results.getString("email"),
-                        HashUtils.extractHashPassword(results.getString("password")),
-                        results.getString("fullname"),
-                        results.getString("phone"),
-                        results.getInt("status"),
-                        results.getInt("role")
-                    );
+                            results.getInt("accID"),
+                            results.getString("email"),
+                            HashUtils.extractHashPassword(results.getString("password")),
+                            results.getString("fullname"),
+                            results.getString("phone"),
+                            results.getInt("status"),
+                            results.getInt("role"));
                 }
             }
 
@@ -67,11 +65,10 @@ public class AccountDAO {
         String query = builder.toString();
 
         try (
-            Connection connection = DBUtils.makeConnection();
-            PreparedStatement statement = connection.prepareStatement(
-                    query, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        ) {
-            statement.setString(1, account.getAccountEmail());
+                Connection connection = DBUtils.makeConnection();
+                PreparedStatement statement = connection.prepareStatement(
+                        query, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);) {
+            statement.setString(1, account.getEmail());
             ResultSet results = statement.executeQuery();
 
             if (results == null || results.next()) {
@@ -82,22 +79,20 @@ public class AccountDAO {
             return false;
         }
 
-
         builder = new SQLBuilder();
         builder.addLine("INSERT INTO Accounts (email, password, fullname, phone, status, role)");
         builder.addLine("VALUES (?, ?, ?, ?, ?, ?)");
         query = builder.toString();
 
         try (
-            Connection connection = DBUtils.makeConnection();
-            PreparedStatement statement = connection.prepareStatement(query);
-        ) {
-            statement.setString(1, account.getAccountEmail());
-            statement.setString(2, HashUtils.hashPassword(account.getAccountPassword()));
-            statement.setString(3, account.getAccountFullName());
-            statement.setString(4, account.getAccountPhone());
-            statement.setInt(5, account.getAccountStatus());
-            statement.setInt(6, account.getAccountRole());
+                Connection connection = DBUtils.makeConnection();
+                PreparedStatement statement = connection.prepareStatement(query);) {
+            statement.setString(1, account.getEmail());
+            statement.setString(2, HashUtils.hashPassword(account.getPassword()));
+            statement.setString(3, account.getFullname());
+            statement.setString(4, account.getPhone());
+            statement.setInt(5, account.getStatus());
+            statement.setInt(6, account.getRole());
 
             return statement.executeUpdate() != 0;
         } catch (Exception e) {

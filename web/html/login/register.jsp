@@ -35,12 +35,12 @@
                         </div>
 
                         <div class="input-container">
-                            <label for="fullname">Full Name:</label><br />
+                            <label for="fullname">Full name:</label><br />
                             <input id="fullname" type="text" name="fullname" placeholder="fullname..." required />
                         </div>
 
                         <div class="input-container">
-                            <label for="phone">Phone Number:</label><br />
+                            <label for="phone">Phone number:</label><br />
                             <input id="phone" type="tel" name="phone" placeholder="phone..." required />
                         </div>
     
