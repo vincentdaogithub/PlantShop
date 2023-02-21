@@ -1,6 +1,5 @@
 package security.filter;
 
-import controller.Servlets;
 import controller.redirect.Pages;
 import java.io.IOException;
 import javax.servlet.Filter;
