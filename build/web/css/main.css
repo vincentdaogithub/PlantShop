@@ -3,8 +3,10 @@
 html {
     font-size: 24px;
     font-family: 'Courier New', Courier, monospace;
+
     color: #000;
     background-color: #FFF;
+    overscroll-behavior: none;
 }
 
 * {

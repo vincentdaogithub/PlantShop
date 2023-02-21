@@ -1,6 +1,5 @@
 .about-container,
 .author-container {
-    width: 100%;
     height: 100vh;
 
     display: flex;
@@ -10,7 +9,6 @@
 }
 
 .about-content {
-    width: 100%;
     background-color: #00000077;
 
     display: flex;

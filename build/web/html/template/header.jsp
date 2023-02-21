@@ -79,7 +79,7 @@
             </c:choose>
         </div>
 
-        <div class="nav-bar-toggle-container" data-toggle="off" onclick="toggleNavBar()">
+        <div class="nav-bar-toggle-container" data-toggle="off" onclick="toggleNavBarMobile()">
             <img class="top" src="/PlantShop/img/icons/menu_close_white.png" alt="menu off" />
             <img class="bottom" src="/PlantShop/img/icons/menu_open_white.png" alt="menu on" />
         </div>
