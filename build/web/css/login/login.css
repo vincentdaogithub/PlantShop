@@ -43,13 +43,17 @@ input {
 input[type="submit"] {
     width: 80%;
     margin-top: 1rem;
+    cursor: pointer;
+
+    color: #FFF;
+    background-color: #000;
     transition: color 0.2s ease-in,
                 background-color 0.2s ease-in;
 }
 
 input[type="submit"]:hover {
-    color: #FFF;
-    background-color: #000;
+    color: #000;
+    background-color: #FFF;
 }
 
 .register-link {
