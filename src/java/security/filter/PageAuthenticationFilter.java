@@ -40,6 +40,8 @@ public class PageAuthenticationFilter implements Filter {
         } else {
             request.setAttribute("pageAuthentication", Accesses.APPROVED);
         }
+
+        chain.doFilter(request, response);
     }
 
     @Override

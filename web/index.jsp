@@ -7,28 +7,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/PlantShop/css/main.min.css" />
-        <link rel="stylesheet" href="/PlantShop/css/index.min.css" />
+        <link rel="stylesheet" href="/PlantShop/css/index/index.min.css" />
         <title>Viridis</title>
     </head>
 
     <body onload="init()">
         <jsp:include page="/html/template/header.jsp" />
-        
-        <main>
-            <div class="intro">
-                <div class="intro-bg">
-                    <img onclick="swapGifs(this, '/PlantShop/gif/index/intro_bg_black.gif', '/PlantShop/gif/index/intro_bg_color.gif')" src="/PlantShop/gif/index/intro_bg_black.gif" alt="tree and lake" />
-                </div>
-    
-                <h1 class="intro-title">
-                    Green the world,<br />
-                    back to its once spectrum
-                </h1>
-            </div>
 
-            <section class="content-container horizontal-layout">
-                <article class="content">
-                    <div class="content-text text-center">
+        <div class="bg-container">
+            <img class="bg-img" src="/PlantShop/gif/index/intro_bg_black.gif" alt="tree and lake" />
+        </div>
+
+        <main>
+            <section class="intro-container">
+                <h1 class="intro-title">
+                    Green the world, back to its once spectrum.
+                </h1>
+            </section>
+
+            <section class="content-container">
+                <article class="content-section">
+                    <div class="content-text">
                         <h2>Factories, cars, power plants...</h2>
                     </div>
 
@@ -37,18 +36,26 @@
                     </div>
                 </article>
 
-                <article class="content">
+                <div class="content-break-container">
+                    <img class="content-break" src="/PlantShop/img/dividers/divider_black.png" alt="plant divider" />
+                </div>
+
+                <article class="content-section">
                     <div class="content-img">
                         <img src="/PlantShop/img/plants/plant_placeholder_black.jpg" alt="sprout placeholder" />
                     </div>
 
-                    <div class="content-text text-center">
+                    <div class="content-text">
                         <h2>... are but friendly to the green.</h2>
                     </div>
                 </article>
 
-                <article class="content">
-                    <div class="content-text text-center">
+                <div class="content-break-container">
+                    <img class="content-break" src="/PlantShop/img/dividers/divider_white.png" alt="plant divider" />
+                </div>
+
+                <article class="content-section">
+                    <div class="content-text">
                         <h2>
                             We paint them black.<br />
                             Smear with white.
@@ -60,12 +67,16 @@
                     </div>
                 </article>
 
-                <article class="content">
+                <div class="content-break-container">
+                    <img class="content-break" src="/PlantShop/img/dividers/divider_black.png" alt="plant divider" />
+                </div>
+
+                <article class="content-section">
                     <div class="content-img">
                         <img src="/PlantShop/img/plants/plant_placeholder_black.jpg" alt="sprout placeholder" />
                     </div>
 
-                    <div class="content-text text-center">
+                    <div class="content-text">
                         <h2>
                             So we plant.<br />
                             And water them, do mind.
@@ -73,8 +84,12 @@
                     </div>
                 </article>
 
-                <article class="content">
-                    <div class="content-text text-center">
+                <div class="content-break-container">
+                    <img class="content-break" src="/PlantShop/img/dividers/divider_white.png" alt="plant divider" />
+                </div>
+
+                <article class="content-section">
+                    <div class="content-text">
                         <h2>
                             For growing,<br />
                             is the reflection of the past.

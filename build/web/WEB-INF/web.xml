@@ -19,6 +19,15 @@
         <url-pattern>/html/admin/*</url-pattern>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
+    <filter>
+        <filter-name>Error500</filter-name>
+        <filter-class>security.filter.Error500</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Error500</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
     <servlet>
         <servlet-name>PageRedirect</servlet-name>
         <servlet-class>controller.redirect.PageRedirect</servlet-class>
@@ -61,6 +70,6 @@
     </welcome-file-list>
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
-        <location>/html/error.jsp</location>
+        <location>/html/error/error.jsp</location>
     </error-page>
 </web-app>

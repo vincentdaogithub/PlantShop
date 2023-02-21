@@ -2,6 +2,8 @@ package security.filter;
 
 import controller.Servlets;
 import controller.redirect.Pages;
+import security.error.Errors;
+
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -23,7 +25,10 @@ public class PageRedirectFilter implements Filter {
             throws IOException, ServletException {
 
         request.setAttribute("requestPage", Pages.ERROR);
+        request.setAttribute("error", Errors.ACCESS_DENIED);
         request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+
+        chain.doFilter(request, response);
     }
 
     @Override

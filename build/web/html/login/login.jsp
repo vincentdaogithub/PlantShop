@@ -14,33 +14,31 @@
     <body onload="init()">
         <jsp:include page="/html/template/header.jsp" />
         
+        <div class="bg-container">
+            <img class="bg-img" src="/PlantShop/gif/index/intro_bg_black.gif" alt="tree and lake" />
+        </div>
+
         <main>
-            <div class="bg-img-container">
-                <img class="bg-img" onclick="swapGifs(this, '/PlantShop/gif/index/intro_bg_black.gif', '/PlantShop/gif/index/intro_bg_color.gif')" src="/PlantShop/gif/index/intro_bg_black.gif" alt="tree and lake" />
-            </div>
-
-            <section class="login-form">
+            <section class="login-container">
                 <form action="/PlantShop/Controller" method="post">
-                    <div class="form-container">
-                        <h2>Login</h2>
+                    <h2 class="login-title">Login</h2>
 
-                        <div class="input-container">
-                            <label for="email">Email:</label><br />
-                            <input id="email" type="email" name="email" placeholder="email..." required  />
-                        </div>
-                        
-                        <div class="input-container">
-                            <label for="password">Password:</label><br />
-                            <input id="password" type="password" name="password" placeholder="password..." required  />
-                        </div>
-    
-                        <input type="hidden" name="action" value="login" />
-                        <input type="submit" value="Login" />
-
-                        <a class="register" href="/PlantShop/PageRedirect?page=register">
-                            New to the store? Sign up instead.
-                        </a>
+                    <div class="input-container">
+                        <label for="email">Email:</label><br />
+                        <input id="email" type="email" name="email" placeholder="email..." required  />
                     </div>
+                    
+                    <div class="input-container">
+                        <label for="password">Password:</label><br />
+                        <input id="password" type="password" name="password" placeholder="password..." required  />
+                    </div>
+
+                    <input type="hidden" name="action" value="login" />
+                    <input type="submit" value="Login" />
+
+                    <a class="register-link" href="/PlantShop/PageRedirect?page=register">
+                        New to the store? Sign up instead.
+                    </a>
                 </form>
             </section>
         </main>

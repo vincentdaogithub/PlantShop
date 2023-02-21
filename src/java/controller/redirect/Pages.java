@@ -10,7 +10,7 @@ public enum Pages {
     REGISTER("register", "/html/login/register.jsp", Authentications.OPEN),
     PROFILE("profile", "/html/user/profile.jsp", Authentications.USER),
     MANAGE("manage", "/html/admin/manage.jsp", Authentications.ADMIN),
-    ERROR("error", "/html/error.jsp", Authentications.SERVER);
+    ERROR("error", "/html/error/error.jsp", Authentications.SERVER);
 
     private final String page;
     private final String url;

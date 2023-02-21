@@ -1,5 +1,3 @@
-// --------------------------------------------------
-
 // const value
 
 const minFontSize = 16;
@@ -7,166 +5,83 @@ const maxFontSize = 24;
 const smallDeviceBreakpoint = 768;
 const largeDeviceBreakPoint = 1200;
 
-
 // --------------------------------------------------
 
 // responsive value
 
 var prevNavLocation = window.scrollY;
-var navIsHidden = false;
-
 
 // --------------------------------------------------
 
 // const element
 
 const html = document.getElementsByTagName("html")[0];
+
+const header = document.getElementsByTagName("header")[0];
 const nav = document.getElementsByTagName("nav")[0];
 const navBar = document.getElementsByClassName("nav-bar")[0];
-const header = document.getElementsByTagName("header")[0];  // represents the nav
+const navBarToggleContainer = document.getElementsByClassName("nav-bar-toggle-container")[0];
+
 const main = document.getElementsByTagName("main")[0];
+
+const footer = document.getElementsByTagName("footer")[0];
 const socialLinkContainer = document.getElementsByClassName("social-link-container")[0];
 const socialLinks = document.getElementsByClassName("social-link");
-const backToTop = document.getElementsByClassName("back-to-top")[0];
 const backToTopContainer = document.getElementsByClassName("back-to-top-container")[0];
-const footer = document.getElementsByTagName("footer")[0];
+const backToTop = document.getElementsByClassName("back-to-top")[0];
 
 // --------------------------------------------------
 
-// const class names
+// add multiple event listeners to one element
 
-const content = "content";
-const contentText = "content-text";
-const contentImg = "content-img";
-const section = "section";
+function addEventListeners(element, events, func, funcArgs) {
+    var functionCompiled = function () {
+        func.apply(this, funcArgs);
+    }
 
+    for (var i = 0; i < events.length; i++) {
+        element.addEventListener(events[i], functionCompiled);
+    }
+}
 
 // --------------------------------------------------
 
 // event listeners
 
-// special func to set up multiple event listeners to one element
-function addEventListeners(element, events, func, funcArgs) {
-    var funcCompiled = function () {
-        func.apply(this, funcArgs);
-    }
-
-    for (var i = 0; i < events.length; i++) {
-        element.addEventListener(events[i], funcCompiled);
-    }
-}
-
 window.addEventListener("resize", function () {
-    setNavBar();
-    setHorizontalLayout();
+    responsiveNavBarMobile();
 });
 
 window.addEventListener("scroll", function () {
     responsiveNavScroll();
     responsiveBackToTop();
-})
+});
 
-for (var i = 0; i < socialLinks.length; i++) {
-    addEventListeners(socialLinks[i], ["mouseenter", "mouseleave", "click"], imgsOpacityTransition, [socialLinks[i]]);
-}
+// social links
+Array.from(socialLinks).forEach(function (e) {
+    addEventListeners(e, ["mouseenter", "mouseleave"], imgOpacityTransition, [e]);
+});
 
-addEventListeners(backToTop, ["mouseenter", "mouseleave", "click"], imgsOpacityTransition, [backToTop]);
-
+// back to top
+addEventListeners(backToTop, ["mouseenter", "mouseleave"], imgOpacityTransition, [backToTop]);
 
 // --------------------------------------------------
 
-// funcs for page layouts
+// init
 
 function init() {
-    setNavBar();
-    setHorizontalLayout();
-    setSocialLinks();
-    setBackToTop();
     responsiveBackToTop();
-    setFooter();
-}
-
-function setSocialLinks() {
-    setSocialLinksOpacity();
-    setSocialLinksEqualWidth();
-}
-
-function setNavBar() {
-    var childrenCount = navBar.childElementCount;
-    var childWidthEqual = 100 / childrenCount;
-    
-    for (var i = 0; i < childrenCount; i++) {
-        var child = navBar.children[i];
-        child.style.width = childWidthEqual + "%";
-        child.style.lineHeight = navBar.offsetHeight + "px";
-    }
-}
-
-function swapGifs(element, url1, url2) {
-    if (element.getAttribute("src") == url1) {
-        element.src = url2;
-    } else {
-        element.src = url1;
-    }
+    setUpImgOpacity(socialLinkContainer);
+    setUpImgOpacity(backToTop);
+    setUpImgOpacity(navBarToggleContainer);
 }
 
 // --------------------------------------------------
 
-// set up the horizontal layout
+// funcs
 
-function setHorizontalLayout() {
-    const horizontalLayouts = document.getElementsByClassName("horizontal-layout");
-
-    for (var i = 0; i < horizontalLayouts.length; i++) {
-        accessContentContainer(horizontalLayouts[i].children);
-    }
-}
-
-// sub-func for setHorizontalLayout()
-function accessContentContainer(contentContainers) {
-    for (var i = 0; i < contentContainers.length; i++) {
-        const classes = contentContainers[i].className;
-
-        if (classes.length > 0 && classes.includes(content)) {
-            accessContents(contentContainers[i].children);
-        }
-    }
-}
-
-// sub-func for accessContentContainer()
-function accessContents(contents) {
-    for (var i = 0; i < contents.length; i++) {
-        const element = contents[i];
-        const classes = element.className;
-
-        if (classes.includes(contentText) || classes.includes(contentImg)) {
-            setContent(element);
-        }
-    }
-}
-
-// sub-func for setContent()
-function setContent(content) {
-    if (window.innerWidth >= largeDeviceBreakPoint) {
-        content.style.cssFloat = "left";
-        content.style.width = "50%";
-        content.style.height = "100%";
-    } else {
-        content.style.cssFloat = "none";
-        content.style.width = "100%";
-        content.style.height = "50%";
-    }
-}
-
-
-// --------------------------------------------------
-
-function imgsOpacityTransition(container) {
+function imgOpacityTransition(container) {
     const imgs = container.children;
-
-    if (imgs.length != 2) {
-        return;
-    }
 
     const firstImg = imgs[0];
     const secondImg = imgs[1];
@@ -180,38 +95,6 @@ function imgsOpacityTransition(container) {
     }
 }
 
-function setSocialLinksEqualWidth() {
-    const children = socialLinkContainer.children;
-    const widthEqual = 100 / (children.length != 0 ? children.length : 1);
-
-    for (var i = 0; i < children.length; i++) {
-        children[i].style.width = widthEqual + "%";
-    }
-}
-
-function setSocialLinksOpacity() {
-    for (var i = 0; i < socialLinks.length; i++) {
-        const imgs = socialLinks[i].children;
-
-        for (var j = 0; j < imgs.length; j++) {
-            setImgOpacity(imgs[j]);
-        }
-    }
-}
-
-// sub-func of setSocialLinksOpacity()
-function setImgOpacity(img) {
-    switch (img.className) {
-        case "top":
-            img.style.opacity = "1";
-            break;
-
-        case "bottom":
-            img.style.opacity = "0";
-            break;
-    }
-}
-
 function responsiveNavScroll() {
     const scrollPosition = window.scrollY;
 
@@ -219,18 +102,9 @@ function responsiveNavScroll() {
         header.style.display = "none";
     } else {
         header.style.display = "block";
-        setNavBar();
     }
 
     prevNavLocation = scrollPosition;
-}
-
-function setBackToTop() {
-    const imgs = backToTop.children;
-
-    for (var j = 0; j < imgs.length; j++) {
-        setImgOpacity(imgs[j]);
-    }
 }
 
 function responsiveBackToTop() {
@@ -244,12 +118,77 @@ function responsiveBackToTop() {
     }
 }
 
-function setFooter() {
-    const viewportHeight = window.innerHeight;
-    const footerLocation = footer.getBoundingClientRect().top;
+function setUpImgOpacity(element) {
+    const tops = element.getElementsByClassName("top");
+    const bottoms = element.getElementsByClassName("bottom");
 
-    if (footerLocation < viewportHeight) {
-        footer.style.position = "fixed";
-        footer.style.bottom = "0";
+    Array.from(tops).forEach(function (e) {
+        e.style.opacity = "1";
+    });
+
+    Array.from(bottoms).forEach(function (e) {
+        e.style.opacity = "0";
+    });
+}
+
+function toggleUpdateUserInfo(formID) {
+    const form = document.getElementById(formID);
+    const toggleStatus = form.getAttribute("data-toggle");
+
+    switch (toggleStatus) {
+        case "off":
+            const allForms = document.getElementsByTagName("form");
+
+            Array.from(allForms).forEach(function (e) {
+                e.style.display = "none";
+                e.setAttribute("data-toggle", "off");
+            });
+
+            form.style.display = "flex";
+            form.setAttribute("data-toggle", "on");
+            break;
+
+        case "on":
+            form.style.display = "none";
+            form.setAttribute("data-toggle", "off");
+            break;
+
+        default:
+            form.style.display = "none";
+            form.setAttribute("data-toggle", "off");
     }
 }
+
+function toggleNavBarMobile() {
+    const toggleStatus = navBarToggleContainer.getAttribute("data-toggle");
+    const top = navBarToggleContainer.getElementsByClassName("top")[0];
+    const bottom = navBarToggleContainer.getElementsByClassName("bottom")[0];
+
+    switch (toggleStatus) {
+        case "off":
+            navBar.style.display = "flex";
+            top.style.opacity = "0"
+            bottom.style.opacity = "1"
+            navBarToggleContainer.setAttribute("data-toggle", "on");
+            break;
+    
+        case "on":
+            navBar.style.display = "none";
+            top.style.opacity = "1"
+            bottom.style.opacity = "0"
+            navBarToggleContainer.setAttribute("data-toggle", "off");
+            break;
+    }
+}
+
+function responsiveNavBarMobile() {
+    if (window.innerWidth > smallDeviceBreakpoint) {
+        navBar.style.display = "flex";
+    } else {
+        navBar.style.display = "none";
+        navBarToggleContainer.getElementsByClassName("top")[0].style.opacity = "1";
+        navBarToggleContainer.getElementsByClassName("bottom")[0].style.opacity = "0";
+    }
+}
+
+// --------------------------------------------------

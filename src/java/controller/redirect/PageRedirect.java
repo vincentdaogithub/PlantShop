@@ -6,9 +6,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import security.error.Errors;
 import security.filter.Accesses;
 
 public class PageRedirect extends HttpServlet {
+    
     private static final long serialVersionUID = 1L;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -20,7 +23,8 @@ public class PageRedirect extends HttpServlet {
             Pages page = Pages.convertStringToPage(request.getParameter("page"));
 
             if (page == null) {
-                session.setAttribute("currentPage", Pages.ERROR.getURL());
+                session.setAttribute("currentPage", Pages.ERROR.getPage());
+                request.setAttribute("error", Errors.BAD_REQUEST);
                 request.getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
                 return;
             }
@@ -43,10 +47,12 @@ public class PageRedirect extends HttpServlet {
 
                 case DENIED:
                     requestPage = Pages.ERROR;
+                    request.setAttribute("error", Errors.UNAUTHORIZED);
                     break;
 
                 case REQUESTING:
-                    throw new ServletException();
+                    requestPage = Pages.ERROR;
+                    request.setAttribute("error", Errors.SERVER_ERROR);
             }
         }
 

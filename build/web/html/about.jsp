@@ -14,52 +14,26 @@
     <body onload="init()">
         <jsp:include page="/html/template/header.jsp" />
         
+        <div class="bg-container">
+            <img class="bg-img" src="/PlantShop/gif/index/intro_bg_black.gif" alt="tree and lake" />
+        </div>
+
         <main>
             <section class="about-container">
-                <div class="about-panel">
-                    <h2>
+                <div class="about-content">
+                    <div class="poem">
                         Millions of years,<br />
-                        older than the first human.
-                    </h2>
-                    <div class="img-container">
-                        <img src="/PlantShop/gif/index/intro_bg_black.gif" />
-                    </div>
-                </div>
-
-                <div class="about-panel">
-                    <h2>
-                        Among the first things we see.
-                    </h2>
-
-                    <div class="img-container">
-                        <img src="/PlantShop/gif/index/intro_bg_black.gif" />
-                    </div>
-                </div>
-
-                <div class="about-panel">
-                    <h2>
-                        Among the first things we live.
-                    </h2>
-
-                    <div class="img-container">
-                        <img src="/PlantShop/gif/index/intro_bg_black.gif" />
-                    </div>
-                </div>
-
-                <div class="about-panel">
-                    <h2>
-                        So we give you a chance,<br />
+                        older than the first human.<br />
+                        Among the first things we see.<br />
+                        Among the first things we live.<br />
+                        So we give you the mean,<br />
                         to look back.
-                    </h2>
-
-                    <div class="img-container">
-                        <img src="/PlantShop/gif/index/intro_bg_black.gif" />
                     </div>
                 </div>
             </section>
 
             <section class="author-container">
-                <div class="center-container">
+                <div class="author-content">
                     <h2>About author</h2>
 
                     <div class="poem">
@@ -68,8 +42,6 @@
                         If there's any left,<br />
                         that is, all "me" have left.
                     </div>
-    
-                    <img src="/PlantShop/gif/about/lain.gif" />
                 </div>
             </section>
         </main>

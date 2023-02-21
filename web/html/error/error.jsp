@@ -14,10 +14,18 @@
 
     <body onload="init()">
         <jsp:include page="/html/template/header.jsp" />
+
+        <div class="bg-container">
+            <img class="bg-img" src="/PlantShop/gif/index/intro_bg_black.gif" alt="tree and lake" />
+        </div>
         
         <main>
             <section class="error-container">
-                <h1>An error occurred.</h1>
+                <h1>Oops. Something's wrong here.</h1>
+                <p>Error code: ${requestScope.error.errorCode}</p>
+                <p>Error detail: ${requestScope.error.errorDetail}</p>
+                <p>${requestScope.error.errorMessage}</p>
+
                 <p>Full stack trace:</p>
                 <%= exception %>
             </section>

@@ -1,74 +1,45 @@
 .about-container,
 .author-container {
     width: 100%;
-}
-
-.about-panel,
-.author-container {
-    width: 100%;
     height: 100vh;
 
-    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
-.about-panel > h2 {
-    padding: 1rem;
-    font-size: 2rem;
-    background-color: #00000077;
-    
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    z-index: 1;
-}
-
-.img-container {
+.about-content {
     width: 100%;
-    height: 100%;
+    background-color: #00000077;
 
-    position: relative;
-    overflow: hidden;
-    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.img-container > img {
-    min-width: 1920px;
-    height: auto;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.poem {
+    margin: 1.5rem;
+    color: #FFF;
+    font-size: 1.5rem;
 }
 
-.author-container > .center-container {
-    width: 50%;
-    height: 50%;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    overflow: hidden;
+.author-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.center-container > h2 {
-    text-align: center;
-    margin-bottom: 1rem;
+.author-content {
+    color: #FFF;
+    background-color: #00000077;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.center-container > .poem {
-    width: fit-content;
-    margin: 0 auto 1rem;
-}
-
-.center-container > img {
-    display: block;
-    width: auto;
-    height: 50%;
-
-    margin: 0 auto;
+.author-content > h2 {
+    margin-top: 1.5rem;
 }

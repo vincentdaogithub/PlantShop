@@ -14,39 +14,112 @@
     <body onload="init()">
         <jsp:include page="/html/template/header.jsp" />
 
+        <div class="bg-container">
+            <img class="bg-img" src="/PlantShop/gif/index/intro_bg_black.gif" alt="tree and lake" />
+        </div>
+
         <main>
-            <section class="profile-container">
-                <div class="profile-img-container">
-                    <div class="profile-img-content">
-                        <h2 class="hello-user">Hello, ${sessionScope.account.fullname}</h2>
-                        <div class="img-container">
-                            <img class="profile-img" src="https://dummyimage.com/600x400/ffffff/000000" alt="profile image" />
-                        </div>
+            <section class="profile-ava-container">
+                <h2 class="hello-user">Hello, ${sessionScope.account.fullname}</h2>
+
+                <div class="ava-container">
+                    <img class="profile-ava" src="https://dummyimage.com/600x400/ffffff/000000" alt="profile image" />
+                </div>
+            </section>
+
+            <section class="profile-info-container">
+                <div class="info-section">
+                    <div class="info-label-container">
+                        <div class="info-label">Email:</div>
+                    </div>
+
+                    <div class="info-container">
+                        <div class="info">${sessionScope.account.email}</div>
+                        <div class="info-update-link" onclick="toggleUpdate('update-email')">Update your email</div>
+
+                        <form id="update-email" class="info-update" data-toggle="off" action="/PlantShop/Controller" method="post">
+                            <label for="new-email">New email:</label>
+                            <input id="new-email" type="email" name="new-email" placeholder="new email..." />
+
+                            <input type="hidden" name="action" value="user-update" />
+                            <input type="hidden" name="update" value="email" />
+                            <input type="submit" value="Update" />
+                        </form>
                     </div>
                 </div>
 
-                <div class="profile-information-container">
-                    <form class="profile-information">
-                        <div class="profile-field">
-                            <label for="email">Email: </label>
-                            <input id="email" type="text" value="${sessionScope.account.email}" readonly />
-                        </div>
+                <div class="content-break-container">
+                    <img class="content-break" src="/PlantShop/img/dividers/divider_white.png" alt="plant divider" />
+                </div>
 
-                        <div class="profile-field">
-                            <label for="password">Password: </label>
-                            <input id="password" type="password" value="${sessionScope.account.password}" readonly />
-                        </div>
+                <div class="info-section">
+                    <div class="info-label-container">
+                        <div class="info-label">Password:</div>
+                    </div>
 
-                        <div class="profile-field">
-                            <label for="fullname">Full name: </label>
-                            <input id="fullname" type="text" value="${sessionScope.account.fullname}" readonly />
-                        </div>
+                    <div class="info-container">
+                        <div class="info-update-link" onclick="toggleUpdate('update-password')">Update your password</div>
 
-                        <div class="profile-field">
-                            <label for="phone">Phone number: </label>
-                            <input id="phone" type="tel" value="${sessionScope.account.phone}" readonly />
-                        </div>
-                    </form>
+                        <form id="update-password" class="info-update" data-toggle="off" action="/PlantShop/Controller" method="post">
+                            <label for="old-password">Old password:</label>
+                            <input id="old-password" type="password" name="old-password" placeholder="old password..." />
+
+                            <label for="new-password">New password:</label>
+                            <input id="new-password" type="password" name="new-password" placeholder="new password..." />
+
+                            <input type="hidden" name="action" value="user-update" />
+                            <input type="hidden" name="update" value="password" />
+                            <input type="submit" value="Update" />
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content-break-container">
+                    <img class="content-break" src="/PlantShop/img/dividers/divider_white.png" alt="plant divider" />
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label-container">
+                        <div class="info-label">Fullname:</div>
+                    </div>
+
+                    <div class="info-container">
+                        <div class="info">${sessionScope.account.fullname}</div>
+                        <div class="info-update-link" onclick="toggleUpdate('update-fullname')">Update your fullname</div>
+
+                        <form id="update-fullname" class="info-update" data-toggle="off" action="/PlantShop/Controller" method="post">
+                            <label for="new-fullname">New fullname:</label>
+                            <input id="new-fullname" type="text" name="new-fullname" placeholder="new fullname..." />
+
+                            <input type="hidden" name="action" value="user-update" />
+                            <input type="hidden" name="update" value="fullname" />
+                            <input type="submit" value="Update" />
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content-break-container">
+                    <img class="content-break" src="/PlantShop/img/dividers/divider_white.png" alt="plant divider" />
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label-container">
+                        <div class="info-label">Phone:</div>
+                    </div>
+
+                    <div class="info-container">
+                        <div class="info">${sessionScope.account.phone}</div>
+                        <div class="info-update-link" onclick="toggleUpdate('update-phone')">Update your phone</div>
+
+                        <form id="update-phone" class="info-update" data-toggle="off" action="/PlantShop/Controller" method="post">
+                            <label for="new-phone">New phone:</label>
+                            <input id="new-phone" type="tel" name="new-phone" placeholder="new phone..." />
+
+                            <input type="hidden" name="action" value="user-update" />
+                            <input type="hidden" name="update" value="phone" />
+                            <input type="submit" value="Update" />
+                        </form>
+                    </div>
                 </div>
             </section>
         </main>
