@@ -1,6 +1,8 @@
 package controller;
 
 import controller.redirect.Pages;
+import security.error.Errors;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +20,7 @@ public class Controller extends HttpServlet {
 
         if (actionInput == null) {
             request.setAttribute("requestPage", Pages.ERROR);
+            request.setAttribute("error", Errors.BAD_REQUEST);
             request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
             return;
         }
@@ -32,6 +35,7 @@ public class Controller extends HttpServlet {
         }
 
         request.setAttribute("requestPage", Pages.ERROR);
+        request.setAttribute("error", Errors.BAD_REQUEST);
         request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
     }
 }

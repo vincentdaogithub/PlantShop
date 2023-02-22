@@ -3,6 +3,8 @@ package dao.account;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import business.account.Updates;
 import obj.account.Account;
 import security.util.HashUtils;
 import util.DBUtils;
@@ -11,7 +13,7 @@ import util.SQLBuilder;
 public class AccountDAO {
     public static final Account getAccount(String email, String password) {
         if (email == null || password == null) {
-            return null;
+            throw new NullPointerException();
         }
 
         SQLBuilder builder = new SQLBuilder();
@@ -19,18 +21,15 @@ public class AccountDAO {
         builder.addLine("FROM Accounts");
         builder.addLine("WHERE email = ?");
         builder.addLine("COLLATE Latin1_General_CS_AS");
-        String query = builder.toString();
 
         try (
                 Connection connection = DBUtils.makeConnection();
                 PreparedStatement statement = connection.prepareStatement(
-                        query, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);) {
+                        builder.toString(),
+                        ResultSet.TYPE_SCROLL_SENSITIVE,
+                        ResultSet.CONCUR_READ_ONLY);) {
             statement.setString(1, email);
             ResultSet results = statement.executeQuery();
-
-            if (results == null) {
-                return null;
-            }
 
             if (results.next() && results.isLast()) {
                 if (HashUtils.checkPassword(password, results.getString("password"))) {
@@ -47,7 +46,7 @@ public class AccountDAO {
 
             return null;
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
@@ -62,12 +61,14 @@ public class AccountDAO {
         builder.addLine("FROM Accounts");
         builder.addLine("WHERE email = ?");
         builder.addLine("COLLATE Latin1_General_CS_AS");
-        String query = builder.toString();
 
         try (
                 Connection connection = DBUtils.makeConnection();
                 PreparedStatement statement = connection.prepareStatement(
-                        query, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);) {
+                        builder.toString(),
+                        ResultSet.TYPE_SCROLL_SENSITIVE,
+                        ResultSet.CONCUR_READ_ONLY);) {
+
             statement.setString(1, account.getEmail());
             ResultSet results = statement.executeQuery();
 
@@ -82,11 +83,10 @@ public class AccountDAO {
         builder = new SQLBuilder();
         builder.addLine("INSERT INTO Accounts (email, password, fullname, phone, status, role)");
         builder.addLine("VALUES (?, ?, ?, ?, ?, ?)");
-        query = builder.toString();
 
         try (
                 Connection connection = DBUtils.makeConnection();
-                PreparedStatement statement = connection.prepareStatement(query);) {
+                PreparedStatement statement = connection.prepareStatement(builder.toString());) {
             statement.setString(1, account.getEmail());
             statement.setString(2, HashUtils.hashPassword(account.getPassword()));
             statement.setString(3, account.getFullname());
@@ -97,6 +97,51 @@ public class AccountDAO {
             return statement.executeUpdate() != 0;
         } catch (Exception e) {
             System.err.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public static final boolean updateAccount(Updates updateType, Account account, String valueToChange) {
+        if (updateType == null || account == null || valueToChange == null) {
+            throw new NullPointerException();
+        }
+
+        String email = account.getEmail();
+        SQLBuilder builder = new SQLBuilder();
+        builder.addLine("UPDATE Accounts");
+
+        switch (updateType) {
+            case EMAIL:
+                builder.addLine("SET email = ?");
+                break;
+
+            case PASSWORD:
+                builder.addLine("SET password = ?");
+                break;
+
+            case FULLNAME:
+                builder.addLine("SET fullname = ?");
+                break;
+
+            case PHONE:
+                builder.addLine("SET phone = ?");
+                break;
+
+            default:
+                throw new NullPointerException();
+        }
+
+        builder.addLine("WHERE email = ?");
+        builder.addLine("COLLATE Latin1_General_CS_AS");
+
+        try (
+                Connection connection = DBUtils.makeConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(builder.toString());) {
+            preparedStatement.setString(1, valueToChange);
+            preparedStatement.setString(2, email);
+            return preparedStatement.executeUpdate() != 0;
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }

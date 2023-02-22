@@ -44,6 +44,10 @@
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>business.account.RegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <servlet-class>business.account.UpdateUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PageRedirect</servlet-name>
         <url-pattern>/PageRedirect</url-pattern>
@@ -59,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <url-pattern>/UpdateUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
