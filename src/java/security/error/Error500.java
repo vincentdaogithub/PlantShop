@@ -1,4 +1,4 @@
-package security.filter;
+package security.error;
 
 import controller.redirect.Pages;
 import java.io.IOException;
@@ -9,8 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-
-import security.error.Errors;
 
 public class Error500 implements Filter {
     // private FilterConfig filterConfig = null;

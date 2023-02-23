@@ -16,9 +16,9 @@ public enum Updates {
         return this.updateType;
     }
 
-    public static final Updates convertStringToUpdateType(String input) {
+    public static final Updates convertStringToUpdate(String input) {
         if (input == null) {
-            throw new NullPointerException();
+            return null;
         }
 
         for (Updates update : Updates.values()) {

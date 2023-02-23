@@ -21,7 +21,7 @@
     </filter-mapping>
     <filter>
         <filter-name>Error500</filter-name>
-        <filter-class>security.filter.Error500</filter-class>
+        <filter-class>security.error.Error500</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>Error500</filter-name>
@@ -45,8 +45,12 @@
         <servlet-class>business.account.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UpdateUserServlet</servlet-name>
-        <servlet-class>business.account.UpdateUserServlet</servlet-class>
+        <servlet-name>UpdateAccountServlet</servlet-name>
+        <servlet-class>business.account.UpdateAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogOutServlet</servlet-name>
+        <servlet-class>business.account.LogOutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PageRedirect</servlet-name>
@@ -65,8 +69,12 @@
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UpdateUserServlet</servlet-name>
-        <url-pattern>/UpdateUserServlet</url-pattern>
+        <servlet-name>UpdateAccountServlet</servlet-name>
+        <url-pattern>/UpdateAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOutServlet</servlet-name>
+        <url-pattern>/LogOutServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

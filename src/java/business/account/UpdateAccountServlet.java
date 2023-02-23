@@ -1,24 +1,25 @@
 package business.account;
 
+import controller.Servlets;
+import controller.redirect.Pages;
+import dao.account.AccountDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import controller.Servlets;
-import controller.redirect.Pages;
-import dao.account.AccountDAO;
 import obj.account.Account;
 import security.error.Errors;
 
 public class UpdateAccountServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String update = request.getParameter("update");
+        Updates update = Updates.convertStringToUpdate(request.getParameter("update"));
 
         if (update == null) {
             request.setAttribute("requestPage", Pages.ERROR);
@@ -27,27 +28,42 @@ public class UpdateAccountServlet extends HttpServlet {
             return;
         }
 
-        Updates updateType = Updates.convertStringToUpdateType(update);
-        HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
-        String valueToChange;
+        boolean updateStatus = false;
 
-        switch (updateType) {
+        if (update == Updates.PASSWORD) {
+            updateStatus = updatePassword(update, request);
+        } else {
+            updateStatus = updateInformation(update, request);
+        }
+
+        if (updateStatus) {
+            request.setAttribute("requestPage", Pages.PROFILE);
+            HttpSession session = request.getSession();
+
+            Account account = (Account) session.getAttribute("account");
+            String email = update == Updates.EMAIL
+                    ? (String) request.getParameter("new-email")
+                    : account.getEmail();
+
+            String password = update == Updates.PASSWORD
+                    ? (String) request.getParameter("new-password")
+                    : (String) request.getParameter("password");
+
+            session.setAttribute("account", AccountDAO.getAccount(email, password));
+        } else {
+            request.setAttribute("requestPage", Pages.ERROR);
+            request.setAttribute("error", Errors.UNAUTHORIZED);
+        }
+
+        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+    }
+
+    private final boolean updateInformation(Updates update, HttpServletRequest request) throws ServletException {
+        String valueToChange = null;
+
+        switch (update) {
             case EMAIL:
                 valueToChange = request.getParameter("new-email");
-                break;
-
-            case PASSWORD:
-                String oldPassword = request.getParameter("old-password");
-
-                if (AccountDAO.getAccount(account.getEmail(), oldPassword) == null) {
-                    request.setAttribute("requestPage", Pages.ERROR);
-                    request.setAttribute("error", Errors.FILE_NOT_FOUND);
-                    request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
-                    return;
-                }
-
-                valueToChange = request.getParameter("new-password");
                 break;
 
             case FULLNAME:
@@ -59,19 +75,20 @@ public class UpdateAccountServlet extends HttpServlet {
                 break;
 
             default:
-                request.setAttribute("requestPage", Pages.ERROR);
-                request.setAttribute("error", Errors.BAD_REQUEST);
-                request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
-                return;
+                throw new ServletException();
         }
 
-        if (!AccountDAO.updateAccount(updateType, account, valueToChange)) {
-            request.setAttribute("requestPage", Pages.ERROR);
-            request.setAttribute("error", Errors.SERVER_ERROR);
-        } else {
-            request.setAttribute("requestPage", Pages.PROFILE);
-        }
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
 
-        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+        return AccountDAO.updateAccount(update, account, valueToChange);
+    }
+
+    private final boolean updatePassword(Updates update, HttpServletRequest request) {
+        String valueToChange = request.getParameter("new-password");
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+
+        return AccountDAO.updateAccount(update, account, valueToChange);
     }
 }

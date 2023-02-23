@@ -141,8 +141,10 @@ function toggleUpdateUserInfo(formID) {
             const allForms = document.getElementsByTagName("form");
 
             Array.from(allForms).forEach(function (e) {
-                e.style.display = "none";
-                e.setAttribute("data-toggle", "off");
+                if (e.classList.contains("info-update")) {
+                    e.style.display = "none";
+                    e.setAttribute("data-toggle", "off");
+                }
             });
 
             form.style.display = "flex";

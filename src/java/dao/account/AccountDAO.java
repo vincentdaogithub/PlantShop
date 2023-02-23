@@ -117,6 +117,7 @@ public class AccountDAO {
 
             case PASSWORD:
                 builder.addLine("SET password = ?");
+                valueToChange = HashUtils.hashPassword(valueToChange);
                 break;
 
             case FULLNAME:
@@ -136,10 +137,12 @@ public class AccountDAO {
 
         try (
                 Connection connection = DBUtils.makeConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(builder.toString());) {
+                PreparedStatement preparedStatement = connection.prepareStatement(builder.toString());
+        ) {
             preparedStatement.setString(1, valueToChange);
             preparedStatement.setString(2, email);
-            return preparedStatement.executeUpdate() != 0;
+
+            return preparedStatement.executeUpdate() == 1;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
