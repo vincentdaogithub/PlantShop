@@ -20,7 +20,7 @@
 
         <main>
             <section class="profile-ava-container">
-                <h2 class="hello-user">Hello, ${sessionScope.account.fullname}</h2>
+                <h2 class="hello-user">Hello, <c:out value="${sessionScope.account.fullname}" /></h2>
 
                 <div class="ava-container">
                     <img class="profile-ava" src="https://dummyimage.com/600x400/ffffff/000000" alt="profile image" />
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="info-container">
-                        <div class="info">${sessionScope.account.email}</div>
+                        <div class="info"><c:out value="${sessionScope.account.email}" /></div>
                         <div class="info-update-link" onclick="toggleUpdateUserInfo('update-email')">Update your email</div>
 
                         <form id="update-email" class="info-update" data-toggle="off" action="/PlantShop/Controller" method="post">
@@ -49,7 +49,7 @@
                             <label for="password">Password:</label>
                             <input id="password" type="password" name="password" placeholder="password..." />
 
-                            <input type="hidden" name="action" value="account-update" />
+                            <input type="hidden" name="action" value="update" />
                             <input type="hidden" name="update" value="email" />
                             <input type="submit" value="Update" />
                         </form>
@@ -75,7 +75,7 @@
                             <label for="new-password">New password:</label>
                             <input id="new-password" type="password" name="new-password" placeholder="new password..." />
 
-                            <input type="hidden" name="action" value="account-update" />
+                            <input type="hidden" name="action" value="update" />
                             <input type="hidden" name="update" value="password" />
                             <input type="submit" value="Update" />
                         </form>
@@ -92,7 +92,7 @@
                     </div>
 
                     <div class="info-container">
-                        <div class="info">${sessionScope.account.fullname}</div>
+                        <div class="info"><c:out value="${sessionScope.account.fullname}" /></div>
                         <div class="info-update-link" onclick="toggleUpdateUserInfo('update-fullname')">Update your fullname</div>
 
                         <form id="update-fullname" class="info-update" data-toggle="off" action="/PlantShop/Controller" method="post">
@@ -102,7 +102,7 @@
                             <label for="password">Password:</label>
                             <input id="password" type="password" name="password" placeholder="password..." />
 
-                            <input type="hidden" name="action" value="account-update" />
+                            <input type="hidden" name="action" value="update" />
                             <input type="hidden" name="update" value="fullname" />
                             <input type="submit" value="Update" />
                         </form>
@@ -119,7 +119,7 @@
                     </div>
 
                     <div class="info-container">
-                        <div class="info">${sessionScope.account.phone}</div>
+                        <div class="info"><c:out value="${sessionScope.account.phone}" /></div>
                         <div class="info-update-link" onclick="toggleUpdateUserInfo('update-phone')">Update your phone</div>
 
                         <form id="update-phone" class="info-update" data-toggle="off" action="/PlantShop/Controller" method="post">
@@ -129,7 +129,7 @@
                             <label for="password">Password:</label>
                             <input id="password" type="password" name="password" placeholder="password..." />
 
-                            <input type="hidden" name="action" value="account-update" />
+                            <input type="hidden" name="action" value="update" />
                             <input type="hidden" name="update" value="phone" />
                             <input type="submit" value="Update" />
                         </form>

@@ -3,8 +3,8 @@ package controller;
 public enum Actions {
     LOGIN("login", "/LoginServlet"),
     REGISTER("register", "/RegisterServlet"),
-    USER_UPDATE("account-update", "/UpdateAccountServlet"),
-    LOG_OUT("log-out", "/LogOutServlet");
+    USER_UPDATE("update", "/UpdateServlet"),
+    LOG_OUT("logout", "/LogoutServlet");
 
     private final String action;
     private final String url;

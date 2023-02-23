@@ -101,23 +101,19 @@ public class AccountDAO {
         }
     }
 
-    public static final boolean updateAccount(Updates updateType, Account account, String valueToChange) {
-        if (updateType == null || account == null || valueToChange == null) {
-            throw new NullPointerException();
-        }
+    public static final boolean updateAccount(Updates update, String email, String updateValue) {
 
-        String email = account.getEmail();
         SQLBuilder builder = new SQLBuilder();
         builder.addLine("UPDATE Accounts");
 
-        switch (updateType) {
+        switch (update) {
             case EMAIL:
                 builder.addLine("SET email = ?");
                 break;
 
             case PASSWORD:
                 builder.addLine("SET password = ?");
-                valueToChange = HashUtils.hashPassword(valueToChange);
+                updateValue = HashUtils.hashPassword(updateValue);
                 break;
 
             case FULLNAME:
@@ -139,7 +135,7 @@ public class AccountDAO {
                 Connection connection = DBUtils.makeConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(builder.toString());
         ) {
-            preparedStatement.setString(1, valueToChange);
+            preparedStatement.setString(1, updateValue);
             preparedStatement.setString(2, email);
 
             return preparedStatement.executeUpdate() == 1;

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <filter>
+        <filter-name>UpdateFilter</filter-name>
+        <filter-class>security.filter.account.UpdateFilter</filter-class>
+    </filter>
+    <filter>
         <filter-name>PageRedirectFilter</filter-name>
         <filter-class>security.filter.PageRedirectFilter</filter-class>
     </filter>
@@ -28,6 +32,11 @@
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <servlet-name>LoginServlet</servlet-name>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>UpdateFilter</filter-name>
+        <servlet-name>UpdateServlet</servlet-name>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
     <filter-mapping>
@@ -62,12 +71,12 @@
         <servlet-class>business.account.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UpdateAccountServlet</servlet-name>
-        <servlet-class>business.account.UpdateAccountServlet</servlet-class>
+        <servlet-name>UpdateServlet</servlet-name>
+        <servlet-class>business.account.UpdateServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LogOutServlet</servlet-name>
-        <servlet-class>business.account.LogOutServlet</servlet-class>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>business.account.LogoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PageRedirect</servlet-name>
@@ -86,12 +95,12 @@
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UpdateAccountServlet</servlet-name>
-        <url-pattern>/UpdateAccountServlet</url-pattern>
+        <servlet-name>UpdateServlet</servlet-name>
+        <url-pattern>/UpdateServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LogOutServlet</servlet-name>
-        <url-pattern>/LogOutServlet</url-pattern>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

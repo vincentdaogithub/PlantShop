@@ -8,8 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import controller.Servlets;
-import controller.redirect.Pages;
+import controller.redirect.ErrorRedirect;
 import security.error.Errors;
 import util.UserInput;
 
@@ -23,9 +22,7 @@ public class LoginFilter implements Filter {
         String password = request.getParameter("password");
 
         if (UserInput.isEmpty(email) || UserInput.isEmpty(password)) {
-            request.setAttribute("requestPage", Pages.ERROR);
-            request.setAttribute("error", Errors.BAD_REQUEST);
-            request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+            ErrorRedirect.redirect(Errors.BAD_REQUEST, request, response);
             return;
         }
 

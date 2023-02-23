@@ -1,6 +1,7 @@
 package business.account;
 
 import controller.Servlets;
+import controller.redirect.ErrorRedirect;
 import controller.redirect.Pages;
 import dao.account.AccountDAO;
 import obj.account.Account;
@@ -25,9 +26,7 @@ public class LoginServlet extends HttpServlet {
         Account account = AccountDAO.getAccount(email, password);
 
         if (account == null) {
-            request.setAttribute("requestPage", Pages.ERROR);
-            request.setAttribute("error", Errors.UNAUTHORIZED);
-            request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+            ErrorRedirect.redirect(Errors.UNAUTHORIZED, request, response);
         } else {
             request.getSession().setAttribute("account", account);
             request.setAttribute("requestPage", Pages.HOME);

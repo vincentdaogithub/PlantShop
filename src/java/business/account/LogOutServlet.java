@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Servlets;
 import controller.redirect.Pages;
 
-public class LogOutServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
+    
     private static final long serialVersionUID = 1L;
 
     @Override

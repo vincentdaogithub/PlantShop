@@ -1,7 +1,6 @@
 package security.filter.account;
 
-import controller.Servlets;
-import controller.redirect.Pages;
+import controller.redirect.ErrorRedirect;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -26,10 +25,9 @@ public class RegisterFilter implements Filter {
         if (UserInput.isEmpty(email)
                 || UserInput.isEmpty(password)
                 || UserInput.isEmpty(fullname)
-                || UserInput.isEmpty(phone)) {
-            request.setAttribute("requestPage", Pages.ERROR);
-            request.setAttribute("error", Errors.BAD_REQUEST);
-            request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+                || UserInput.isEmpty(phone)
+        ) {
+            ErrorRedirect.redirect(Errors.BAD_REQUEST, request, response);
             return;
         }
 

@@ -23,9 +23,7 @@ public class PageRedirect extends HttpServlet {
             Pages page = Pages.convertStringToPage(request.getParameter("page"));
 
             if (page == null) {
-                session.setAttribute("currentPage", Pages.ERROR.getPage());
-                request.setAttribute("error", Errors.BAD_REQUEST);
-                request.getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
+                ErrorRedirect.redirect(Errors.BAD_REQUEST, request, response);
                 return;
             }
 
