@@ -13,6 +13,7 @@ import dao.account.AccountDAO;
 import dao.account.AccountFactory;
 import obj.account.Account;
 import obj.account.Accounts;
+import security.error.Errors;
 
 public class RegisterServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -25,24 +26,17 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String fullname = request.getParameter("fullname");
         String phone = request.getParameter("phone");
-        HttpSession session = request.getSession();
-
-        if (email == null || password == null || fullname == null || phone == null) {
-            request.setAttribute("requestPage", Pages.ERROR);
-            getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
-            return;
-        }
 
         Account account = AccountFactory.build(email, password, fullname, phone, Accounts.USER);
 
         if (!AccountDAO.addAccount(account)) {
             request.setAttribute("requestPage", Pages.ERROR);
-            getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
-            return;
+            request.setAttribute("error", Errors.USER_EXISTED);
+        } else {
+            request.setAttribute("requestPage", Pages.HOME);
+            request.getSession().setAttribute("account", AccountDAO.getAccount(email, password));
         }
 
-        session.setAttribute("account", AccountDAO.getAccount(email, password));
-        request.setAttribute("requestPage", Pages.HOME);
-        getServletContext().getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
     }
 }

@@ -5,7 +5,8 @@ public enum Errors {
     UNAUTHORIZED("401", "Unauthorized access", "Hold up. Who are you again?"),
     ACCESS_DENIED("402", "Access denied", "Curiosity killed the cat. Or technically YOU."),
     FILE_NOT_FOUND("404", "File(s) not found", "Poof! Out of existence."),
-    SERVER_ERROR("500", "Server error", "Yeah I know. My code sucks.");
+    SERVER_ERROR("500", "Server error", "Yeah I know. My code sucks."),
+    USER_EXISTED("USER_EXISTED", "The user has already exist", "Whoa whoa. Doppelgänger?");
 
     private final String errorCode;
     private final String errorDetail;

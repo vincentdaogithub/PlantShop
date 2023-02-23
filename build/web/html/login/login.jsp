@@ -25,12 +25,12 @@
 
                     <div class="input-container">
                         <label for="email">Email:</label><br />
-                        <input id="email" type="email" name="email" placeholder="email..." required  />
+                        <input id="email" type="email" name="email" placeholder="email..." required />
                     </div>
                     
                     <div class="input-container">
                         <label for="password">Password:</label><br />
-                        <input id="password" type="password" name="password" placeholder="password..." required  />
+                        <input id="password" type="password" name="password" placeholder="password..." required />
                     </div>
 
                     <input type="hidden" name="action" value="login" />
