@@ -27,8 +27,8 @@
                 </div>
 
                 <form action="/PlantShop/Controller" method="post">
-                    <input type="hidden" name="action" value="log-out" />
-                    <input class="log-out" type="submit" value="Log out" />
+                    <input type="hidden" name="action" value="logout" />
+                    <input class="logout" type="submit" value="Log out" />
                 </form>
             </section>
 
@@ -46,8 +46,8 @@
                             <label for="new-email">New email:</label>
                             <input id="new-email" type="email" name="new-email" placeholder="new email..." />
 
-                            <label for="password">Password:</label>
-                            <input id="password" type="password" name="password" placeholder="password..." />
+                            <label for="password-email">Password:</label>
+                            <input id="password-email" type="password" name="password" placeholder="password..." />
 
                             <input type="hidden" name="action" value="update" />
                             <input type="hidden" name="update" value="email" />
@@ -99,8 +99,8 @@
                             <label for="new-fullname">New fullname:</label>
                             <input id="new-fullname" type="text" name="new-fullname" placeholder="new fullname..." />
 
-                            <label for="password">Password:</label>
-                            <input id="password" type="password" name="password" placeholder="password..." />
+                            <label for="password-fullname">Password:</label>
+                            <input id="password-fullname" type="password" name="password" placeholder="password..." />
 
                             <input type="hidden" name="action" value="update" />
                             <input type="hidden" name="update" value="fullname" />
@@ -126,8 +126,8 @@
                             <label for="new-phone">New phone:</label>
                             <input id="new-phone" type="tel" name="new-phone" placeholder="new phone..." />
 
-                            <label for="password">Password:</label>
-                            <input id="password" type="password" name="password" placeholder="password..." />
+                            <label for="password-phone">Password:</label>
+                            <input id="password-phone" type="password" name="password" placeholder="password..." />
 
                             <input type="hidden" name="action" value="update" />
                             <input type="hidden" name="update" value="phone" />

@@ -128,7 +128,7 @@ input[type="submit"]:hover {
     background-color: #000;
 }
 
-.log-out {
+.logout {
     width: 100% !important;
     margin-top: 1rem !important;
 }

@@ -4,7 +4,7 @@ public enum Actions {
     LOGIN("login", "/LoginServlet"),
     REGISTER("register", "/RegisterServlet"),
     USER_UPDATE("update", "/UpdateServlet"),
-    LOG_OUT("logout", "/LogoutServlet");
+    LOG_OUT("logout", "/LogOutServlet");
 
     private final String action;
     private final String url;
@@ -20,5 +20,19 @@ public enum Actions {
 
     public String getURL() {
         return this.url;
+    }
+
+    public static final Actions convertStringToAction(String input) {
+        if (input == null) {
+            return null;
+        }
+
+        for (Actions action : Actions.values()) {
+            if (input.equals(action.getAction())) {
+                return action;
+            }
+        }
+
+        return null;
     }
 }

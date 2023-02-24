@@ -1,8 +1,5 @@
 package controller;
 
-import controller.redirect.ErrorRedirect;
-import security.error.Errors;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,22 +13,8 @@ public class Controller extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String actionInput = request.getParameter("action");
-
-        if (actionInput == null) {
-            ErrorRedirect.redirect(Errors.BAD_REQUEST, request, response);
-            return;
-        }
-
-        actionInput = actionInput.trim();
-
-        for (Actions action : Actions.values()) {
-            if (actionInput.equals(action.getAction())) {
-                getServletContext().getRequestDispatcher(action.getURL()).forward(request, response);
-                return;
-            }
-        }
-
-        ErrorRedirect.redirect(Errors.BAD_REQUEST, request, response);
+        Actions action = (Actions) request.getAttribute("action");
+        request.removeAttribute("action");
+        request.getRequestDispatcher(action.getURL()).forward(request, response);
     }
 }
