@@ -9,13 +9,13 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-public class Error500 implements Filter {
+public class Error404 implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        ErrorRedirect.redirect(Errors.SERVER_ERROR, request, response);
+        ErrorRedirect.redirect(Errors.FILE_NOT_FOUND, request, response);
         chain.doFilter(request, response);
     }
 

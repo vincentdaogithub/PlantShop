@@ -1,7 +1,6 @@
 package security.filter;
 
-import controller.Servlets;
-import controller.redirect.Pages;
+import controller.redirect.ErrorRedirect;
 import security.error.Errors;
 
 import java.io.IOException;
@@ -12,27 +11,23 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-public class PageRedirectFilter implements Filter {
-    // private FilterConfig filterConfig = null;
-
-    @Override
-    public void init(FilterConfig filterConfig) {
-        // this.filterConfig = filterConfig;
-    }
+public class AccessFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        request.setAttribute("requestPage", Pages.ERROR);
-        request.setAttribute("error", Errors.ACCESS_DENIED);
-        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
-
+        ErrorRedirect.redirect(Errors.FILE_NOT_FOUND, request, response);
         chain.doFilter(request, response);
     }
 
     @Override
     public void destroy() {
+
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
 
     }
 }

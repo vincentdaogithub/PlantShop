@@ -9,36 +9,26 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import obj.account.Account;
 
 public class AuthenticationFilter implements Filter {
-    // private FilterConfig filterConfig = null;
-
-    @Override
-    public void init(FilterConfig filterConfig) {
-        // this.filterConfig = filterConfig;
-    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        Accesses access = (Accesses) request.getAttribute("pageAuthentication");
-
-        if (access == null || access != Accesses.REQUESTING) {
-            throw new ServletException();
-        }
-
-        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        HttpSession session = httpServletRequest.getSession();
-        Account account = (Account) session.getAttribute("account");
         Pages requestPage = (Pages) request.getAttribute("requestPage");
+        int authentication = requestPage.getAuthentication().getCode();
 
-        if (account == null || requestPage == null || account.getRole() != requestPage.getAuthentication().getCode()) {
-            request.setAttribute("pageAuthentication", Accesses.DENIED);
-        } else {
-            request.setAttribute("pageAuthentication", Accesses.APPROVED);
+        request.setAttribute("authenticationStatus", Accesses.APPROVED);
+
+        if (authentication >= 0) {
+            HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+            Account account = (Account) httpServletRequest.getSession().getAttribute("account");
+
+            if (account == null || account.getRole() != authentication) {
+                request.setAttribute("authenticationStatus", Accesses.DENIED);
+            }
         }
 
         chain.doFilter(request, response);
@@ -46,6 +36,11 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void destroy() {
+
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
 
     }
 }

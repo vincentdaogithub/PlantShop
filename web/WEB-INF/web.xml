@@ -13,6 +13,28 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>PageRedirectFilter</filter-name>
+        <filter-class>security.filter.controller.PageRedirectFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>PageRedirectFilter</filter-name>
+        <servlet-name>PageRedirect</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>security.filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <servlet-name>PageRedirect</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter>
         <filter-name>RegisterFilter</filter-name>
         <filter-class>security.filter.account.RegisterFilter</filter-class>
     </filter>
@@ -43,24 +65,13 @@
     </filter-mapping>
 
     <filter>
-        <filter-name>PageRedirectFilter</filter-name>
-        <filter-class>security.filter.PageRedirectFilter</filter-class>
+        <filter-name>AccessFilter</filter-name>
+        <filter-class>security.filter.AccessFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>PageRedirectFilter</filter-name>
+        <filter-name>AccessFilter</filter-name>
         <url-pattern>/html/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
-    </filter-mapping>
-
-    <filter>
-        <filter-name>AuthenticationFilter</filter-name>
-        <filter-class>security.filter.AuthenticationFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/html/user/*</url-pattern>
-        <url-pattern>/html/admin/*</url-pattern>
-        <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
 
     <filter>
@@ -69,7 +80,17 @@
     </filter>
     <filter-mapping>
         <filter-name>Error500</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/500</url-pattern>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>Error404</filter-name>
+        <filter-class>security.error.Error404</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Error404</filter-name>
+        <url-pattern>/404</url-pattern>
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
 
@@ -139,6 +160,10 @@
     </welcome-file-list>
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
-        <location>/html/error/error.jsp</location>
+        <location>/500</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404</location>
     </error-page>
 </web-app>

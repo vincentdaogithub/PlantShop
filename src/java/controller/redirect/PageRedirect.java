@@ -17,45 +17,17 @@ public class PageRedirect extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        Pages requestPage = (Pages) request.getAttribute("requestPage");
+        Accesses accessStatus = (Accesses) request.getAttribute("authenticationStatus");
         HttpSession session = request.getSession();
 
-        if (request.getAttribute("requestPage") == null) {
-            Pages page = Pages.convertStringToPage(request.getParameter("page"));
-
-            if (page == null) {
-                ErrorRedirect.redirect(Errors.BAD_REQUEST, request, response);
-                return;
-            }
-
-            request.setAttribute("requestPage", page);
-        }
-
-        Pages requestPage = (Pages) request.getAttribute("requestPage");
-        int authenCode = requestPage.getAuthentication().getCode();
-
-        if (authenCode >= 0) {
-            request.setAttribute("pageAuthentication", Accesses.REQUESTING);
-            getServletContext().getRequestDispatcher(requestPage.getURL()).include(request, response);
-
-            Accesses pageAuthen = (Accesses) request.getAttribute("pageAuthentication");
-
-            switch (pageAuthen) {
-                case APPROVED:
-                    break;
-
-                case DENIED:
-                    requestPage = Pages.ERROR;
-                    request.setAttribute("error", Errors.UNAUTHORIZED);
-                    break;
-
-                case REQUESTING:
-                    requestPage = Pages.ERROR;
-                    request.setAttribute("error", Errors.SERVER_ERROR);
-            }
+        if (accessStatus == Accesses.DENIED) {
+            requestPage = Pages.ERROR;
+            request.setAttribute("error", Errors.UNAUTHORIZED);
         }
 
         session.setAttribute("currentPage", requestPage.getPage());
-        getServletContext().getRequestDispatcher(requestPage.getURL()).forward(request, response);
+        request.getRequestDispatcher(requestPage.getURL()).forward(request, response);
     }
 
     @Override
