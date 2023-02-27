@@ -27,7 +27,7 @@
                 <p>${requestScope.error.errorMessage}</p>
 
                 <p>Full stack trace:</p>
-                <%= exception.printStackTrace() %>
+                <%= exception %>
             </section>
         </main>
 

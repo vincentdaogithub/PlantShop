@@ -35,6 +35,26 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>LocalDBFilter</filter-name>
+        <filter-class>security.filter.resource.LocalDBFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LocalDBFilter</filter-name>
+        <servlet-name>ImageRetriever</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>ImageRetrieverFilter</filter-name>
+        <filter-class>security.filter.resource.ImageRetrieverFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ImageRetrieverFilter</filter-name>
+        <servlet-name>ImageRetriever</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter>
         <filter-name>RegisterFilter</filter-name>
         <filter-class>security.filter.account.RegisterFilter</filter-class>
     </filter>
@@ -148,6 +168,15 @@
     <servlet-mapping>
         <servlet-name>LogOutServlet</servlet-name>
         <url-pattern>/LogOutServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ImageRetriever</servlet-name>
+        <servlet-class>controller.resource.ImageRetriever</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImageRetriever</servlet-name>
+        <url-pattern>/ImageRetriever</url-pattern>
     </servlet-mapping>
 
     <!-- Configs -->

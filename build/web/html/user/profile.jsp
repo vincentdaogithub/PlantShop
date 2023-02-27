@@ -23,7 +23,7 @@
                 <h2 class="hello-user">Hello, <c:out value="${sessionScope.account.fullname}" /></h2>
 
                 <div class="ava-container">
-                    <img class="profile-ava" src="https://dummyimage.com/600x400/ffffff/000000" alt="profile image" />
+                    <img class="profile-ava" src="/PlantShop/ImageRetriever?resource=avatar" alt="profile image" />
                 </div>
 
                 <form action="/PlantShop/Controller" method="post">
