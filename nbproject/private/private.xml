@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/security/filter/resource/LocalDBFilter.java</file>
             <file>file:/D:/code/PRJ301/PlantShop/src/java/security/filter/resource/ImageRetrieverFilter.java</file>
             <file>file:/D:/code/PRJ301/PlantShop/src/java/security/filter/account/LoginFilter.java</file>
             <file>file:/D:/code/PRJ301/PlantShop/src/java/controller/redirect/PageRedirect.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/web/html/user/profile.jsp</file>
             <file>file:/D:/code/PRJ301/PlantShop/src/java/controller/resource/ImageRetriever.java</file>
         </group>
     </open-files>
