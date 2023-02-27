@@ -11,14 +11,18 @@ import util.DBUtils;
 import util.SQLBuilder;
 
 public class AccountDAO {
+
+    private static final String ACCOUNT_DB = "Accounts";
+
     public static final Account getAccount(String email, String password) {
+
         if (email == null || password == null) {
             throw new NullPointerException();
         }
 
         SQLBuilder builder = new SQLBuilder();
         builder.addLine("SELECT *");
-        builder.addLine("FROM Accounts");
+        builder.addLine("FROM " + ACCOUNT_DB);
         builder.addLine("WHERE email = ?");
         builder.addLine("COLLATE Latin1_General_CS_AS");
 
@@ -46,7 +50,6 @@ public class AccountDAO {
 
             return null;
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -58,7 +61,7 @@ public class AccountDAO {
 
         SQLBuilder builder = new SQLBuilder();
         builder.addLine("SELECT *");
-        builder.addLine("FROM Accounts");
+        builder.addLine("FROM " + ACCOUNT_DB);
         builder.addLine("WHERE email = ?");
         builder.addLine("COLLATE Latin1_General_CS_AS");
 
@@ -76,12 +79,11 @@ public class AccountDAO {
                 return false;
             }
         } catch (Exception e) {
-            System.err.println(e.getMessage());
             return false;
         }
 
         builder = new SQLBuilder();
-        builder.addLine("INSERT INTO Accounts (email, password, fullname, phone, status, role)");
+        builder.addLine("INSERT INTO " + ACCOUNT_DB + " (email, password, fullname, phone, status, role)");
         builder.addLine("VALUES (?, ?, ?, ?, ?, ?)");
 
         try (
@@ -96,7 +98,6 @@ public class AccountDAO {
 
             return statement.executeUpdate() != 0;
         } catch (Exception e) {
-            System.err.println(e.getMessage());
             return false;
         }
     }
@@ -104,7 +105,7 @@ public class AccountDAO {
     public static final boolean updateAccount(Updates update, String email, String updateValue) {
 
         SQLBuilder builder = new SQLBuilder();
-        builder.addLine("UPDATE Accounts");
+        builder.addLine("UPDATE " + ACCOUNT_DB);
 
         switch (update) {
             case EMAIL:
@@ -140,7 +141,6 @@ public class AccountDAO {
 
             return preparedStatement.executeUpdate() == 1;
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
     }

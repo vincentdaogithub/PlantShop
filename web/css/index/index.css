@@ -26,12 +26,13 @@
 }
 
 .content-text:nth-of-type(odd) {
-    color: #FFF;
-    background-color: #000;
+    color: #3a4b35;
+    background-color: #9DC08B;
 }
 
 .content-text:nth-of-type(even) {
-    background-color: #FFF;
+    color: #40513B;
+    background-color: #EDF1D6;
 }
 
 .content-text > h2 {

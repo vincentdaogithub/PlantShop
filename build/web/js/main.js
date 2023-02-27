@@ -194,4 +194,12 @@ function responsiveNavBarMobile() {
     }
 }
 
+function setImgSquareByHeight() {
+    const imgs = document.getElementsByClassName("img-square-height");
+
+    Array.from(imgs).forEach(function (img) {
+        img.style.height = img.parentElement.offsetHeight + "px";
+    });
+}
+
 // --------------------------------------------------

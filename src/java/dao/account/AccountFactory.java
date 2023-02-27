@@ -5,8 +5,19 @@ import obj.account.AccountStatus;
 import obj.account.Accounts;
 
 public class AccountFactory {
-    public static final Account build(String email, String password, String fullname, String phone, Accounts role) {
+    public static final Account buildForDB(String email,
+            String password,
+            String fullname,
+            String phone,
+            Accounts role) {
+
         return new Account(
-                0, email, password, fullname, phone, AccountStatus.ACTIVE.getStatus(), role.getRole());
+                0,
+                email,
+                password,
+                fullname,
+                phone,
+                AccountStatus.ACTIVE.getStatus(),
+                role.getRole());
     }
 }

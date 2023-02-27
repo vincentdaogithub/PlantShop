@@ -22,6 +22,15 @@ public class Plant implements Serializable {
         this.categoryID = 0;
     }
 
+    public Plant(int ID, String name, int price, String description, int status, int categoryID) {
+        this.ID = ID;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.status = status;
+        this.categoryID = categoryID;
+    }
+
     /**
      * @return the ID
      */

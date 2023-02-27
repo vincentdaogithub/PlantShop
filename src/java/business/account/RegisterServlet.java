@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
         String fullname = request.getParameter("fullname");
         String phone = request.getParameter("phone");
 
-        Account account = AccountFactory.build(email, password, fullname, phone, Accounts.USER);
+        Account account = AccountFactory.buildForDB(email, password, fullname, phone, Accounts.USER);
 
         if (!AccountDAO.addAccount(account)) {
             request.setAttribute("requestPage", Pages.ERROR);

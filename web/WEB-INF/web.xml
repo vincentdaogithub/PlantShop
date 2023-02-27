@@ -55,13 +55,23 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>StoreFilter</filter-name>
+        <filter-class>security.filter.store.StoreFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>StoreFilter</filter-name>
+        <servlet-name>StoreServlet</servlet-name>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+    <filter>
         <filter-name>RegisterFilter</filter-name>
         <filter-class>security.filter.account.RegisterFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>RegisterFilter</filter-name>
         <servlet-name>RegisterServlet</servlet-name>
-        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
 
     <filter>
@@ -71,7 +81,7 @@
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <servlet-name>LoginServlet</servlet-name>
-        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
 
     <filter>
@@ -81,7 +91,7 @@
     <filter-mapping>
         <filter-name>UpdateFilter</filter-name>
         <servlet-name>UpdateServlet</servlet-name>
-        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
 
     <filter>
@@ -168,6 +178,15 @@
     <servlet-mapping>
         <servlet-name>LogOutServlet</servlet-name>
         <url-pattern>/LogOutServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StoreServlet</servlet-name>
+        <servlet-class>business.store.StoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StoreServlet</servlet-name>
+        <url-pattern>/StoreServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>

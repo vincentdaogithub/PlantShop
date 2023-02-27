@@ -8,25 +8,52 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/PlantShop/css/main.min.css" />
         <link rel="stylesheet" href="/PlantShop/css/store/store.min.css" />
-        <title>Viridis - Login</title>
+        <title>Viridis - Store</title>
     </head>
 
     <body onload="init()">
         <jsp:include page="/html/template/header.jsp" />
         
         <div class="bg-container">
-            <img class="bg-img" src="/PlantShop/gif/index/intro_bg_black.gif" alt="tree and lake" />
+            <img class="bg-img" src="/PlantShop/gif/main_bg.gif" alt="tree and lake" />
         </div>
 
+        <% int index = Integer.parseInt(request.getParameter("index")); %>
+        
         <main>
             <section class="plant-list-container">
-                <div class="plant-container">
-                    <div class="plant-img-container">
-                        <img />
-                    </div>
-
-                    <div class=""></div>
+                <div class="plant-list-header">
+                    <div class="plant-img-header">Image</div>
+                    <div class="plant-info-header">Info</div>
                 </div>
+
+                <c:forEach items="${requestScope.plants}" var="plant" begin="${pageScope.index}" end="${pageScope.index + 5}">
+                    <div class="plant-container">
+                        <div class="plant-img-container">
+                            <div class="img-container">
+                                <img class="plant-img" src="/PlantShop/img/plants/plant_placeholder_black.jpg" alt="${plant.name}" />
+                            </div>
+                        </div>
+
+                        <div class="plant-info-container">
+                            <div class="info-box">
+                                <p><b>Name: </b><c:out value="${plant.name}" default="" /></p>
+                            </div>
+
+                            <div class="info-box">
+                                <p><b>Price: </b><c:out value="${plant.price}$" default="" /></p>
+                            </div>
+
+                            <div class="info-box">
+                                <p><b>Description: </b><c:out value="${plant.description}" default="" /></p>
+                            </div>
+
+                            <div class="info-box">
+                                <p><b>Category: </b><c:out value="${plant.categoryID}" default="" /></p>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
             </section>
         </main>
 
