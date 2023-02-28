@@ -12,6 +12,6 @@ public class CheckFormat {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(stringToCheck);
 
-        return matcher.matches();
+        return matcher.find();
     }
 }

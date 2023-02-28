@@ -32,7 +32,7 @@
                     <div class="plant-container">
                         <div class="plant-img-container">
                             <div class="img-container">
-                                <img class="plant-img" src="/PlantShop/img/plants/plant_placeholder_black.jpg" alt="${plant.name}" />
+                                <img class="plant-img" src="/PlantShop/ImageRetriever?resource=plant&pid=${plant.ID}" alt="${plant.name}" />
                             </div>
                         </div>
 

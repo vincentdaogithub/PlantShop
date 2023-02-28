@@ -20,7 +20,13 @@ public class ImageRetriever extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        File img = new File((String) request.getAttribute("imagePath"));
+        File img = (File) request.getAttribute("imgFile");
+
+        if (img == null) {
+            ErrorRedirect.redirect(Errors.FILE_NOT_FOUND, request, response);
+            return;
+        }
+
         response.setContentType(getServletContext().getMimeType(img.getName()));
 
         try (

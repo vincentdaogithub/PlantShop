@@ -1,7 +1,8 @@
 package controller.resource;
 
 public enum Resources {
-    AVATAR("avatar", "image");
+    AVATAR("avatar", "image"),
+    PLANT("plant", "image");
 
     private String resource;
     private String type;
