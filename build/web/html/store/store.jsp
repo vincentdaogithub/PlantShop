@@ -15,10 +15,8 @@
         <jsp:include page="/html/template/header.jsp" />
         
         <div class="bg-container">
-            <img class="bg-img" src="/PlantShop/gif/main_bg.gif" alt="tree and lake" />
+            <img class="bg-img" src="/PlantShop/gif/main_bg.gif" alt="background" />
         </div>
-
-        <% int index = Integer.parseInt(request.getParameter("index")); %>
         
         <main>
             <section class="plant-list-container">
@@ -27,7 +25,7 @@
                     <div class="plant-info-header">Info</div>
                 </div>
 
-                <c:forEach items="${requestScope.plants}" var="plant" begin="${pageScope.index}" end="${pageScope.index + 5}">
+                <c:forEach items="${requestScope.plants}" var="plant">
                     <div class="plant-container">
                         <div class="plant-img-container">
                             <div class="img-container">
@@ -42,14 +40,6 @@
 
                             <div class="info-box">
                                 <p><b>Price: </b><c:out value="${plant.price}$" default="" /></p>
-                            </div>
-
-                            <div class="info-box">
-                                <p><b>Description: </b><c:out value="${plant.description}" default="" /></p>
-                            </div>
-
-                            <div class="info-box">
-                                <p><b>Category: </b><c:out value="${plant.categoryID}" default="" /></p>
                             </div>
                         </div>
                     </div>

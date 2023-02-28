@@ -12,7 +12,7 @@
 form {
     width: 50%;
     height: 100%;
-    color: #FFF;
+    color: #EDF1D6;
     background-color: #00000077;
 
     display: flex;
@@ -33,6 +33,7 @@ input {
     width: 100%;
     font-size: 1rem;
     font-family: 'Courier New', Courier, monospace;
+    background-color: #EDF1D6;
     
     padding: 0.2rem;
     border: none;
@@ -45,20 +46,20 @@ input[type="submit"] {
     margin-top: 1rem;
     cursor: pointer;
 
-    color: #FFF;
-    background-color: #000;
+    color: #000;
+    background-color: #609966;
     transition: color 0.2s ease-in,
                 background-color 0.2s ease-in;
 }
 
 input[type="submit"]:hover {
     color: #000;
-    background-color: #FFF;
+    background-color: #EDF1D6;
 }
 
 .register-link {
     width: 80%;
-    color: #FFF;
+    color: #EDF1D6;
     text-align: center;
 }
 

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import obj.plant.Plant;
 import util.DBUtils;
@@ -12,6 +13,7 @@ import util.SQLBuilder;
 public class PlantDAO {
     
     private static final String PLANT_DB = "Plants";
+    private static final int MAX_SIZE_PER_REQUEST = 10;
 
     public static final Plant getPlant(int plantID) {
         
@@ -49,7 +51,7 @@ public class PlantDAO {
         }
     }
 
-    public static final ArrayList<Plant> getPlants() {
+    public static final List<Plant> getPlants() {
         
         SQLBuilder builder = new SQLBuilder();
         builder.addLine("SELECT *");
@@ -65,7 +67,7 @@ public class PlantDAO {
         ) {
 
             ResultSet results = statement.executeQuery();
-            ArrayList<Plant> plants = new ArrayList<>();
+            List<Plant> plants = new ArrayList<>();
 
             while (results.next()) {
                 plants.add(new Plant(
@@ -80,7 +82,12 @@ public class PlantDAO {
 
             return plants;
         } catch (Exception e) {
-            return null;
+            return new ArrayList<Plant>();
         }
+    }
+
+    public static final List<Plant> getPlants(int beginIndex) {
+        List<Plant> plants = getPlants();
+        return plants.subList(beginIndex * MAX_SIZE_PER_REQUEST,  beginIndex * MAX_SIZE_PER_REQUEST + MAX_SIZE_PER_REQUEST);
     }
 }

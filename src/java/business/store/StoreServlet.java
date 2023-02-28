@@ -6,7 +6,7 @@ import obj.plant.Plant;
 import security.error.Errors;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,9 +21,10 @@ public class StoreServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<Plant> plants = PlantDAO.getPlants();
+        Integer beginIndex = Integer.parseInt(request.getParameter("index"));
+        List<Plant> plants = PlantDAO.getPlants(beginIndex);
 
-        if (plants == null) {
+        if (plants.isEmpty()) {
             ErrorRedirect.redirect(Errors.FILE_NOT_FOUND, request, response);
             return;
         }

@@ -9,7 +9,7 @@
 }
 
 .about-content {
-    background-color: #00000077;
+    background-color: #40513B;
 
     display: flex;
     justify-content: center;
@@ -18,7 +18,7 @@
 
 .poem {
     margin: 1.5rem;
-    color: #FFF;
+    color: #EDF1D6;
     font-size: 1.5rem;
 }
 
@@ -29,8 +29,8 @@
 }
 
 .author-content {
-    color: #FFF;
-    background-color: #00000077;
+    color: #EDF1D6;
+    background-color: #40513B;
 
     display: flex;
     flex-direction: column;

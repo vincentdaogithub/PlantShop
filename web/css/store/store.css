@@ -19,7 +19,8 @@ main {
 
     margin-bottom: 1rem;
     border-radius: 1rem;
-    background-color: #FFF;
+    background-color: #EDF1D6;
+    border: 0.1rem solid #40513B;
 
     display: flex;
     flex-wrap: nowrap;
@@ -40,9 +41,11 @@ main {
 
 .plant-container {
     width: 100%;
-    border-radius: 1rem;
     margin-bottom: 1rem;
-    background-color: #FFF;
+    background-color: #EDF1D6;
+
+    border-radius: 1rem;
+    border: 0.1rem solid #40513B;
 
     display: flex;
     flex-wrap: nowrap;
@@ -96,7 +99,6 @@ main {
 
     .plant-list-header,
     .plant-container {
-        border: none;
         border-radius: 0;
     }
 
@@ -112,7 +114,6 @@ main {
 
     .plant-list-header,
     .plant-container {
-        border: none;
         border-radius: 0;
     }
 
