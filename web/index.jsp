@@ -18,91 +18,60 @@
         <jsp:include page="/html/template/header.jsp" />
 
         <div class="bg-container">
-            <img class="bg-img" src="/PlantShop/gif/main_bg.gif" alt="tree and lake" />
+            <img class="bg-img" src="/PlantShop/img/resource/bg.png" alt="tree and lake" />
         </div>
 
         <main>
             <section class="intro-container">
-                <h1 class="intro-title">
-                    Green the world, back to its once spectrum.
-                </h1>
+                <div class="img-container intro-img">
+                    <img src="/PlantShop/img/resource/placeholder.jpg" alt="plant" />
+                </div>
+
+                <div class="intro-text">
+                    <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h1>
+                </div>
             </section>
 
-            <section class="content-container">
-                <article class="content-section">
+            <section class="intro-content-container">
+                <div class="intro-content">
+                    <div class="img-container content-img">
+                        <img src="/PlantShop/img/resource/placeholder.jpg" alt="plant" />
+                    </div>
+
                     <div class="content-text">
-                        <h2>Factories, cars, power plants...</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     </div>
-
-                    <div class="content-img">
-                        <img src="/PlantShop/img/plants/plant_placeholder_black.jpg" alt="sprout placeholder" />
-                    </div>
-                </article>
-
-                <div class="content-break-container">
-                    <img class="content-break" src="/PlantShop/img/dividers/divider_black.png" alt="plant divider" />
                 </div>
 
-                <article class="content-section">
-                    <div class="content-img">
-                        <img src="/PlantShop/img/plants/plant_placeholder_black.jpg" alt="sprout placeholder" />
+                <div class="intro-content">
+                    <div class="img-container content-img">
+                        <img src="/PlantShop/img/resource/placeholder.jpg" alt="plant" />
                     </div>
 
                     <div class="content-text">
-                        <h2>... are but friendly to the green.</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     </div>
-                </article>
-
-                <div class="content-break-container">
-                    <img class="content-break" src="/PlantShop/img/dividers/divider_white.png" alt="plant divider" />
                 </div>
 
-                <article class="content-section">
+                <div class="intro-content">
+                    <div class="img-container content-img">
+                        <img src="/PlantShop/img/resource/placeholder.jpg" alt="plant" />
+                    </div>
+
                     <div class="content-text">
-                        <h2>
-                            We paint them black.<br />
-                            Smear with white.
-                        </h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     </div>
-
-                    <div class="content-img">
-                        <img src="/PlantShop/img/plants/plant_placeholder_black.jpg" alt="sprout placeholder" />
-                    </div>
-                </article>
-
-                <div class="content-break-container">
-                    <img class="content-break" src="/PlantShop/img/dividers/divider_black.png" alt="plant divider" />
                 </div>
 
-                <article class="content-section">
-                    <div class="content-img">
-                        <img src="/PlantShop/img/plants/plant_placeholder_black.jpg" alt="sprout placeholder" />
+                <div class="intro-content">
+                    <div class="img-container content-img">
+                        <img src="/PlantShop/img/resource/placeholder.jpg" alt="plant" />
                     </div>
 
                     <div class="content-text">
-                        <h2>
-                            So we plant.<br />
-                            And water them, do mind.
-                        </h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     </div>
-                </article>
-
-                <div class="content-break-container">
-                    <img class="content-break" src="/PlantShop/img/dividers/divider_white.png" alt="plant divider" />
                 </div>
-
-                <article class="content-section">
-                    <div class="content-text">
-                        <h2>
-                            For growing,<br />
-                            is the reflection of the past.
-                        </h2>
-                    </div>
-
-                    <div class="content-img">
-                        <img src="/PlantShop/img/plants/plant_placeholder_black.jpg" alt="sprout placeholder" />
-                    </div>
-                </article>
             </section>
         </main>
 

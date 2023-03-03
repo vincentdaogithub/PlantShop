@@ -1,70 +1,80 @@
-.content-container {
+main {
     width: 100%;
+    color: #EDF1D6;
 
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
-.content-section {
+.intro-container {
     width: 100%;
     height: 100vh;
 
     display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
+    align-items: center;
 }
 
-.content-text,
-.content-img {
+.intro-img {
     width: 50%;
     height: 100%;
+}
+
+.intro-text {
+    width: 50%;
+    height: 100%;
+    background-color: #40513B;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
 
-.content-text:nth-of-type(odd) {
-    color: #000;
-    background-color: #9DC08B;
+.intro-text > h1 {
+    text-align: center;
 }
 
-.content-text:nth-of-type(even) {
-    color: #EDF1D6;
-    background-color: #40513B;
+.intro-content-container {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.content-text > h2 {
-    font-size: 1.5rem;
-    padding: 1.5rem;
-}
+.intro-content {
+    width: 20%;
+    height: fit-content;
+    border: 0.5rem solid #EDF1D6;
+    border-radius: 1rem;
 
-.content-img > img {
-    width: auto;
-    height: 100%;
-}
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 
-.content-break-container:nth-of-type(odd) {
     background-color: #EDF1D6;
 }
 
-.content-break-container:nth-of-type(even) {
-    background-color: #40513B;
+.content-img {
+    width: 100%;
+    height: 20vw;
+    border-radius: 1rem 1rem 0 0;
+    background-color: #EDF1D6;
 }
 
-@media screen and (max-width: 768px)  {
-    .content-section {
-        flex-direction: column;
-    }
+.content-text {
+    width: 100%;
+    text-align: center;
+    border-radius: 0 0 1rem 1rem;
+    background-color: #609966;
+}
 
-    .content-text,
-    .content-img {
-        width: 100%;
-        height: 50%;
-    }
-
-    .content-break-container {
-        display: flex;
-    }
+.content-text > p {
+    padding: 1rem;
 }

@@ -1,6 +1,8 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:if test="${sessionScope.account == null}">
+    <jsp:forward page="/index.jsp"></jsp:forward>
+</c:if>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,7 +20,7 @@
         <jsp:include page="/html/template/header.jsp" />
 
         <div class="bg-container">
-            <img class="bg-img" src="/PlantShop/gif/main_bg.gif" alt="tree and lake" />
+            <img class="bg-img" src="/PlantShop/img/resource/bg.png" alt="tree and lake" />
         </div>
 
         <main>
@@ -59,10 +61,6 @@
                     </div>
                 </div>
 
-                <div class="content-break-container">
-                    <img class="content-break" src="/PlantShop/img/dividers/divider_white.png" alt="plant divider" />
-                </div>
-
                 <div class="info-section">
                     <div class="info-label-container">
                         <div class="info-label">Password:</div>
@@ -83,10 +81,6 @@
                             <input type="submit" value="Update" />
                         </form>
                     </div>
-                </div>
-
-                <div class="content-break-container">
-                    <img class="content-break" src="/PlantShop/img/dividers/divider_white.png" alt="plant divider" />
                 </div>
 
                 <div class="info-section">
@@ -110,10 +104,6 @@
                             <input type="submit" value="Update" />
                         </form>
                     </div>
-                </div>
-
-                <div class="content-break-container">
-                    <img class="content-break" src="/PlantShop/img/dividers/divider_white.png" alt="plant divider" />
                 </div>
 
                 <div class="info-section">

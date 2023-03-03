@@ -5,7 +5,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import security.error.Errors;
 import security.filter.Accesses;
@@ -19,14 +18,13 @@ public class PageRedirect extends HttpServlet {
 
         Pages requestPage = (Pages) request.getAttribute("requestPage");
         Accesses accessStatus = (Accesses) request.getAttribute("authenticationStatus");
-        HttpSession session = request.getSession();
 
         if (accessStatus == Accesses.DENIED) {
             requestPage = Pages.ERROR;
             request.setAttribute("error", Errors.UNAUTHORIZED);
         }
 
-        session.setAttribute("currentPage", requestPage.getPage());
+        request.setAttribute("currentPage", requestPage);
         request.getRequestDispatcher(requestPage.getURL()).forward(request, response);
     }
 

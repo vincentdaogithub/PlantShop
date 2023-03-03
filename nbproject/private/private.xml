@@ -5,7 +5,10 @@
         <group>
             <file>file:/D:/code/PRJ301/PlantShop/src/java/security/filter/resource/ImageRetrieverFilter.java</file>
             <file>file:/D:/code/PRJ301/PlantShop/src/java/util/CheckFormat.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/web/html/user/profile.jsp</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/security/filter/store/StoreFilter.java</file>
             <file>file:/D:/code/PRJ301/PlantShop/src/java/controller/resource/ImageRetriever.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/business/account/LoginServlet.java</file>
         </group>
     </open-files>
 </project-private>

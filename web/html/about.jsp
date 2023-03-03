@@ -18,33 +18,17 @@
         <jsp:include page="/html/template/header.jsp" />
         
         <div class="bg-container">
-            <img class="bg-img" src="/PlantShop/gif/main_bg.gif" alt="tree and lake" />
+            <img class="bg-img" src="/PlantShop/img/resource/bg.png" alt="tree and lake" />
         </div>
 
         <main>
             <section class="about-container">
-                <div class="about-content">
-                    <div class="poem">
-                        Millions of years,<br />
-                        older than the first human.<br />
-                        Among the first things we see.<br />
-                        Among the first things we live.<br />
-                        So we give you the mean,<br />
-                        to look back.
-                    </div>
+                <div class="img-container about-img">
+                    <img src="/PlantShop/img/resource/placeholder.jpg" alt="plant" />
                 </div>
-            </section>
 
-            <section class="author-container">
-                <div class="author-content">
-                    <h2>About author</h2>
-
-                    <div class="poem">
-                        My journey to exceed the "before".<br />
-                        Give it time. Age. Old.<br />
-                        If there's any left,<br />
-                        that is, all "me" have left.
-                    </div>
+                <div class="about-text">
+                    <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h1>
                 </div>
             </section>
         </main>

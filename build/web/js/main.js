@@ -75,6 +75,7 @@ function init() {
     setUpImgOpacity(socialLinkContainer);
     setUpImgOpacity(backToTop);
     setUpImgOpacity(navBarToggleContainer);
+    setUpFooter();
 }
 
 // --------------------------------------------------
@@ -200,6 +201,13 @@ function setImgSquareByHeight() {
     Array.from(imgs).forEach(function (img) {
         img.style.height = img.parentElement.offsetHeight + "px";
     });
+}
+
+function setUpFooter() {
+    if (main.offsetHeight < (window.innerHeight - footer.offsetHeight)) {
+        footer.style.position = "fixed";
+        footer.style.bottom = "0";
+    }
 }
 
 // --------------------------------------------------

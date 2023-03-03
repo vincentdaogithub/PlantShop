@@ -18,7 +18,7 @@
         <jsp:include page="/html/template/header.jsp" />
         
         <div class="bg-container">
-            <img class="bg-img" src="/PlantShop/gif/main_bg.gif" alt="tree and lake" />
+            <img class="bg-img" src="/PlantShop/img/resource/bg.png" alt="tree and lake" />
         </div>
 
         <main>
