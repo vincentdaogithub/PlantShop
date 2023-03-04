@@ -30,7 +30,7 @@
                         <h3>By name:</h3>
 
                         <div class="label-input">
-                            <input type="text" name="name" placeholder="plant name..." />
+                            <input type="text" name="name" placeholder="plant name..." required />
                         </div>
     
                         <input type="hidden" name="action" value="store" />
@@ -42,22 +42,22 @@
                         <h3>By price:</h3>
 
                         <div class="label-input radio">
-                            <input id="below-5" type="radio" name="price" value="below-5">
+                            <input id="below-5" type="radio" name="price" value="below-5" checked />
                             <label for="below-5">Below 5$</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="5-to-10" type="radio" name="price" value="5-to-10">
+                            <input id="5-to-10" type="radio" name="price" value="5-to-10" />
                             <label for="5-to-10">5$ - 10$</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="10-to-15" type="radio" name="price" value="10-to-15">
+                            <input id="10-to-15" type="radio" name="price" value="10-to-15" />
                             <label for="10-to-15">10$ - 15$</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="above-15" type="radio" name="price" value="above-15">
+                            <input id="above-15" type="radio" name="price" value="above-15" />
                             <label for="above-15">Above 15$</label>
                         </div>
     
@@ -72,22 +72,22 @@
     
                     <form class="sort">
                         <div class="label-input radio">
-                            <input id="name-asc" type="radio" name="sort" value="name-asc">
+                            <input id="name-asc" type="radio" name="sort" value="name-asc" checked />
                             <label for="name-asc">By name (ASC)</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="name-dsc" type="radio" name="sort" value="name-dsc">
+                            <input id="name-dsc" type="radio" name="sort" value="name-dsc" />
                             <label for="name-dsc">By name (DSC)</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="price-asc" type="radio" name="sort" value="price-asc">
+                            <input id="price-asc" type="radio" name="sort" value="price-asc" />
                             <label for="price-asc">By price (ASC)</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="price-dsc" type="radio" name="sort" value="price-dsc">
+                            <input id="price-dsc" type="radio" name="sort" value="price-dsc" />
                             <label for="price-dsc">By price (DSC)</label>
                         </div>
     
@@ -110,14 +110,15 @@
                                 <p><c:out value="${plant.name}" default="" /> - <c:out value="${plant.price}$" default="" /></p>
                             </div>
 
-                            <form class="add-to-cart-container">
+                            <form class="add-to-cart-container" action="/PlantShop/Controller">
                                 <div class="add-to-cart-box">
                                     <div class="decrease-quantity">-</div>
-                                    <input class="add-to-cart" id="pid${plant.ID}" type="number" name="pid${plant.ID}" placeholder="quantity..." min="0" step="1" />
+                                    <input class="add-to-cart" id="pid${plant.ID}" type="number" name="pid${plant.ID}" placeholder="quantity..." min="0" step="1" required />
                                     <div class="increase-quantity">+</div>
                                 </div>
     
-                                <input type="hidden" name="action" value="add-to-cart" />
+                                <input type="hidden" name="action" value="store" />
+                                <input type="hidden" name="store" value="add-to-cart" />
                                 <input class="add-button" type="submit" value="Add to cart" />
                             </form>
                         </div>

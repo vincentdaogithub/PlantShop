@@ -12,7 +12,7 @@
 
         <div class="nav-bar">
             <c:choose>
-                <c:when test="${requestScope.currentPage == null || requestScope.currentPage.page == Pages.HOME.page}">
+                <c:when test="${requestScope.page == null || requestScope.page.page == Pages.HOME.page}">
                     <p class="nav-link">Home</p>
                 </c:when>
                     
@@ -22,17 +22,17 @@
             </c:choose>
 
             <c:choose>
-                <c:when test="${requestScope.currentPage.page == Pages.ABOUT.page}">
-                    <p class="nav-link">About</p>
+                <c:when test="${requestScope.page.page == Pages.CART.page}">
+                    <p class="nav-link">Cart</p>
                 </c:when>
                     
                 <c:otherwise>
-                    <a class="nav-link" href="/PlantShop/PageRedirect?page=about">About</a>
+                    <a class="nav-link" href="/PlantShop/PageRedirect?page=cart">Cart</a>
                 </c:otherwise>
             </c:choose>
 
             <c:choose>
-                <c:when test="${requestScope.currentPage.page == Pages.STORE.page}">
+                <c:when test="${requestScope.page.page == Pages.STORE.page}">
                     <p class="nav-link">Store</p>
                 </c:when>
                     
@@ -44,7 +44,7 @@
             <c:choose>
                 <c:when test="${sessionScope.account.role == 0}">
                     <c:choose>
-                        <c:when test="${requestScope.currentPage.page == Pages.PROFILE.page}">
+                        <c:when test="${requestScope.page.page == Pages.PROFILE.page}">
                             <p class="nav-link">Profile</p>
                         </c:when>
 
@@ -56,7 +56,7 @@
 
                 <c:when test="${sessionScope.account.role == 1}">
                     <c:choose>
-                        <c:when test="${requestScope.currentPage.page == Pages.MANAGE.page}">
+                        <c:when test="${requestScope.page.page == Pages.MANAGE.page}">
                             <p class="nav-link">Manage</p>
                         </c:when>
 
@@ -68,7 +68,7 @@
 
                 <c:otherwise>
                     <c:choose>
-                        <c:when test="${requestScope.currentPage.page == Pages.LOGIN.page}">
+                        <c:when test="${requestScope.page.page == Pages.LOGIN.page}">
                             <p class="nav-link">Login</p>
                         </c:when>
 

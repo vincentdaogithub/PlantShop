@@ -24,7 +24,8 @@ public class PageRedirect extends HttpServlet {
             request.setAttribute("error", Errors.UNAUTHORIZED);
         }
 
-        request.setAttribute("currentPage", requestPage);
+        request.getSession().setAttribute("lastPage", requestPage);
+        request.setAttribute("page", requestPage);
         request.getRequestDispatcher(requestPage.getURL()).forward(request, response);
     }
 

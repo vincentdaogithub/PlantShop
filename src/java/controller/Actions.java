@@ -7,7 +7,7 @@ public enum Actions {
     REGISTER("register", "/RegisterServlet", Pages.HOME),
     USER_UPDATE("update", "/UpdateServlet", Pages.PROFILE),
     LOG_OUT("logout", "/LogOutServlet", Pages.HOME),
-    STORE("store", "/StoreServlet", Pages.STORE);
+    STORE("store", "/StoreController", Pages.STORE);
 
     private String action;
     private String url;

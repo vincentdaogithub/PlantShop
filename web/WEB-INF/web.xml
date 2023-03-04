@@ -55,12 +55,32 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>StoreControllerFilter</filter-name>
+        <filter-class>security.filter.store.StoreControllerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>StoreControllerFilter</filter-name>
+        <servlet-name>StoreController</servlet-name>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+    <filter>
         <filter-name>StoreFilter</filter-name>
         <filter-class>security.filter.store.StoreFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>StoreFilter</filter-name>
         <servlet-name>StoreServlet</servlet-name>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AddToCartFilter</filter-name>
+        <filter-class>security.filter.store.AddToCartFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AddToCartFilter</filter-name>
+        <servlet-name>AddToCartServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
 
@@ -181,12 +201,30 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>StoreController</servlet-name>
+        <servlet-class>business.store.StoreController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StoreController</servlet-name>
+        <url-pattern>/StoreController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>StoreServlet</servlet-name>
         <servlet-class>business.store.StoreServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>StoreServlet</servlet-name>
         <url-pattern>/StoreServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <servlet-class>business.store.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <url-pattern>/AddToCartServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>

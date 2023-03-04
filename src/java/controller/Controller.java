@@ -17,7 +17,10 @@ public class Controller extends HttpServlet {
         request.removeAttribute("action");
         request.getRequestDispatcher(action.getURL()).include(request, response);
 
-        request.setAttribute("requestPage", action.getPageRedirect());
+        if (request.getAttribute("requestPage") == null) {
+            request.setAttribute("requestPage", action.getPageRedirect());
+        }
+        
         request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
     }
 

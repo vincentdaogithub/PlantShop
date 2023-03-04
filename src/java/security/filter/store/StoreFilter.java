@@ -8,8 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import controller.redirect.ErrorRedirect;
-import security.error.Errors;
 import util.UserInput;
 
 public class StoreFilter implements Filter {
@@ -18,11 +16,12 @@ public class StoreFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        String indexStore = request.getParameter("index");
+        Integer index = UserInput.toInt(request.getParameter("index"));
 
-        if (UserInput.toInt(indexStore) == null) {
-            ErrorRedirect.redirect(Errors.BAD_REQUEST, request, response);
-            return;
+        if (index == null || index < 0) {
+            request.setAttribute("index", 0);
+        } else {
+            request.setAttribute("index", index);
         }
 
         chain.doFilter(request, response);

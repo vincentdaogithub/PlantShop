@@ -4,7 +4,7 @@ import security.filter.Authentications;
 
 public enum Pages {
     HOME("home", "/index.jsp", Authentications.OPEN),
-    ABOUT("about", "/html/about.jsp", Authentications.OPEN),
+    CART("cart", "/html/store/cart.jsp", Authentications.OPEN),
     STORE("store", "/html/store/store.jsp", Authentications.OPEN),
     LOGIN("login", "/html/login/login.jsp", Authentications.OPEN),
     REGISTER("register", "/html/login/register.jsp", Authentications.OPEN),

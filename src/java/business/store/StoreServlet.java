@@ -21,7 +21,7 @@ public class StoreServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Integer beginIndex = Integer.parseInt(request.getParameter("index"));
+        Integer beginIndex = (Integer) request.getAttribute("index");
         List<Plant> plants = PlantDAO.getPlants(beginIndex);
 
         if (plants.isEmpty()) {
