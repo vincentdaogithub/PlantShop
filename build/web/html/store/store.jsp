@@ -99,6 +99,13 @@
             </section>
 
             <section class="plant-list-container">
+                <c:choose>
+                    <c:when test="${requestScope.plants == null}">
+                        <div class="plant-container">
+                            <h2>No plants were found. Try again?</h2>
+                        </div>
+                    </c:when>
+                </c:choose>
                 <c:forEach items="${requestScope.plants}" var="plant">
                     <div class="plant-container">
                         <div class="img-container">
@@ -110,15 +117,16 @@
                                 <p><c:out value="${plant.name}" default="" /> - <c:out value="${plant.price}$" default="" /></p>
                             </div>
 
-                            <form class="add-to-cart-container" action="/PlantShop/Controller">
+                            <form class="add-to-cart-container" action="/PlantShop/Controller" method="post">
                                 <div class="add-to-cart-box">
                                     <div class="decrease-quantity">-</div>
-                                    <input class="add-to-cart" id="pid${plant.ID}" type="number" name="pid${plant.ID}" placeholder="quantity..." min="0" step="1" required />
+                                    <input class="add-to-cart" type="number" name="quantity" placeholder="quantity..." min="0" step="1" required />
                                     <div class="increase-quantity">+</div>
                                 </div>
-    
+
                                 <input type="hidden" name="action" value="store" />
                                 <input type="hidden" name="store" value="add-to-cart" />
+                                <input type="hidden" name="pid" value="${plant.ID}" />
                                 <input class="add-button" type="submit" value="Add to cart" />
                             </form>
                         </div>

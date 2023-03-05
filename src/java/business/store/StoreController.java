@@ -1,7 +1,6 @@
 package business.store;
 
 import controller.redirect.ErrorRedirect;
-import controller.redirect.Pages;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,11 +19,6 @@ public class StoreController extends HttpServlet {
         request.removeAttribute("storeAction");
 
         switch (storeAction) {
-            case STORE:
-                request.getRequestDispatcher(storeAction.getServlet()).include(request, response);
-                request.setAttribute("requestPage", Pages.STORE);
-                break;
-
             case ADD_TO_CART:
                 request.getRequestDispatcher(storeAction.getServlet()).include(request, response);
                 request.setAttribute("requestPage", request.getSession().getAttribute("lastPage"));

@@ -2,7 +2,8 @@ package controller;
 
 public enum Servlets {
     PAGE_REDIRECT("/PageRedirect"),
-    CONTROLLER("/Controller");
+    CONTROLLER("/Controller"),
+    STORE("/StoreServlet");
 
     private final String servlet;
 
@@ -10,7 +11,7 @@ public enum Servlets {
         this.servlet = servlet;
     }
 
-    public final String getServlet() {
+    public final String getServletURL() {
         return this.servlet;
     }
 }

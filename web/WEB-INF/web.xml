@@ -85,6 +85,16 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>CartFilter</filter-name>
+        <filter-class>security.filter.store.CartFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CartFilter</filter-name>
+        <servlet-name>CartServlet</servlet-name>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+    <filter>
         <filter-name>RegisterFilter</filter-name>
         <filter-class>security.filter.account.RegisterFilter</filter-class>
     </filter>
@@ -225,6 +235,15 @@
     <servlet-mapping>
         <servlet-name>AddToCartServlet</servlet-name>
         <url-pattern>/AddToCartServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>business.store.CartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/CartServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>

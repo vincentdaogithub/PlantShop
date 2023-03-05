@@ -15,7 +15,7 @@ import security.error.Errors;
 
 public class UpdateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,7 +36,7 @@ public class UpdateServlet extends HttpServlet {
 
         clearRequestData(request);
         request.setAttribute("requestPage", Pages.PROFILE);
-        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServletURL()).forward(request, response);
     }
 
     private void clearRequestData(HttpServletRequest request) {

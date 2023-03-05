@@ -36,6 +36,6 @@ public class RegisterServlet extends HttpServlet {
             request.getSession().setAttribute("account", AccountDAO.getAccount(email, password));
         }
 
-        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServletURL()).forward(request, response);
     }
 }

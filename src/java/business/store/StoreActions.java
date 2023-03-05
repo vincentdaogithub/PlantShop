@@ -1,7 +1,6 @@
 package business.store;
 
 public enum StoreActions {
-    STORE("store", "/StoreServlet"),
     ADD_TO_CART("add-to-cart", "/AddToCartServlet");
 
     private String action;

@@ -9,6 +9,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import controller.redirect.ErrorRedirect;
+import dao.plant.PlantDAO;
+import obj.plant.Plant;
 import security.error.Errors;
 import util.UserInput;
 
@@ -18,13 +20,23 @@ public class AddToCartFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        String indexStore = request.getParameter("index");
+        Integer pid = UserInput.toInt(request.getParameter("pid"));
+        Integer quantity = UserInput.toInt(request.getParameter("quantity"));
 
-        if (UserInput.toInt(indexStore) == null) {
+        if (pid == null || quantity == null) {
             ErrorRedirect.redirect(Errors.BAD_REQUEST, request, response);
             return;
         }
 
+        Plant plant = PlantDAO.getPlant(pid);
+
+        if (plant == null) {
+            ErrorRedirect.redirect(Errors.FILE_NOT_FOUND, request, response);
+            return;
+        }
+
+        request.setAttribute("plant", plant);
+        request.setAttribute("quantity", quantity);
         chain.doFilter(request, response);
     }
 

@@ -37,7 +37,7 @@
                 </c:when>
                     
                 <c:otherwise>
-                    <a class="nav-link" href="/PlantShop/Controller?action=store&index=0">Store</a>
+                    <a class="nav-link" href="/PlantShop/PageRedirect?page=store">Store</a>
                 </c:otherwise>
             </c:choose>
             

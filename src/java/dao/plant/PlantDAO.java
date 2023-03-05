@@ -13,7 +13,7 @@ import util.SQLBuilder;
 public class PlantDAO {
     
     private static final String PLANT_DB = "Plants";
-    private static final int MAX_SIZE_PER_REQUEST = 10;
+    private static final int MAX_SIZE_PER_REQUEST = 5;
 
     public static final Plant getPlant(int plantID) {
         

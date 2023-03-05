@@ -10,7 +10,7 @@ import controller.Servlets;
 import controller.redirect.Pages;
 
 public class LogOutServlet extends HttpServlet {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -19,6 +19,6 @@ public class LogOutServlet extends HttpServlet {
 
         request.getSession().invalidate();
         request.setAttribute("requestPage", Pages.HOME);
-        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServletURL()).forward(request, response);
     }
 }

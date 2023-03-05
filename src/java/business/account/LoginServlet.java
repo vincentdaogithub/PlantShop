@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             request.getSession().setAttribute("account", account);
             request.setAttribute("requestPage", Pages.HOME);
-            request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+            request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServletURL()).forward(request, response);
         }
     }
 }

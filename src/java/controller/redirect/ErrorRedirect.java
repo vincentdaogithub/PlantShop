@@ -15,6 +15,6 @@ public class ErrorRedirect {
 
         request.setAttribute("requestPage", Pages.ERROR);
         request.setAttribute("error", error);
-        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).include(request, response);
+        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServletURL()).include(request, response);
     }
 }

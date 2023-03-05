@@ -20,8 +20,8 @@ public class Controller extends HttpServlet {
         if (request.getAttribute("requestPage") == null) {
             request.setAttribute("requestPage", action.getPageRedirect());
         }
-        
-        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServlet()).forward(request, response);
+
+        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServletURL()).forward(request, response);
     }
 
     @Override
