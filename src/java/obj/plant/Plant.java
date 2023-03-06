@@ -14,6 +14,7 @@ public class Plant implements Serializable {
     private int categoryID;
 
     public Plant() {
+
         this.ID = 0;
         this.name = "";
         this.price = 0;
@@ -23,12 +24,34 @@ public class Plant implements Serializable {
     }
 
     public Plant(int ID, String name, int price, String description, int status, int categoryID) {
+
         this.ID = ID;
         this.name = name;
         this.price = price;
         this.description = description;
         this.status = status;
         this.categoryID = categoryID;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + this.ID;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final Plant other = (Plant) obj;
+        return this.ID == other.ID;
     }
 
     /**

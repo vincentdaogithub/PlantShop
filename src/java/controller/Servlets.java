@@ -3,7 +3,8 @@ package controller;
 public enum Servlets {
     PAGE_REDIRECT("/PageRedirect"),
     CONTROLLER("/Controller"),
-    STORE("/StoreServlet");
+    STORE("/StoreServlet"),
+    CART("/CartServlet");
 
     private final String servlet;
 

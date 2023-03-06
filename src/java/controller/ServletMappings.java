@@ -3,7 +3,8 @@ package controller;
 import controller.redirect.Pages;
 
 public enum ServletMappings {
-    STORE(Pages.STORE, Servlets.STORE);
+    STORE(Pages.STORE, Servlets.STORE),
+    CART(Pages.CART, Servlets.CART);
 
     private Pages page;
     private Servlets servlet;

@@ -1,7 +1,6 @@
 package business.store;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -20,7 +19,7 @@ public class CartServlet extends HttpServlet {
             throws ServletException, IOException {
 
         @SuppressWarnings("unchecked")
-        Map<Plant, Integer> cartMap = (LinkedHashMap<Plant, Integer>) request.getSession().getAttribute("cart");
+        Map<Plant, Integer> cartMap = (Map<Plant, Integer>) request.getSession().getAttribute("cart");
 
         if (cartMap == null || cartMap.isEmpty()) {
             return;

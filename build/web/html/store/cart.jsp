@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <link rel="stylesheet" href="/PlantShop/css/main.min.css" />
-        <link rel="stylesheet" href="/PlantShop/css/about/about.min.css" />
+        <link rel="stylesheet" href="/PlantShop/css/store/store.min.css" />
         <script src="/PlantShop/js/main.min.js" defer></script>
 
         <title>Viridis - About</title>
@@ -27,56 +27,60 @@
         </div>
         
         <main>
-            <section class="sort-container">
-                <h2>Sort</h2>
+            <section class="list-function-container">
+                <div class="sort-container">
+                    <h2>Sort</h2>
 
-                <form class="sort">
-                    <div class="label-input radio">
-                        <input id="order" type="radio" name="sort" value="order" checked />
-                        <label for="order">By order time</label>
-                    </div>
-
-                    <div class="label-input radio">
-                        <input id="name-asc" type="radio" name="sort" value="name-asc" checked />
-                        <label for="name-asc">By name (ASC)</label>
-                    </div>
-
-                    <div class="label-input radio">
-                        <input id="name-dsc" type="radio" name="sort" value="name-dsc" />
-                        <label for="name-dsc">By name (DSC)</label>
-                    </div>
-
-                    <div class="label-input radio">
-                        <input id="price-asc" type="radio" name="sort" value="price-asc" />
-                        <label for="price-asc">By price (ASC)</label>
-                    </div>
-
-                    <div class="label-input radio">
-                        <input id="price-dsc" type="radio" name="sort" value="price-dsc" />
-                        <label for="price-dsc">By price (DSC)</label>
-                    </div>
-
-                    <input type="hidden" name="action" value="cart" />
-                    <input type="hidden" name="cart" value="sort" />
-                    <input type="submit" value="Sort" />
-                </form>
+                    <form class="sort">
+                        <div class="label-input radio">
+                            <input id="order" type="radio" name="sort" value="order" checked />
+                            <label for="order">By order time</label>
+                        </div>
+    
+                        <div class="label-input radio">
+                            <input id="name-asc" type="radio" name="sort" value="name-asc" checked />
+                            <label for="name-asc">By name (ASC)</label>
+                        </div>
+    
+                        <div class="label-input radio">
+                            <input id="name-dsc" type="radio" name="sort" value="name-dsc" />
+                            <label for="name-dsc">By name (DSC)</label>
+                        </div>
+    
+                        <div class="label-input radio">
+                            <input id="price-asc" type="radio" name="sort" value="price-asc" />
+                            <label for="price-asc">By price (ASC)</label>
+                        </div>
+    
+                        <div class="label-input radio">
+                            <input id="price-dsc" type="radio" name="sort" value="price-dsc" />
+                            <label for="price-dsc">By price (DSC)</label>
+                        </div>
+    
+                        <input type="hidden" name="action" value="cart" />
+                        <input type="hidden" name="cart" value="sort" />
+                        <input type="submit" value="Sort" />
+                    </form>
+                </div>
             </section>
 
-            <section class="cart-container">
+            <section class="list-container">
                 <c:choose>
                     <c:when test="${requestScope.cart == null}">
-                        <p>The cart is empty. <a href="/PlantShop/Controller?action=store&index=0">Add one now!</a></p>
+                        <div class="list-item-container">
+                            <h2>The cart is empty. <a href="/PlantShop/PageRedirect?page=store">Add one now!</a></h2>
+                        </div>
                     </c:when>
-                    
+
                     <c:otherwise>
                         <c:forEach items="${requestScope.cart}" var="order">
-                            <div class="order-container">
+                            <div class="list-item-container">
                                 <div class="img-container">
-                                    <img src="/PlantShop/ImageRetriever?resource=plant&pid=${order}" />
+                                    <img src="/PlantShop/ImageRetriever?resource=plant&pid=${order.key.ID}" />
                                 </div>
 
-                                <div class="order-info">
-                                    <h3><c:out value="${order.key.name}" /> - <c:out value="${order.key.price}" /></h3>
+                                <div class="list-item-info-container">
+                                    <h3><c:out value="${order.key.name}" /> - <c:out value="${order.key.price}$" /></h3>
                                     <p>Quantity: <c:out value="${order.value}" /></p>
                                     <p>Total: <c:out value="${order.value}" /> * <c:out value="${order.key.price}$" /> = <c:out value="${order.value * order.key.price}$" /></p>
                                 </div>

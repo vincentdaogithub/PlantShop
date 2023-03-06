@@ -26,6 +26,7 @@ public class StoreController extends HttpServlet {
 
             default:
                 ErrorRedirect.redirect(Errors.SERVER_ERROR, request, response);
+                return;
         }
     }
 

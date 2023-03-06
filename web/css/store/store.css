@@ -10,7 +10,7 @@ main {
     display: block;
 }
 
-.search-and-sort-container {
+.list-function-container {
     color: #40513B;
     background-color: #EDF1D6;
 
@@ -23,24 +23,29 @@ main {
     align-items: center;
 }
 
-.search-and-sort-container > * {
+.list-function-container > * {
     width: 80%;
 }
 
-.search-and-sort-container > *:nth-last-child(n + 2) {
+.list-function-container > *:nth-last-child(n + 2) {
     margin: 1rem 1rem 0 1rem;
 }
 
-.search-and-sort-container > *:last-child {
+.list-function-container > *:last-child {
     margin: 1rem;
 }
 
-.search-container > *,
-.sort-container > * {
+.search-container > *:nth-child(n + 2),
+.sort-container > *:nth-child(n + 2) {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-start;
+}
+
+.search-container > h2,
+.sort-container > h2 {
+    text-align: left;
 }
 
 .search-container > *:nth-child(n + 2),
@@ -48,9 +53,7 @@ main {
     margin-top: 1rem;
 }
 
-.search-name > *:nth-child(n + 2),
-.search-price > *:nth-child(n + 2),
-.sort > *:nth-child(n + 2) {
+form > *:nth-child(n + 2) {
     margin-top: 1rem;
 }
 
@@ -95,7 +98,7 @@ input[type="submit"]:hover {
     background-color: #40513B;
 }
 
-.plant-list-container {
+.list-container {
     color: #40513B;
     background-color: #EDF1D6;
 
@@ -108,7 +111,7 @@ input[type="submit"]:hover {
     justify-items: center;
 }
 
-.plant-container {
+.list-item-container {
     height: 20vh;
 
     display: flex;
@@ -117,11 +120,11 @@ input[type="submit"]:hover {
     justify-items: center;
 }
 
-.plant-container:nth-last-child(n + 2) {
+.list-item-container:nth-last-child(n + 2) {
     margin: 1rem 1rem 0 1rem;
 }
 
-.plant-container:last-of-type {
+.list-item-container:last-of-type {
     margin: 1rem 1rem 1rem 1rem;
 }
 
@@ -135,7 +138,7 @@ input[type="submit"]:hover {
     height: auto;
 }
 
-.plant-info-container {
+.list-item-info-container {
     width: 60%;
     height: 100%;
 
@@ -207,8 +210,8 @@ input[type="submit"]:hover {
         align-items: center;
     }
 
-    .search-and-sort-container,
-    .plant-list-container {
+    .list-function-container,
+    .list-container {
         width: 80%;
     }
 

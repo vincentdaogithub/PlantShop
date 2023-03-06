@@ -28,12 +28,17 @@ public class AddToCartServlet extends HttpServlet {
             cart = Collections.synchronizedMap(new LinkedHashMap<>());
         }
 
+        Plant plant = (Plant) request.getAttribute("plant");
+        int quantity = (Integer) request.getAttribute("quantity");
+
         synchronized(cart) {
-            cart.put((Plant) request.getAttribute("plant"), (Integer) request.getAttribute("quantity"));
+            if (cart.containsKey(plant)) {
+                cart.merge(plant, quantity, Integer::sum);
+            } else {
+                cart.put((Plant) request.getAttribute("plant"), (Integer) request.getAttribute("quantity"));
+            }
         }
 
-        synchronized(session.getId().intern()) {
-            session.setAttribute("cart", cart);
-        }
+        session.setAttribute("cart", cart);
     }
 }
