@@ -20,8 +20,7 @@ public class StoreServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Integer beginIndex = (Integer) request.getAttribute("index");
-        List<Plant> plants = PlantDAO.getPlants(beginIndex);
+        List<Plant> plants = PlantDAO.getPlants();
 
         if (plants.isEmpty()) {
             ErrorRedirect.redirect(Errors.FILE_NOT_FOUND, request, response);

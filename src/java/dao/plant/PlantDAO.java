@@ -3,7 +3,8 @@ package dao.plant;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import obj.plant.Plant;
@@ -67,22 +68,24 @@ public class PlantDAO {
         ) {
 
             ResultSet results = statement.executeQuery();
-            List<Plant> plants = new ArrayList<>();
+            List<Plant> plants = Collections.synchronizedList(new LinkedList<>());
 
-            while (results.next()) {
-                plants.add(new Plant(
-                        results.getInt("PID"),
-                        results.getString("PName"),
-                        results.getInt("price"),
-                        results.getString("description"),
-                        results.getInt("status"),
-                        results.getInt("cateID")
-                ));
+            synchronized(plants) {
+                while (results.next()) {
+                    plants.add(new Plant(
+                            results.getInt("PID"),
+                            results.getString("PName"),
+                            results.getInt("price"),
+                            results.getString("description"),
+                            results.getInt("status"),
+                            results.getInt("cateID")
+                    ));
+                }
             }
 
             return plants;
         } catch (Exception e) {
-            return new ArrayList<Plant>();
+            return Collections.synchronizedList(new LinkedList<>());
         }
     }
 

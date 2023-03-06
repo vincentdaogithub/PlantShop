@@ -55,21 +55,21 @@
     </filter-mapping>
 
     <filter>
-        <filter-name>StoreControllerFilter</filter-name>
-        <filter-class>security.filter.store.StoreControllerFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>StoreControllerFilter</filter-name>
-        <servlet-name>StoreController</servlet-name>
-        <dispatcher>INCLUDE</dispatcher>
-    </filter-mapping>
-
-    <filter>
         <filter-name>StoreFilter</filter-name>
         <filter-class>security.filter.store.StoreFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>StoreFilter</filter-name>
+        <servlet-name>StoreServlet</servlet-name>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>StoreFunctionFilter</filter-name>
+        <filter-class>security.filter.store.StoreFunctionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>StoreFunctionFilter</filter-name>
         <servlet-name>StoreServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
@@ -208,15 +208,6 @@
     <servlet-mapping>
         <servlet-name>LogOutServlet</servlet-name>
         <url-pattern>/LogOutServlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>StoreController</servlet-name>
-        <servlet-class>business.store.StoreController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>StoreController</servlet-name>
-        <url-pattern>/StoreController</url-pattern>
     </servlet-mapping>
 
     <servlet>

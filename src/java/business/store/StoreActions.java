@@ -1,22 +1,17 @@
 package business.store;
 
 public enum StoreActions {
-    ADD_TO_CART("add-to-cart", "/AddToCartServlet");
+    SEARCH("search"),
+    SORT("sort");
 
     private String action;
-    private String servlet;
 
-    StoreActions(String action, String servlet) {
+    StoreActions(String action) {
         this.action = action;
-        this.servlet = servlet;
     }
 
-    public final String getAction() {
+    public String getAction() {
         return this.action;
-    }
-
-    public final String getServlet() {
-        return this.servlet;
     }
 
     public static final StoreActions convertStringToAction(String input) {
@@ -25,7 +20,7 @@ public enum StoreActions {
         }
 
         for (StoreActions action : StoreActions.values()) {
-            if (input.equals(action.getAction())) {
+            if (action.getAction().equals(input)) {
                 return action;
             }
         }

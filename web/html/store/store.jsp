@@ -26,19 +26,18 @@
                 <div class="search-container">
                     <h2>Search</h2>
 
-                    <form class="search-name">
+                    <form class="search-name" action="/PlantShop/PageRedirect?page=store&action=search">
                         <h3>By name:</h3>
 
                         <div class="label-input">
                             <input type="text" name="name" placeholder="plant name..." required />
                         </div>
     
-                        <input type="hidden" name="action" value="store" />
                         <input type="hidden" name="search" value="name" />
                         <input type="submit" value="Search" />
                     </form>
     
-                    <form class="search-price">
+                    <form class="search-price" action="/PlantShop/PageRedirect?page=store&action=search">
                         <h3>By price:</h3>
 
                         <div class="label-input radio">
@@ -47,12 +46,12 @@
                         </div>
     
                         <div class="label-input radio">
-                            <input id="5-to-10" type="radio" name="price" value="5-to-10" />
+                            <input id="5-to-10" type="radio" name="price" value="5-10" />
                             <label for="5-to-10">5$ - 10$</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="10-to-15" type="radio" name="price" value="10-to-15" />
+                            <input id="10-to-15" type="radio" name="price" value="10-15" />
                             <label for="10-to-15">10$ - 15$</label>
                         </div>
     
@@ -61,7 +60,6 @@
                             <label for="above-15">Above 15$</label>
                         </div>
     
-                        <input type="hidden" name="action" value="store" />
                         <input type="hidden" name="search" value="price" />
                         <input type="submit" value="Search" />
                     </form>
@@ -70,7 +68,7 @@
                 <div class="sort-container">
                     <h2>Sort</h2>
     
-                    <form class="sort">
+                    <form class="sort" action="/PlantShop/PageRedirect?page=store" method="post">
                         <div class="label-input radio">
                             <input id="name-asc" type="radio" name="sort" value="name-asc" checked />
                             <label for="name-asc">By name (ASC)</label>
@@ -90,9 +88,8 @@
                             <input id="price-dsc" type="radio" name="sort" value="price-dsc" />
                             <label for="price-dsc">By price (DSC)</label>
                         </div>
-    
-                        <input type="hidden" name="action" value="store" />
-                        <input type="hidden" name="sort" value="sort" />
+
+                        <input type="hidden" name="action" value="sort" />
                         <input type="submit" value="Sort" />
                     </form>
                 </div>
@@ -125,8 +122,7 @@
                                             <div class="increase-quantity">+</div>
                                         </div>
         
-                                        <input type="hidden" name="action" value="store" />
-                                        <input type="hidden" name="store" value="add-to-cart" />
+                                        <input type="hidden" name="action" value="add-to-cart" />
                                         <input type="hidden" name="pid" value="${plant.ID}" />
                                         <input class="add-button" type="submit" value="Add to cart" />
                                     </form>
