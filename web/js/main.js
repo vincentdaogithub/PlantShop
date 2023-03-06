@@ -50,6 +50,7 @@ function addEventListeners(element, events, func, funcArgs) {
 
 window.addEventListener("resize", function () {
     responsiveNavBarMobile();
+    responsiveFooter();
 });
 
 window.addEventListener("scroll", function () {
@@ -72,10 +73,7 @@ addEventListeners(backToTop, ["mouseenter", "mouseleave"], imgOpacityTransition,
 
 function init() {
     responsiveBackToTop();
-    setUpImgOpacity(socialLinkContainer);
-    setUpImgOpacity(backToTop);
-    setUpImgOpacity(navBarToggleContainer);
-    setUpFooter();
+    responsiveFooter();
 }
 
 // --------------------------------------------------
@@ -118,19 +116,6 @@ function responsiveBackToTop() {
     } else {
         backToTopContainer.style.display = "block";
     }
-}
-
-function setUpImgOpacity(element) {
-    const tops = element.getElementsByClassName("top");
-    const bottoms = element.getElementsByClassName("bottom");
-
-    Array.from(tops).forEach(function (e) {
-        e.style.opacity = "1";
-    });
-
-    Array.from(bottoms).forEach(function (e) {
-        e.style.opacity = "0";
-    });
 }
 
 function toggleUpdateUserInfo(formID) {
@@ -203,7 +188,7 @@ function setImgSquareByHeight() {
     });
 }
 
-function setUpFooter() {
+function responsiveFooter() {
     if (main.offsetHeight < (window.innerHeight - footer.offsetHeight)) {
         footer.style.position = "fixed";
         footer.style.bottom = "0";

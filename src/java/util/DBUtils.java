@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBUtils {
+
     private static final String ADDRESS = "jdbc:sqlserver://";
     private static final String IP = "localhost";
     private static final String INSTANCE_NAME = "DESKTOP-BH44E05";

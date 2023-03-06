@@ -81,8 +81,8 @@
         </div>
 
         <div class="nav-bar-toggle-container" data-toggle="off" onclick="toggleNavBarMobile()">
-            <img class="top" src="/PlantShop/img/icons/menu_close_white.png" alt="menu off" />
-            <img class="bottom" src="/PlantShop/img/icons/menu_open_white.png" alt="menu on" />
+            <img class="top" src="/PlantShop/img/icons/menu_close_white.png" alt="menu off" style="opacity: 1;" />
+            <img class="bottom" src="/PlantShop/img/icons/menu_open_white.png" alt="menu on" style="opacity: 0;" />
         </div>
     </nav>
 </header>

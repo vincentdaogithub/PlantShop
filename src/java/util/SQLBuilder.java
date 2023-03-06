@@ -1,6 +1,7 @@
 package util;
 
 public class SQLBuilder {
+
     private StringBuilder builder;
 
     public SQLBuilder() {

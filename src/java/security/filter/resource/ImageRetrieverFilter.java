@@ -81,7 +81,7 @@ public class ImageRetrieverFilter implements Filter {
         File[] files = folder.listFiles();
 
         for (File file : files) {
-            if (CheckFormat.check(file.getName(), "^img[.]")) {
+            if (CheckFormat.checkSensitive(file.getName(), "^img[.]")) {
                 request.setAttribute("imgFile", file);
             }
         }
