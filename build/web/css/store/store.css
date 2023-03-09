@@ -166,8 +166,8 @@ input[type="submit"]:hover {
     align-items: center;
 }
 
-.decrease-quantity,
-.increase-quantity {
+.decrease,
+.increase {
     width: 2rem;
     height: 100%;
     font-size: 1rem;
@@ -183,8 +183,8 @@ input[type="submit"]:hover {
     align-items: center;
 }
 
-.decrease-quantity:hover,
-.increase-quantity:hover {
+.decrease:hover,
+.increase:hover {
     background-color: #40513B;
 }
 

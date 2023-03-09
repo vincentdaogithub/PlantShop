@@ -119,9 +119,9 @@
         
                                     <form class="add-to-cart-container" action="/PlantShop/Controller?<c:out value='${requestScope.searchQuery}' default='' /><c:out value='${requestScope.sortQuery}' default='' />" method="post">
                                         <div class="add-to-cart-box">
-                                            <div class="decrease-quantity">-</div>
+                                            <div class="decrease" onclick="setQuantity(this, '-')">-</div>
                                             <input class="add-to-cart" type="number" name="quantity" placeholder="quantity..." min="0" step="1" required />
-                                            <div class="increase-quantity">+</div>
+                                            <div class="increase" onclick="setQuantity(this, '+')">+</div>
                                         </div>
         
                                         <input type="hidden" name="action" value="add-to-cart" />

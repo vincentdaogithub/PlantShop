@@ -180,18 +180,35 @@ function responsiveNavBarMobile() {
     }
 }
 
-function setImgSquareByHeight() {
-    const imgs = document.getElementsByClassName("img-square-height");
-
-    Array.from(imgs).forEach(function (img) {
-        img.style.height = img.parentElement.offsetHeight + "px";
-    });
-}
-
 function responsiveFooter() {
     if (main.offsetHeight < (window.innerHeight - footer.offsetHeight)) {
         footer.style.position = "fixed";
         footer.style.bottom = "0";
+    }
+}
+
+function setQuantity(button, type) {
+    const inputBox = button.parentElement.getElementsByTagName("input")[0];
+    var quantity = inputBox.getAttribute("value");
+
+    switch (type) {
+        case '+':
+            if (quantity == '') {
+                inputBox.setAttribute("value", 1);
+            } else {
+                inputBox.setAttribute("value", ++quantity);
+            }
+
+            break;
+    
+        case '-':
+            if (quantity == '' || quantity == '1') {
+                inputBox.setAttribute("value", '');
+            } else {
+                inputBox.setAttribute("value", --quantity);
+            }
+
+            break;
     }
 }
 
