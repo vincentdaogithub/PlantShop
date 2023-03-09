@@ -15,7 +15,7 @@ public class RegexBuilder {
         return this.builder.toString();
     }
 
-    private final void destroy() {
+    private void destroy() {
         this.builder = new StringBuilder();
     }
 
@@ -47,12 +47,22 @@ public class RegexBuilder {
 
             builder.append('(');
 
-            for (int i = 0; i < word.length() - 1; i++) {
-                builder.append(word.charAt(i));
+            for (int i = 0; i < word.length(); i++) {
+                char c = word.charAt(i);
+
+                if (i == 0) {
+                    builder.append(c);
+                    continue;
+                }
+
+                builder.append('(');
                 builder.append(".+");
+                builder.append(c);
+                builder.append('|');
+                builder.append(c);
+                builder.append(')');
             }
 
-            builder.append(word.charAt(word.length() - 1));
             builder.append(')');
         }
 

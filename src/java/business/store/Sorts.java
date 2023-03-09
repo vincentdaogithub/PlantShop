@@ -1,6 +1,7 @@
 package business.store;
 
 public enum Sorts {
+    ORDER_TIME("order-time"),
     NAME_ASC("name-asc"),
     NAME_DSC("name-dsc"),
     PRICE_ASC("price-asc"),

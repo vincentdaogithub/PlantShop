@@ -1,6 +1,7 @@
 package business.store;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -14,8 +15,7 @@ public class CartServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         @SuppressWarnings("unchecked")
@@ -25,6 +25,20 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        request.setAttribute("cart", cartMap.entrySet().toArray());
+        request.setAttribute("cart", new LinkedHashMap<>(cartMap));
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        processRequest(request, response);
     }
 }

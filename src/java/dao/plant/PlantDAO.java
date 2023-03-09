@@ -3,9 +3,11 @@ package dao.plant;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import obj.plant.Plant;
 import util.DBUtils;
@@ -52,7 +54,7 @@ public class PlantDAO {
         }
     }
 
-    public static final List<Plant> getPlants() {
+    public static final Set<Plant> getPlants() {
         
         SQLBuilder builder = new SQLBuilder();
         builder.addLine("SELECT *");
@@ -68,7 +70,7 @@ public class PlantDAO {
         ) {
 
             ResultSet results = statement.executeQuery();
-            List<Plant> plants = Collections.synchronizedList(new LinkedList<>());
+            Set<Plant> plants = Collections.synchronizedSet(new LinkedHashSet<>());
 
             synchronized(plants) {
                 while (results.next()) {
@@ -85,12 +87,14 @@ public class PlantDAO {
 
             return plants;
         } catch (Exception e) {
-            return Collections.synchronizedList(new LinkedList<>());
+            return Collections.synchronizedSet(new LinkedHashSet<>());
         }
     }
 
-    public static final List<Plant> getPlants(int beginIndex) {
-        List<Plant> plants = getPlants();
-        return plants.subList(beginIndex * MAX_SIZE_PER_REQUEST,  beginIndex * MAX_SIZE_PER_REQUEST + MAX_SIZE_PER_REQUEST);
+    public static final Set<Plant> getPlants(int beginIndex) {
+        Set<Plant> plants = getPlants();
+        List<Plant> plantsList = new ArrayList<>(plants).subList(beginIndex * MAX_SIZE_PER_REQUEST,  beginIndex * MAX_SIZE_PER_REQUEST + MAX_SIZE_PER_REQUEST);
+
+        return new LinkedHashSet<>(plantsList);
     }
 }

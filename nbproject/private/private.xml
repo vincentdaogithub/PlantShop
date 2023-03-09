@@ -3,7 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/code/PRJ301/PlantShop/web/html/store/store.jsp</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/dao/account/AccountDAO.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/util/DBUtils.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

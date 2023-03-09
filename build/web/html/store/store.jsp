@@ -1,5 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page import="business.store.PriceRanges" %>
 <%@ page import="business.store.Sorts" %>
 
@@ -116,7 +117,7 @@
                                         <p><c:out value="${plant.name}" default="" /> - <c:out value="${plant.price}$" default="" /></p>
                                     </div>
         
-                                    <form class="add-to-cart-container" action="/PlantShop/Controller?<c:out value='${requestScope.searchQuery}' default='' />" method="post">
+                                    <form class="add-to-cart-container" action="/PlantShop/Controller?<c:out value='${requestScope.searchQuery}' default='' /><c:out value='${requestScope.sortQuery}' default='' />" method="post">
                                         <div class="add-to-cart-box">
                                             <div class="decrease-quantity">-</div>
                                             <input class="add-to-cart" type="number" name="quantity" placeholder="quantity..." min="0" step="1" required />

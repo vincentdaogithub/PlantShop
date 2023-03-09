@@ -1,8 +1,15 @@
 package security.filter.store;
 
+import business.store.PriceRanges;
+import business.store.Searches;
+import business.store.Sorts;
+import business.store.StoreActions;
+import controller.redirect.ErrorRedirect;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,11 +18,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import business.store.PriceRanges;
-import business.store.Searches;
-import business.store.Sorts;
-import business.store.StoreActions;
-import controller.redirect.ErrorRedirect;
 import obj.plant.Plant;
 import security.error.Errors;
 import security.filter.store.comparator.ComparatorPlant;
@@ -41,14 +43,13 @@ public class StoreFunctionFilter implements Filter {
 
         if (sort != null && !doSort(request, sort)) {
             ErrorRedirect.redirect(Errors.BAD_REQUEST, request, response);
-            return;
         }
     }
 
     private boolean doSearch(ServletRequest request, Searches search) {
 
         @SuppressWarnings("unchecked")
-        List<Plant> plants = Collections.synchronizedList((List<Plant>) request.getAttribute("plants"));
+        Set<Plant> plants = Collections.synchronizedSet((Set<Plant>) request.getAttribute("plants"));
 
         synchronized(plants) {
             switch (search) {
@@ -133,24 +134,25 @@ public class StoreFunctionFilter implements Filter {
     private boolean doSort(ServletRequest request, Sorts sort) {
 
         @SuppressWarnings("unchecked")
-        List<Plant> plants = Collections.synchronizedList((List<Plant>) request.getAttribute("plants"));
+        Set<Plant> plants = (Set<Plant>) request.getAttribute("plants");
+        List<Plant> plantsList = Collections.synchronizedList(new ArrayList<>(plants));
 
-        synchronized(plants) {
+        synchronized(plantsList) {
             switch (sort) {
                 case NAME_ASC:
-                    plants.sort(ComparatorPlant.nameAscending());
+                    plantsList.sort(ComparatorPlant.nameAscending());
                     break;
 
                 case NAME_DSC:
-                    plants.sort(ComparatorPlant.nameDescending());
+                    plantsList.sort(ComparatorPlant.nameDescending());
                     break;
 
                 case PRICE_ASC:
-                    plants.sort(ComparatorPlant.priceAscending());
+                    plantsList.sort(ComparatorPlant.priceAscending());
                     break;
 
                 case PRICE_DSC:
-                    plants.sort(ComparatorPlant.priceDescending());
+                    plantsList.sort(ComparatorPlant.priceDescending());
                     break;
             
                 default:
@@ -159,7 +161,13 @@ public class StoreFunctionFilter implements Filter {
         }
 
         request.setAttribute("sortCheck", sort.getSort());
-        request.setAttribute("plants", plants);
+        request.setAttribute("plants", plantsList);
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("&sort=");
+        builder.append(sort.getSort());
+        request.setAttribute("sortQuery", builder.toString());
+
         return true;
     }
 

@@ -6,7 +6,7 @@ import obj.plant.Plant;
 import security.error.Errors;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +20,7 @@ public class StoreServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Plant> plants = PlantDAO.getPlants();
+        Set<Plant> plants = PlantDAO.getPlants();
 
         if (plants.isEmpty()) {
             ErrorRedirect.redirect(Errors.FILE_NOT_FOUND, request, response);
