@@ -1,8 +1,6 @@
 package business.account;
 
-import controller.Servlets;
 import controller.redirect.ErrorRedirect;
-import controller.redirect.Pages;
 import dao.account.AccountDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -35,8 +33,6 @@ public class UpdateServlet extends HttpServlet {
         session.setAttribute("account", AccountDAO.getAccount(email, password));
 
         clearRequestData(request);
-        request.setAttribute("requestPage", Pages.PROFILE);
-        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServletURL()).forward(request, response);
     }
 
     private void clearRequestData(HttpServletRequest request) {

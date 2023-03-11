@@ -1,12 +1,12 @@
 package controller.redirect;
 
+import controller.ServletMappings;
+import controller.Servlets;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import controller.ServletMappings;
 import security.error.Errors;
 import security.filter.Accesses;
 
@@ -24,6 +24,8 @@ public class PageRedirect extends HttpServlet {
             requestPage = Pages.ERROR;
             request.setAttribute("error", Errors.UNAUTHORIZED);
         }
+
+        request.getRequestDispatcher(Servlets.CONTROLLER.getServletURL()).include(request, response);
 
         for (ServletMappings servletMapping : ServletMappings.values()) {
             if (servletMapping.getPage() == requestPage) {

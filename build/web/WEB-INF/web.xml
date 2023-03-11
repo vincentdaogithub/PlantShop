@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-
     <!-- Filters -->
     <filter>
         <filter-name>ControllerFilter</filter-name>
-        <filter-class>security.filter.controller.ControllerFilter</filter-class>
+        <filter-class>filter.controller.ControllerFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>ControllerFilter</filter-name>
         <servlet-name>Controller</servlet-name>
-        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>PageRedirectFilter</filter-name>
-        <filter-class>security.filter.controller.PageRedirectFilter</filter-class>
+        <filter-class>filter.controller.PageRedirectFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>PageRedirectFilter</filter-name>
@@ -22,7 +20,6 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>security.filter.AuthenticationFilter</filter-class>
@@ -33,107 +30,96 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>LocalDBFilter</filter-name>
-        <filter-class>security.filter.resource.LocalDBFilter</filter-class>
+        <filter-class>filter.resource.LocalDBFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>LocalDBFilter</filter-name>
         <servlet-name>ImageRetriever</servlet-name>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>ImageRetrieverFilter</filter-name>
-        <filter-class>security.filter.resource.ImageRetrieverFilter</filter-class>
+        <filter-class>filter.resource.ImageRetrieverFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>ImageRetrieverFilter</filter-name>
         <servlet-name>ImageRetriever</servlet-name>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>StoreFilter</filter-name>
-        <filter-class>security.filter.store.StoreFilter</filter-class>
+        <filter-class>filter.store.StoreFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>StoreFilter</filter-name>
         <servlet-name>StoreServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-
     <filter>
-        <filter-name>StoreFunctionFilter</filter-name>
-        <filter-class>security.filter.store.StoreFunctionFilter</filter-class>
+        <filter-name>StoreDisplayFilter</filter-name>
+        <filter-class>filter.store.StoreDisplayFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>StoreFunctionFilter</filter-name>
+        <filter-name>StoreDisplayFilter</filter-name>
         <servlet-name>StoreServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-
     <filter>
-        <filter-name>AddToCartFilter</filter-name>
-        <filter-class>security.filter.store.AddToCartFilter</filter-class>
+        <filter-name>CartUpdateFilter</filter-name>
+        <filter-class>filter.cart.CartUpdateFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>AddToCartFilter</filter-name>
-        <servlet-name>AddToCartServlet</servlet-name>
+        <filter-name>CartUpdateFilter</filter-name>
+        <servlet-name>CartUpdateServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>CartFilter</filter-name>
-        <filter-class>security.filter.store.CartFilter</filter-class>
+        <filter-class>filter.cart.CartFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>CartFilter</filter-name>
         <servlet-name>CartServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-
     <filter>
-        <filter-name>CartFunctionFilter</filter-name>
-        <filter-class>security.filter.store.CartFunctionFilter</filter-class>
+        <filter-name>CartDisplayFilter</filter-name>
+        <filter-class>filter.cart.CartDisplayFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>CartFunctionFilter</filter-name>
+        <filter-name>CartDisplayFilter</filter-name>
         <servlet-name>CartServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>RegisterFilter</filter-name>
-        <filter-class>security.filter.account.RegisterFilter</filter-class>
+        <filter-class>filter.account.RegisterFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>RegisterFilter</filter-name>
         <servlet-name>RegisterServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>LoginFilter</filter-name>
-        <filter-class>security.filter.account.LoginFilter</filter-class>
+        <filter-class>filter.account.LoginFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <servlet-name>LoginServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>UpdateFilter</filter-name>
-        <filter-class>security.filter.account.UpdateFilter</filter-class>
+        <filter-class>filter.account.UpdateFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>UpdateFilter</filter-name>
         <servlet-name>UpdateServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>AccessFilter</filter-name>
         <filter-class>security.filter.AccessFilter</filter-class>
@@ -143,7 +129,6 @@
         <url-pattern>/html/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>Error500</filter-name>
         <filter-class>security.error.Error500</filter-class>
@@ -153,7 +138,6 @@
         <url-pattern>/500</url-pattern>
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
-
     <filter>
         <filter-name>Error404</filter-name>
         <filter-class>security.error.Error404</filter-class>
@@ -163,9 +147,7 @@
         <url-pattern>/404</url-pattern>
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
-
     <!-- Servlets -->
-
     <servlet>
         <servlet-name>PageRedirect</servlet-name>
         <servlet-class>controller.redirect.PageRedirect</servlet-class>
@@ -174,7 +156,6 @@
         <servlet-name>PageRedirect</servlet-name>
         <url-pattern>/PageRedirect</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>controller.Controller</servlet-class>
@@ -183,7 +164,6 @@
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>business.account.LoginServlet</servlet-class>
@@ -192,7 +172,6 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>business.account.RegisterServlet</servlet-class>
@@ -201,7 +180,6 @@
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>UpdateServlet</servlet-name>
         <servlet-class>business.account.UpdateServlet</servlet-class>
@@ -210,7 +188,6 @@
         <servlet-name>UpdateServlet</servlet-name>
         <url-pattern>/UpdateServlet</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>LogOutServlet</servlet-name>
         <servlet-class>business.account.LogOutServlet</servlet-class>
@@ -219,7 +196,6 @@
         <servlet-name>LogOutServlet</servlet-name>
         <url-pattern>/LogOutServlet</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>StoreServlet</servlet-name>
         <servlet-class>business.store.StoreServlet</servlet-class>
@@ -228,25 +204,22 @@
         <servlet-name>StoreServlet</servlet-name>
         <url-pattern>/StoreServlet</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AddToCartServlet</servlet-name>
-        <servlet-class>business.store.AddToCartServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddToCartServlet</servlet-name>
-        <url-pattern>/AddToCartServlet</url-pattern>
-    </servlet-mapping>
-
     <servlet>
         <servlet-name>CartServlet</servlet-name>
-        <servlet-class>business.store.CartServlet</servlet-class>
+        <servlet-class>business.cart.CartServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/CartServlet</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>CartUpdateServlet</servlet-name>
+        <servlet-class>business.cart.CartUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartUpdateServlet</servlet-name>
+        <url-pattern>/CartUpdateServlet</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ImageRetriever</servlet-name>
         <servlet-class>controller.resource.ImageRetriever</servlet-class>
@@ -255,9 +228,7 @@
         <servlet-name>ImageRetriever</servlet-name>
         <url-pattern>/ImageRetriever</url-pattern>
     </servlet-mapping>
-
     <!-- Configs -->
-
     <session-config>
         <session-timeout>10</session-timeout>
     </session-config>
@@ -266,10 +237,6 @@
     </welcome-file-list>
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
-        <location>/500</location>
-    </error-page>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/404</location>
+        <location>/html/error/error.jsp</location>
     </error-page>
 </web-app>

@@ -1,6 +1,7 @@
 package security.filter;
 
 public enum Accesses {
+    
     APPROVED(1),
     DENIED(0),
     REQUESTING(-1);

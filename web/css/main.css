@@ -247,6 +247,22 @@ footer {
 
 /* -------------------------------------------------- */
 
+/* screen reader */
+
+.scr-reader {
+    margin: 0;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+
+    position: absolute !important;
+    overflow: hidden;
+    clip:rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* -------------------------------------------------- */
+
 /* responsive layout */
 
 @media screen and (max-width: 1200px) {

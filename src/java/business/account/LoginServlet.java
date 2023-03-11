@@ -1,8 +1,6 @@
 package business.account;
 
-import controller.Servlets;
 import controller.redirect.ErrorRedirect;
-import controller.redirect.Pages;
 import dao.account.AccountDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -28,8 +26,6 @@ public class LoginServlet extends HttpServlet {
             ErrorRedirect.redirect(Errors.UNAUTHORIZED, request, response);
         } else {
             request.getSession().setAttribute("account", account);
-            request.setAttribute("requestPage", Pages.HOME);
-            request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServletURL()).forward(request, response);
         }
     }
 }

@@ -9,7 +9,7 @@
 
         <link rel="stylesheet" href="/PlantShop/css/main.min.css" />
         <link rel="stylesheet" href="/PlantShop/css/login/login.min.css" />
-        <script src="/PlantShop/js/main.min.js" defer></script>
+        <script src="/PlantShop/js/main.js" defer></script>
 
         <title>Viridis - Register</title>
     </head>
@@ -23,7 +23,7 @@
 
         <main>
             <section class="register-container">
-                <form action="/PlantShop/Controller" method="post">
+                <form action="/PlantShop/PageRedirect?page=home" method="post">
                     <h2 class="register-title">Register</h2>
 
                     <div class="input-container">

@@ -64,6 +64,13 @@ Array.from(socialLinks).forEach(function (e) {
     addEventListeners(e, ["mouseenter", "mouseleave"], imgOpacityTransition, [e]);
 });
 
+// element that has tabindex
+document.onkeydown = (e) => {
+    if (e.key == "Enter") {
+        document.activeElement.click();
+    }
+};
+
 // back to top
 addEventListeners(backToTop, ["mouseenter", "mouseleave"], imgOpacityTransition, [backToTop]);
 
@@ -118,7 +125,7 @@ function responsiveBackToTop() {
     }
 }
 
-function toggleUpdateUserInfo(formID) {
+function toggleUpdate(formID, formClass) {
     const form = document.getElementById(formID);
     const toggleStatus = form.getAttribute("data-toggle");
 
@@ -127,7 +134,7 @@ function toggleUpdateUserInfo(formID) {
             const allForms = document.getElementsByTagName("form");
 
             Array.from(allForms).forEach(function (e) {
-                if (e.classList.contains("info-update")) {
+                if (e.classList.contains(formClass)) {
                     e.style.display = "none";
                     e.setAttribute("data-toggle", "off");
                 }
@@ -138,13 +145,10 @@ function toggleUpdateUserInfo(formID) {
             break;
 
         case "on":
-            form.style.display = "none";
-            form.setAttribute("data-toggle", "off");
-            break;
-
         default:
             form.style.display = "none";
             form.setAttribute("data-toggle", "off");
+            break;
     }
 }
 
@@ -160,7 +164,7 @@ function toggleNavBarMobile() {
             bottom.style.opacity = "1"
             navBarToggleContainer.setAttribute("data-toggle", "on");
             break;
-    
+
         case "on":
             navBar.style.display = "none";
             top.style.opacity = "1"
@@ -189,23 +193,25 @@ function responsiveFooter() {
 
 function setQuantity(button, type) {
     const inputBox = button.parentElement.getElementsByTagName("input")[0];
-    var quantity = inputBox.getAttribute("value");
+    const value = inputBox.value;
+    var quantity;
+
+    if (!value) {
+        quantity = 0;
+    } else {
+        quantity = Number.parseInt(value);
+    }
 
     switch (type) {
         case '+':
-            if (quantity == '') {
-                inputBox.setAttribute("value", 1);
-            } else {
-                inputBox.setAttribute("value", ++quantity);
-            }
-
+            inputBox.value = ++quantity;
             break;
-    
+
         case '-':
-            if (quantity == '' || quantity == '1') {
-                inputBox.setAttribute("value", '');
+            if (quantity <= 1) {
+                inputBox.value = "";
             } else {
-                inputBox.setAttribute("value", --quantity);
+                inputBox.value = --quantity;
             }
 
             break;

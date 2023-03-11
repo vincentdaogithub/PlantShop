@@ -10,7 +10,7 @@
 
         <link rel="stylesheet" href="/PlantShop/css/main.min.css" />
         <link rel="stylesheet" href="/PlantShop/css/error/error.min.css" />
-        <script src="/PlantShop/js/main.min.js" defer></script>
+        <script src="/PlantShop/js/main.js" defer></script>
 
         <title>Viridis - Error</title>
     </head>

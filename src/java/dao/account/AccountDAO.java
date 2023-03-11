@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 
 import business.account.Updates;
 import obj.account.Account;
-import security.util.HashUtils;
 import util.DBUtils;
+import util.HashUtils;
 import util.SQLBuilder;
 
 public class AccountDAO {

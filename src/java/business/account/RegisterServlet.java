@@ -1,15 +1,13 @@
 package business.account;
 
+import controller.redirect.ErrorRedirect;
+import dao.account.AccountDAO;
+import dao.account.AccountFactory;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import controller.Servlets;
-import controller.redirect.Pages;
-import dao.account.AccountDAO;
-import dao.account.AccountFactory;
 import obj.account.Account;
 import obj.account.Accounts;
 import security.error.Errors;
@@ -29,13 +27,9 @@ public class RegisterServlet extends HttpServlet {
         Account account = AccountFactory.buildForDB(email, password, fullname, phone, Accounts.USER);
 
         if (!AccountDAO.addAccount(account)) {
-            request.setAttribute("requestPage", Pages.ERROR);
-            request.setAttribute("error", Errors.USER_EXISTED);
+            ErrorRedirect.redirect(Errors.USER_EXISTED, request, response);
         } else {
-            request.setAttribute("requestPage", Pages.HOME);
             request.getSession().setAttribute("account", AccountDAO.getAccount(email, password));
         }
-
-        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServletURL()).forward(request, response);
     }
 }

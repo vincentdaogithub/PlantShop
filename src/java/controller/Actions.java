@@ -1,22 +1,19 @@
 package controller;
 
-import controller.redirect.Pages;
-
 public enum Actions {
-    LOGIN("login", "/LoginServlet", Pages.HOME),
-    REGISTER("register", "/RegisterServlet", Pages.HOME),
-    USER_UPDATE("update", "/UpdateServlet", Pages.PROFILE),
-    LOG_OUT("logout", "/LogOutServlet", Pages.HOME),
-    ADD_TO_CART("add-to-cart", "/AddToCartServlet", Pages.STORE);
+
+    LOGIN("login", "/LoginServlet"),
+    REGISTER("register", "/RegisterServlet"),
+    USER_UPDATE("user-update", "/UpdateServlet"),
+    LOG_OUT("logout", "/LogOutServlet"),
+    CART_UPDATE("cart-update", "/CartUpdateServlet");
 
     private String action;
     private String url;
-    private Pages pageRedirect;
 
-    Actions(String action, String url, Pages pageRedirect) {
+    Actions(String action, String url) {
         this.action = action;
         this.url = url;
-        this.pageRedirect = pageRedirect;
     }
 
     public String getAction() {
@@ -25,10 +22,6 @@ public enum Actions {
 
     public String getURL() {
         return this.url;
-    }
-
-    public Pages getPageRedirect() {
-        return this.pageRedirect;
     }
 
     public static final Actions convertStringToAction(String input) {

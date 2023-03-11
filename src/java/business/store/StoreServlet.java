@@ -6,6 +6,7 @@ import obj.plant.Plant;
 import security.error.Errors;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -27,7 +28,8 @@ public class StoreServlet extends HttpServlet {
             return;
         }
 
-        request.setAttribute("plants", plants);
+        request.setAttribute("size", plants.size());
+        request.setAttribute("plants", new ArrayList<>(plants));
     }
 
     @Override

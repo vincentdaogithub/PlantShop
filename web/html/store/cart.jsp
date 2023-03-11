@@ -1,8 +1,10 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<%@ page import="business.store.PriceRanges" %>
-<%@ page import="business.store.Sorts" %>
+<%@ page import="business.sort.PriceRanges" %>
+<%@ page import="business.sort.Sorts" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,12 +12,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="/PlantShop/css/main.min.css" />
+        <link rel="stylesheet" href="/PlantShop/css/main.css" />
         <link rel="stylesheet" href="/PlantShop/css/store/store.min.css" />
-        <script src="/PlantShop/js/main.min.js" defer></script>
+        <script src="/PlantShop/js/main.js" defer></script>
 
-        <title>Viridis - About</title>
+        <title>Viridis - Cart</title>
     </head>
+    
+    <c:set value="${fn:escapeXml(searchQuery)}${fn:escapeXml(sortQuery)}" var="query" />
 
     <body onload="init()">
         <jsp:include page="/html/template/header.jsp" />
@@ -33,7 +37,7 @@
                         <h3>By name:</h3>
 
                         <div class="label-input">
-                            <input type="text" name="name" value="<c:out value='${requestScope.searchName}' default='' />" placeholder="plant name..." required />
+                            <input type="text" name="name" value="${fn:escapeXml(searchName)}" placeholder="plant name..." />
                         </div>
     
                         <input type="hidden" name="search" value="name" />
@@ -44,22 +48,22 @@
                         <h3>By price:</h3>
 
                         <div class="label-input radio">
-                            <input id="below-5" type="radio" name="price" value="below-5" <c:out value="${requestScope.searchPrice == PriceRanges.BELOW_5.range ? 'checked' : ''}" default="" /> />
+                            <input id="below-5" type="radio" name="price" value="below-5" ${requestScope.searchPrice == PriceRanges.BELOW_5.range ? 'checked' : ''} />
                             <label for="below-5">Below 5$</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="5-to-10" type="radio" name="price" value="5-10" <c:out value="${requestScope.searchPrice == PriceRanges.FIVE_TO_10.range ? 'checked' : ''}" default="" /> />
+                            <input id="5-to-10" type="radio" name="price" value="5-10" ${requestScope.searchPrice == PriceRanges.FIVE_TO_10.range ? 'checked' : ''} />
                             <label for="5-to-10">5$ - 10$</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="10-to-15" type="radio" name="price" value="10-15" <c:out value="${requestScope.searchPrice == PriceRanges.TEN_TO_15.range ? 'checked' : ''}" default="" /> />
+                            <input id="10-to-15" type="radio" name="price" value="10-15" ${requestScope.searchPrice == PriceRanges.TEN_TO_15.range ? 'checked' : ''} />
                             <label for="10-to-15">10$ - 15$</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="above-15" type="radio" name="price" value="above-15" <c:out value="${requestScope.searchPrice == PriceRanges.ABOVE_15.range ? 'checked' : ''}" default="" /> />
+                            <input id="above-15" type="radio" name="price" value="above-15" ${requestScope.searchPrice == PriceRanges.ABOVE_15.range ? 'checked' : ''} />
                             <label for="above-15">Above 15$</label>
                         </div>
     
@@ -71,29 +75,29 @@
                 <div class="sort-container">
                     <h2>Sort</h2>
     
-                    <form class="sort" action="/PlantShop/PageRedirect?page=cart<c:out value='${requestScope.searchQuery}' default='' />" method="post">
+                    <form class="sort" action="/PlantShop/PageRedirect?page=cart${fn:escapeXml(searchQuery)}" method="post">
                         <div class="label-input radio">
-                            <input id="order-time" type="radio" name="sort" value="order-time" <c:out value="${requestScope.sortCheck == Sorts.NAME_ASC.sort ? 'checked' : ''}" default="" /> />
+                            <input id="order-time" type="radio" name="sort" value="order-time" ${requestScope.sortCheck == Sorts.NAME_ASC.sort ? 'checked' : ''} />
                             <label for="order-time">By order time</label>
                         </div>
 
                         <div class="label-input radio">
-                            <input id="name-asc" type="radio" name="sort" value="name-asc" <c:out value="${requestScope.sortCheck == Sorts.NAME_ASC.sort ? 'checked' : ''}" default="" /> />
+                            <input id="name-asc" type="radio" name="sort" value="name-asc" ${requestScope.sortCheck == Sorts.NAME_ASC.sort ? 'checked' : ''} />
                             <label for="name-asc">By name (ASC)</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="name-dsc" type="radio" name="sort" value="name-dsc" <c:out value="${requestScope.sortCheck == Sorts.NAME_DSC.sort ? 'checked' : ''}" default="" /> />
+                            <input id="name-dsc" type="radio" name="sort" value="name-dsc" ${requestScope.sortCheck == Sorts.NAME_DSC.sort ? 'checked' : ''} />
                             <label for="name-dsc">By name (DSC)</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="price-asc" type="radio" name="sort" value="price-asc" <c:out value="${requestScope.sortCheck == Sorts.PRICE_ASC.sort ? 'checked' : ''}" default="" /> />
+                            <input id="price-asc" type="radio" name="sort" value="price-asc" ${requestScope.sortCheck == Sorts.PRICE_ASC.sort ? 'checked' : ''} />
                             <label for="price-asc">By price (ASC)</label>
                         </div>
     
                         <div class="label-input radio">
-                            <input id="price-dsc" type="radio" name="sort" value="price-dsc" <c:out value="${requestScope.sortCheck == Sorts.PRICE_DSC.sort ? 'checked' : ''}" default="" /> />
+                            <input id="price-dsc" type="radio" name="sort" value="price-dsc" ${requestScope.sortCheck == Sorts.PRICE_DSC.sort ? 'checked' : ''} />
                             <label for="price-dsc">By price (DSC)</label>
                         </div>
 
@@ -104,26 +108,68 @@
 
             <section class="list-container">
                 <c:choose>
-                    <c:when test="${requestScope.cart == null}">
+                    <c:when test="${requestScope.cart == null || empty requestScope.cart}">
                         <div class="list-item-container">
                             <h2>The cart is empty. <a href="/PlantShop/PageRedirect?page=store">Add one now!</a></h2>
                         </div>
                     </c:when>
 
                     <c:otherwise>
-                        <c:forEach items="${requestScope.cart}" var="order">
+                        <fmt:parseNumber var="listSize" integerOnly="true" value="${size % 5 != 0 ? size / 5 + 1 : size / 5}" />
+
+                        <div class="list-index">
+                            <a class="begin-list" href="/PlantShop/PageRedirect?page=cart&amp;index=0${query}">&lt;&lt;</a>
+                            <a class="decrease-index" href="/PlantShop/PageRedirect?page=cart&amp;index=${index - 1}${query}">&lt;</a>
+                            <div class="index">page ${index + 1} of ${listSize}</div>
+                            <a class="increase-index" href="/PlantShop/PageRedirect?page=cart&amp;index=${index + 1 >= listSize ? listSize - 1 : index + 1}${query}">&gt;</a>
+                            <a class="end-list" href="/PlantShop/PageRedirect?page=cart&amp;index=${listSize - 1}${query}">&gt;&gt;</a>
+                        </div>
+
+                        <c:forEach items="${requestScope.cart}" var="order" begin="${index * 5}" end="${index * 5 + 4}">
                             <div class="list-item-container">
                                 <div class="img-container">
                                     <img src="/PlantShop/ImageRetriever?resource=plant&pid=${order.key.ID}" />
                                 </div>
 
                                 <div class="list-item-info-container">
-                                    <h3><c:out value="${order.key.name}" /> - <c:out value="${order.key.price}$" /></h3>
-                                    <p>Quantity: <c:out value="${order.value}" /></p>
-                                    <p>Total: <c:out value="${order.value}" /> * <c:out value="${order.key.price}$" /> = <c:out value="${order.value * order.key.price}$" /></p>
+                                    <a href="/PlantShop/PageRedirect?page=plant&amp;pid=${order.key.ID}">
+                                        <h3>${fn:escapeXml(order.key.name)} - ${order.key.price}$</h3>
+                                    </a>
+
+                                    <p>
+                                        Quantity: <c:out value="${order.value}" /> - 
+                                        <span class="quantity-update-link" tabindex="0" onclick="toggleUpdate('quantity-${order.key.ID}', 'quantity-update')">
+                                            Change
+                                        </span>
+                                    </p>
+
+                                    <form id="quantity-${order.key.ID}" class="quantity-update" data-toggle="off" action="/PlantShop/Controller?page=cart${query}" method="post" style="display: none;">
+                                        <div class="add-to-cart-box">
+                                            <div class="decrease-quantity" onclick="setQuantity(this, '-')" tabindex="0"><p class="scr-reader">Decrease quantity</p>-</div>
+                                            <label class="scr-reader" for="plant-quantity-${order.key.ID}">Plant quantity for ${fn:escapeXml(order.key.name)}" /></label>
+                                            <input id="plant-quantity-${order.key.ID}" class="add-to-cart" type="number" name="quantity" placeholder="quantity..." min="0" step="1" required />
+                                            <div class="increase-quantity" onclick="setQuantity(this, '+')" tabindex="0"><p class="scr-reader">Increase quantity</p>+</div>
+                                        </div>
+        
+                                        <input type="hidden" name="action" value="update-cart" />
+                                        <input type="hidden" name="pid" value="${order.key.ID}" />
+                                        <input class="add-button" type="submit" value="Update" />
+                                    </form>
+
+                                    <p>
+                                        Total: ${order.value} * ${order.key.price} = ${order.value * order.key.price}$
+                                    </p>
                                 </div>
                             </div>
                         </c:forEach>
+
+                        <div class="list-index">
+                            <a class="begin-list" href="/PlantShop/PageRedirect?page=cart&amp;index=0${query}">&lt;&lt;</a>
+                            <a class="decrease-index" href="/PlantShop/PageRedirect?page=cart&amp;index=${index - 1}${query}">&lt;</a>
+                            <div class="index">page ${index + 1} of ${listSize}</div>
+                            <a class="increase-index" href="/PlantShop/PageRedirect?page=cart&amp;index=${index + 1 >= listSize ? listSize - 1 : index + 1}${query}">&gt;</a>
+                            <a class="end-list" href="/PlantShop/PageRedirect?page=cart&amp;index=${listSize - 1}${query}">&gt;&gt;</a>
+                        </div>
                     </c:otherwise>
                 </c:choose>
             </section>

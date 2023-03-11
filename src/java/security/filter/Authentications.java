@@ -1,6 +1,7 @@
 package security.filter;
 
 public enum Authentications {
+    
     ADMIN(1),
     USER(0),
     OPEN(-1),
