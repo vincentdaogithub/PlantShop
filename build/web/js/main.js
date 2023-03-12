@@ -51,6 +51,7 @@ function addEventListeners(element, events, func, funcArgs) {
 window.addEventListener("resize", function () {
     responsiveNavBarMobile();
     responsiveFooter();
+    squareImgWidth();
 });
 
 window.addEventListener("scroll", function () {
@@ -81,6 +82,7 @@ addEventListeners(backToTop, ["mouseenter", "mouseleave"], imgOpacityTransition,
 function init() {
     responsiveBackToTop();
     responsiveFooter();
+    squareImgWidth();
 }
 
 // --------------------------------------------------
@@ -188,6 +190,8 @@ function responsiveFooter() {
     if (main.offsetHeight < (window.innerHeight - footer.offsetHeight)) {
         footer.style.position = "fixed";
         footer.style.bottom = "0";
+    } else {
+        footer.style.position = "static";
     }
 }
 
@@ -216,6 +220,14 @@ function setQuantity(button, type) {
 
             break;
     }
+}
+
+function squareImgWidth() {
+    var imgContainers = document.getElementsByClassName("square-img-width");
+
+    Array.from(imgContainers).forEach(function (img) {
+        img.style.height = img.offsetWidth + "px";
+    });
 }
 
 // --------------------------------------------------

@@ -1,156 +1,146 @@
-main {
-    width: 80%;
-    color: #EDF1D6;
-    background-color: #00000077;
-    margin: 0 auto;
-
-    position: relative;
-    z-index: 1;
-}
-
-.profile-ava-container {
-    width: 100%;
-    height: 100vh;
-
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.ava-container {
-    width: 50vh;
-    height: 50vh;
-    border: 0.1rem solid #000;
-    overflow: hidden;
+.profile {
+    width: calc(100% - 4rem);
+    min-height: 100vh;
+    margin: 2rem;
 
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.profile-ava {
-    width: auto;
-    height: 100%;
+.ava-panel,
+.info-panel {
+    color: #40513B;
+    background-color: #EDF1D6;
 }
 
-.hello-user {
-    margin-bottom: 1rem;
-}
-
-.profile-info-container {
-    width: 100%;
-    height: 100vh;
-    margin: 0 auto;
+.ava-panel {
+    width: 30%;
+    height: auto;
 
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    
 }
 
-.info-section {
-    width: 60%;
-    margin: 1rem 0;
-
-    display: flex;
-    flex-wrap: nowrap;
+.ava-panel > *:first-child {
+    margin: 1rem;
 }
 
-.info-section:first-of-type {
-    margin-top: 0;
+.ava-panel > *:nth-child(n + 2) {
+    margin: 0 1rem 1rem 1rem;
 }
 
-.info-section:last-of-type {
-    margin-bottom: 0;
+.ava {
+    width: calc(100% - 2rem);
+    height: 20vh;
 }
 
-.info-label-container,
-.info-container {
-    width: 50%;
-}
-
-.info-label-container {
-    display: flex;
-    align-items: flex-start;
-}
-
-.info-container {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: flex-start;
-}
-
-label,
-input {
-    display: block;
-}
-
-.info,
-.info-update-link,
-label,
-input:not([type="submit"]) {
-    margin-bottom: 1rem;
-}
-
-.info,
-.info-label,
-.info-update-link,
 label,
 input {
     font-size: 1rem;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 input {
+    padding: 0.5rem;
+    border: 0.1rem solid #000;
+}
+
+input:not([type="submit"]),
+input:not([type="file"]) {
+    color: #40513B;
+    background: none;
+}
+
+input[type="submit"],
+input[type="file"] {
     width: 100%;
-    padding: 0.2rem;
-    background-color: #EDF1D6;
-
-    border: none;
-    border-radius: 0.2rem;
-
-    box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-input[type="submit"] {
-    width: 50%;
-    margin: 0 auto;
-    cursor: pointer;
-
-    color: #000;
+    color: #EDF1D6;
     background-color: #609966;
-    transition: color 0.2s ease-in,
-                background-color 0.2s ease-in;
 }
 
-input[type="submit"]:hover {
-    color: #000;
+input[type="submit"]:hover,
+input[type="file"]:hover,
+input[type="submit"]:focus,
+input[type="file"]:focus {
+    color: #40513B;
     background-color: #EDF1D6;
 }
 
+.change-ava,
 .logout {
-    width: 100% !important;
-    margin-top: 1rem !important;
+    width: calc(100% - 2rem);
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
-.info-update {
-    display: none;
+.input {
+    width: 100%;
+
+    display: flex;
     flex-flow: column nowrap;
+    justify-content: flex-start;
     align-items: flex-start;
 }
 
-.info-update-link {
-    text-decoration: underline solid #FFF 0.1rem;
-    transition: background-color 0.2s ease-in;
+.input > input {
+    width: 100%;
+}
+
+.info-panel {
+    width: 70%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.info-panel > *:first-child,
+.ava-panel > *:first-child {
+    margin: 1rem;
+}
+
+.info-panel > *:nth-child(n + 2),
+.ava-panel > *:nth-child(n + 2) {
+    margin: 0 1rem 1rem 1rem;
+}
+
+.info {
+    width: calc(100% - 2rem);
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.info > *:nth-last-child(n + 2) {
+    margin: 0 1rem 1rem 1rem;
+}
+
+.info > *:last-child {
+    margin: 0 1rem 0 1rem;
+}
+
+.update-link {
+    text-decoration: underline;
     cursor: pointer;
 }
 
-.info-update-link:hover {
-    background-color: #000;
+.info-update {
+    width: calc(100% - 2rem);
+
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
-.content-break-container {
-    display: flex;
+form > *:nth-child(n + 2) {
+    margin-top: 1rem;
 }

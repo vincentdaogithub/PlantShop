@@ -246,9 +246,10 @@ footer {
 
 /* -------------------------------------------------- */
 
-/* screen reader */
+/* screen reader and hidden */
 
-.scr-reader {
+.scr-reader,
+.hidden {
     margin: 0;
     padding: 0;
     width: 1px;
