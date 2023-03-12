@@ -1,10 +1,9 @@
 package dao.account;
 
+import business.account.Updates;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import business.account.Updates;
 import obj.account.Account;
 import util.DBUtils;
 import util.HashUtils;
@@ -46,6 +45,44 @@ public class AccountDAO {
                             results.getInt("status"),
                             results.getInt("role"));
                 }
+            }
+
+            return null;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public static final Account getAccount(String email) {
+        
+        if (email == null) {
+            throw new NullPointerException();
+        }
+
+        SQLBuilder builder = new SQLBuilder();
+        builder.addLine("SELECT *");
+        builder.addLine("FROM " + ACCOUNT_DB);
+        builder.addLine("WHERE email = ?");
+        builder.addLine("COLLATE Latin1_General_CS_AS");
+
+        try (
+                Connection connection = DBUtils.makeConnection();
+                PreparedStatement statement = connection.prepareStatement(
+                        builder.toString(),
+                        ResultSet.TYPE_SCROLL_SENSITIVE,
+                        ResultSet.CONCUR_READ_ONLY);) {
+            statement.setString(1, email);
+            ResultSet results = statement.executeQuery();
+
+            if (results.next() && results.isLast()) {
+                return new Account(
+                        results.getInt("accID"),
+                        results.getString("email"),
+                        HashUtils.extractHashPassword(results.getString("password")),
+                        results.getString("fullname"),
+                        results.getString("phone"),
+                        results.getInt("status"),
+                        results.getInt("role"));
             }
 
             return null;
@@ -106,6 +143,7 @@ public class AccountDAO {
 
         SQLBuilder builder = new SQLBuilder();
         builder.addLine("UPDATE " + ACCOUNT_DB);
+        String updateString = updateValue;
 
         switch (update) {
             case EMAIL:
@@ -114,7 +152,7 @@ public class AccountDAO {
 
             case PASSWORD:
                 builder.addLine("SET password = ?");
-                updateValue = HashUtils.hashPassword(updateValue);
+                updateString = HashUtils.hashPassword(updateValue);
                 break;
 
             case FULLNAME:
@@ -136,7 +174,7 @@ public class AccountDAO {
                 Connection connection = DBUtils.makeConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(builder.toString());
         ) {
-            preparedStatement.setString(1, updateValue);
+            preparedStatement.setString(1, updateString);
             preparedStatement.setString(2, email);
 
             return preparedStatement.executeUpdate() == 1;

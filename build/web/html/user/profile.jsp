@@ -30,14 +30,11 @@
                         <img src="/PlantShop/ImageRetriever?resource=avatar" alt="profile image" />
                     </div>
 
-                    <form class="change-ava" action="/PlantShop/PageRedirect?page=profile" method="post">
+                    <form class="change-ava" action="/PlantShop/PageRedirect?page=profile&amp;action=user-update&amp;update=ava&amp;resource=avatar" method="post" enctype="multipart/form-data">
                         <div class="input">
                             <label for="change-ava" tabindex="0">Change your profile avatar: </label>
                             <input id="change-ava" type="file" name="ava" accept="image/png, image/jpeg, image/gif" />
                         </div>
-
-                        <input type="hidden" name="action" value="user-update" />
-                        <input type="hidden" name="update" value="ava" />
 
                         <input type="submit" value="Change avatar" />
                     </form>

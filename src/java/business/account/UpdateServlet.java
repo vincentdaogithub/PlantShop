@@ -4,6 +4,7 @@ import controller.redirect.ErrorRedirect;
 import dao.account.AccountDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import obj.account.Account;
 import security.error.Errors;
 
+@MultipartConfig
 public class UpdateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -18,7 +20,12 @@ public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Updates update = (Updates) request.getAttribute("update");
+        Updates update = Updates.convertStringToUpdate(request.getParameter("update"));
+        
+        if (update == Updates.AVATAR) {
+            return;
+        }
+        
         String updateValue = (String) request.getAttribute("updateValue");
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");

@@ -4,7 +4,8 @@ public enum Servlets {
     PAGE_REDIRECT("/PageRedirect"),
     CONTROLLER("/Controller"),
     STORE("/StoreServlet"),
-    CART("/CartServlet");
+    CART("/CartServlet"),
+    IMAGE_UPLOAD("/ImageUploadServlet");
 
     private final String servlet;
 

@@ -4,8 +4,8 @@ public enum Resources {
     AVATAR("avatar", "image"),
     PLANT("plant", "image");
 
-    private String resource;
-    private String type;
+    private final String resource;
+    private final String type;
 
     Resources(String resource, String type) {
         this.resource = resource;

@@ -4,7 +4,8 @@ public enum Updates {
     EMAIL("email"),
     PASSWORD("password"),
     FULLNAME("fullname"),
-    PHONE("phone");
+    PHONE("phone"),
+    AVATAR("ava");
 
     private final String updateType;
 

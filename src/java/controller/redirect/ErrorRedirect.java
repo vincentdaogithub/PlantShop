@@ -1,20 +1,22 @@
 package controller.redirect;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-
-import controller.Servlets;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import security.error.Errors;
 
 public class ErrorRedirect {
     public static final void redirect(Errors error, ServletRequest request, ServletResponse response)
             throws ServletException, IOException {
+        
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        HttpSession session = httpServletRequest.getSession();
 
-        request.setAttribute("requestPage", Pages.ERROR);
+        session.setAttribute("lastPage", session.getAttribute("lastPage"));
         request.setAttribute("error", error);
-        request.getRequestDispatcher(Servlets.PAGE_REDIRECT.getServletURL()).include(request, response);
+        request.getRequestDispatcher(Pages.ERROR.getURL()).forward(request, response);
     }
 }

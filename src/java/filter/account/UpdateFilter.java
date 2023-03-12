@@ -1,9 +1,9 @@
 package filter.account;
 
+import business.account.Updates;
+import controller.Servlets;
 import controller.redirect.ErrorRedirect;
 import dao.account.AccountDAO;
-import obj.account.Account;
-
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,13 +11,14 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import business.account.Updates;
+import obj.account.Account;
 import security.error.Errors;
 import util.UserInput;
 
+@MultipartConfig
 public class UpdateFilter implements Filter {
     
     @Override
@@ -53,6 +54,11 @@ public class UpdateFilter implements Filter {
             case PHONE:
                 updateValue = request.getParameter("new-phone");
                 break;
+
+            case AVATAR:
+                request.getRequestDispatcher(Servlets.IMAGE_UPLOAD.getServletURL()).include(request, response);
+                chain.doFilter(request, response);
+                return;
 
             default:
                 throw new ServletException();

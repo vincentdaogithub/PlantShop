@@ -123,13 +123,13 @@
                             
                         <c:forEach items="${requestScope.plants}" var="plant" begin="${index * 5}" end="${index * 5 + 4}">
                             <div class="list-item-container">
-                                <div class="img-container">
+                                <div class="img-container plant-img square-img-height">
                                     <img src="/PlantShop/ImageRetriever?resource=plant&amp;pid=${plant.ID}" alt="${fn:escapeXml(plant.name)}" />
                                 </div>
         
                                 <div class="list-item-info-container">
                                     <a class="info-box" href="/PlantShop/PageRedirect?page=plant&amp;pid=${plant.ID}">
-                                        <h3>${fn:escapeXml(plant.name)} - ${plant.price}$</h3>
+                                        <p>${fn:escapeXml(plant.name)} - ${plant.price}$</p>
                                     </a>
         
                                     <form class="add-to-cart-container" action="/PlantShop/PageRedirect?page=store${query}" method="post">

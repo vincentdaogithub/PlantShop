@@ -21,6 +21,7 @@ public class ImageRetrieverFilter implements Filter {
 
     private final String IMAGE_PATH_AVA = "users\\";
     private final String IMAGE_PATH_PLANT = "plants\\";
+    private final String PLACEHOLDER = "placeholder.png";
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -50,7 +51,7 @@ public class ImageRetrieverFilter implements Filter {
                 }
 
                 builder.append(IMAGE_PATH_AVA);
-                builder.append(Integer.toString(account.getID()));
+                builder.append(account.getID());
                 break;
 
             case PLANT:
@@ -73,16 +74,21 @@ public class ImageRetrieverFilter implements Filter {
         File folder = new File(builder.toString());
 
         if (!folder.isDirectory()) {
-            destroyLocalDBPath(request);
-            ErrorRedirect.redirect(Errors.FILE_NOT_FOUND, request, response);
-            return;
-        }
+            request.setAttribute("imgFile", new File(DBPath + PLACEHOLDER));
+        } else {
+            File[] files = folder.listFiles();
+            boolean hasImg = false;
 
-        File[] files = folder.listFiles();
+            for (File file : files) {
+                if (CheckFormat.checkSensitive(file.getName(), "^img[.]")) {
+                    request.setAttribute("imgFile", file);
+                    hasImg = true;
+                    break;
+                }
+            }
 
-        for (File file : files) {
-            if (CheckFormat.checkSensitive(file.getName(), "^img[.]")) {
-                request.setAttribute("imgFile", file);
+            if (!hasImg) {
+                request.setAttribute("imgFile", new File(DBPath + PLACEHOLDER));
             }
         }
 

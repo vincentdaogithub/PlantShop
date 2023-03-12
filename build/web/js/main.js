@@ -49,9 +49,10 @@ function addEventListeners(element, events, func, funcArgs) {
 // event listeners
 
 window.addEventListener("resize", function () {
+    squareImgWidth();
+    squareImgHeight();
     responsiveNavBarMobile();
     responsiveFooter();
-    squareImgWidth();
 });
 
 window.addEventListener("scroll", function () {
@@ -80,9 +81,10 @@ addEventListeners(backToTop, ["mouseenter", "mouseleave"], imgOpacityTransition,
 // init
 
 function init() {
+    squareImgWidth();
+    squareImgHeight();
     responsiveBackToTop();
     responsiveFooter();
-    squareImgWidth();
 }
 
 // --------------------------------------------------
@@ -227,6 +229,14 @@ function squareImgWidth() {
 
     Array.from(imgContainers).forEach(function (img) {
         img.style.height = img.offsetWidth + "px";
+    });
+}
+
+function squareImgHeight() {
+    var imgContainers = document.getElementsByClassName("square-img-height");
+
+    Array.from(imgContainers).forEach(function (img) {
+        img.style.width = img.offsetHeight + "px";
     });
 }
 

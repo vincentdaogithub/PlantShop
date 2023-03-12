@@ -128,13 +128,13 @@
 
                         <c:forEach items="${requestScope.cart}" var="order" begin="${index * 5}" end="${index * 5 + 4}">
                             <div class="list-item-container">
-                                <div class="img-container">
+                                <div class="img-container plant-img square-img-height">
                                     <img src="/PlantShop/ImageRetriever?resource=plant&pid=${order.key.ID}" />
                                 </div>
 
                                 <div class="list-item-info-container">
                                     <a href="/PlantShop/PageRedirect?page=plant&amp;pid=${order.key.ID}">
-                                        <h3>${fn:escapeXml(order.key.name)} - ${order.key.price}$</h3>
+                                        <p>${fn:escapeXml(order.key.name)} - ${order.key.price}$</p>
                                     </a>
 
                                     <p>
@@ -144,7 +144,7 @@
                                         </span>
                                     </p>
 
-                                    <form id="quantity-${order.key.ID}" class="quantity-update" data-toggle="off" action="/PlantShop/Controller?page=cart${query}" method="post" style="display: none;">
+                                    <form id="quantity-${order.key.ID}" class="quantity-update" data-toggle="off" action="/PlantShop/PageRedirect?page=cart${query}" method="post" style="display: none;">
                                         <div class="add-to-cart-box">
                                             <div class="decrease-quantity" onclick="setQuantity(this, '-')" tabindex="0"><p class="scr-reader">Decrease quantity</p>-</div>
                                             <label class="scr-reader" for="plant-quantity-${order.key.ID}">Plant quantity for ${fn:escapeXml(order.key.name)}" /></label>
@@ -152,7 +152,8 @@
                                             <div class="increase-quantity" onclick="setQuantity(this, '+')" tabindex="0"><p class="scr-reader">Increase quantity</p>+</div>
                                         </div>
         
-                                        <input type="hidden" name="action" value="update-cart" />
+                                        <input type="hidden" name="action" value="cart-update" />
+                                        <input type="hidden" name="update" value="update" />
                                         <input type="hidden" name="pid" value="${order.key.ID}" />
                                         <input class="add-button" type="submit" value="Update" />
                                     </form>
