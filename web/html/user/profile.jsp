@@ -9,8 +9,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="/PlantShop/css/main.min.css" />
-        <link rel="stylesheet" href="/PlantShop/css/user/profile.min.css" />
+        <link rel="stylesheet" href="/PlantShop/css/main.css" />
+        <link rel="stylesheet" href="/PlantShop/css/user/profile.css" />
         <script src="/PlantShop/js/main.js" defer></script>
 
         <title>Viridis</title>

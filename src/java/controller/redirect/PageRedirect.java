@@ -17,15 +17,15 @@ public class PageRedirect extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Pages requestPage = (Pages) request.getAttribute("requestPage");
         Accesses accessStatus = (Accesses) request.getAttribute("authenticationStatus");
 
         if (accessStatus == Accesses.DENIED) {
-            requestPage = Pages.ERROR;
-            request.setAttribute("error", Errors.UNAUTHORIZED);
+            ErrorRedirect.redirect(Errors.ACCESS_DENIED, request, response);
         }
 
         request.getRequestDispatcher(Servlets.CONTROLLER.getServletURL()).include(request, response);
+
+        Pages requestPage = (Pages) request.getAttribute("requestPage");
 
         for (ServletMappings servletMapping : ServletMappings.values()) {
             if (servletMapping.getPage() == requestPage) {

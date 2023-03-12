@@ -12,8 +12,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="/PlantShop/css/main.min.css" />
-        <link rel="stylesheet" href="/PlantShop/css/store/store.min.css" />
+        <link rel="stylesheet" href="/PlantShop/css/main.css" />
+        <link rel="stylesheet" href="/PlantShop/css/store/store.css" />
+
         <script src="/PlantShop/js/main.js" defer></script>
 
         <title>Viridis - Store</title>
@@ -128,9 +129,7 @@
         
                                 <div class="list-item-info-container">
                                     <a class="info-box" href="/PlantShop/PageRedirect?page=plant&amp;pid=${plant.ID}">
-                                        <h3>
-                                            ${fn:escapeXml(plant.name)} - ${plant.price}$
-                                        </h3>
+                                        <h3>${fn:escapeXml(plant.name)} - ${plant.price}$</h3>
                                     </a>
         
                                     <form class="add-to-cart-container" action="/PlantShop/PageRedirect?page=store${query}" method="post">

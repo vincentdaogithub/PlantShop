@@ -1,6 +1,6 @@
 package business.account;
 
-import controller.redirect.ErrorRedirect;
+import controller.redirect.Pages;
 import dao.account.AccountDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import obj.account.Account;
-import security.error.Errors;
 
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -23,7 +22,10 @@ public class LoginServlet extends HttpServlet {
         Account account = AccountDAO.getAccount(email, password);
 
         if (account == null) {
-            ErrorRedirect.redirect(Errors.UNAUTHORIZED, request, response);
+            request.setAttribute("email", email);
+            request.setAttribute("password", password);
+            request.setAttribute("requestPage", Pages.LOGIN);
+            request.setAttribute("loginFail", true);
         } else {
             request.getSession().setAttribute("account", account);
         }

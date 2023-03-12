@@ -13,7 +13,7 @@
         <div class="nav-bar">
             <c:choose>
                 <c:when test="${requestScope.page == null || requestScope.page.page == Pages.HOME.page}">
-                    <p class="nav-link">Home</p>
+                    <p class="nav-link" tabindex="0">Home</p>
                 </c:when>
                     
                 <c:otherwise>
@@ -33,7 +33,7 @@
 
             <c:choose>
                 <c:when test="${requestScope.page.page == Pages.STORE.page}">
-                    <p class="nav-link">Store</p>
+                    <p class="nav-link" tabindex="0">Store</p>
                 </c:when>
                     
                 <c:otherwise>
@@ -80,7 +80,7 @@
             </c:choose>
         </div>
 
-        <div class="nav-bar-toggle-container" data-toggle="off" onclick="toggleNavBarMobile()">
+        <div class="nav-bar-toggle-container" data-toggle="off" tabindex="0" onclick="toggleNavBarMobile()">
             <img class="top" src="/PlantShop/img/icons/menu_close_white.png" alt="menu off" style="opacity: 1;" />
             <img class="bottom" src="/PlantShop/img/icons/menu_open_white.png" alt="menu on" style="opacity: 0;" />
         </div>

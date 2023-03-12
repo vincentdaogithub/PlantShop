@@ -1,4 +1,4 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" language="java"%>
+<%@ page contentType="text/html" pageEncoding="utf-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -7,8 +7,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="/PlantShop/css/main.min.css" />
-        <link rel="stylesheet" href="/PlantShop/css/login/login.min.css" />
+        <link rel="stylesheet" href="/PlantShop/css/main.css" />
+        <link rel="stylesheet" href="/PlantShop/css/login/login.css" />
         <script src="/PlantShop/js/main.js" defer></script>
 
         <title>Viridis - Register</title>
@@ -22,9 +22,9 @@
         </div>
 
         <main>
-            <section class="register-container">
+            <section class="register">
                 <form action="/PlantShop/PageRedirect?page=home" method="post">
-                    <h2 class="register-title">Register</h2>
+                    <h2 class="title">Register</h2>
 
                     <div class="input-container">
                         <label for="email">Email:</label><br />
@@ -54,6 +54,4 @@
 
         <jsp:include page="/html/template/footer.jsp" />
     </body>
-
-    <script src="/PlantShop/js/main.min.js"></script>
 </html>

@@ -11,7 +11,6 @@ html {
 
     color: #fff;
     background-color: #40513B;
-    overscroll-behavior: none;
 }
 
 html,
@@ -257,7 +256,7 @@ footer {
 
     position: absolute !important;
     overflow: hidden;
-    clip:rect(1px 1px 1px 1px);
+    clip: rect(1px 1px 1px 1px);
     clip: rect(1px, 1px, 1px, 1px);
 }
 

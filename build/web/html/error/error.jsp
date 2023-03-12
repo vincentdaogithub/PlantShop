@@ -1,6 +1,8 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" language="java"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html" pageEncoding="utf-8" language="java" %>
 <%@ page isErrorPage="true" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,8 +10,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="/PlantShop/css/main.min.css" />
-        <link rel="stylesheet" href="/PlantShop/css/error/error.min.css" />
+        <link rel="stylesheet" href="/PlantShop/css/main.css" />
+        <link rel="stylesheet" href="/PlantShop/css/error/error.css" />
         <script src="/PlantShop/js/main.js" defer></script>
 
         <title>Viridis - Error</title>
@@ -30,12 +32,10 @@
                 <p>${requestScope.error.errorMessage}</p>
 
                 <p>Full stack trace:</p>
-                <%= exception %>
+                <div>${fn:escapeXml(exception)}</div>
             </section>
         </main>
 
         <jsp:include page="/html/template/footer.jsp" />
     </body>
-
-    <script src="/PlantShop/js/main.min.js"></script>
 </html>

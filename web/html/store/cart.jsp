@@ -13,7 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <link rel="stylesheet" href="/PlantShop/css/main.css" />
-        <link rel="stylesheet" href="/PlantShop/css/store/store.min.css" />
+        <link rel="stylesheet" href="/PlantShop/css/store/store.css" />
+
         <script src="/PlantShop/js/main.js" defer></script>
 
         <title>Viridis - Cart</title>
