@@ -1,5 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" language="java"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page import="controller.redirect.Pages" %>
 
 <header>
@@ -12,7 +14,7 @@
 
         <div class="nav-bar">
             <c:choose>
-                <c:when test="${requestScope.page == null || requestScope.page.page == Pages.HOME.page}">
+                <c:when test="${page == null || page.page == Pages.HOME.page}">
                     <p class="nav-link" tabindex="0">Home</p>
                 </c:when>
                     
@@ -22,7 +24,7 @@
             </c:choose>
 
             <c:choose>
-                <c:when test="${requestScope.page.page == Pages.CART.page}">
+                <c:when test="${page.page == Pages.CART.page}">
                     <p class="nav-link">Cart</p>
                 </c:when>
                     
@@ -32,7 +34,7 @@
             </c:choose>
 
             <c:choose>
-                <c:when test="${requestScope.page.page == Pages.STORE.page}">
+                <c:when test="${page.page == Pages.STORE.page}">
                     <p class="nav-link" tabindex="0">Store</p>
                 </c:when>
                     
@@ -44,7 +46,7 @@
             <c:choose>
                 <c:when test="${sessionScope.account.role == 0}">
                     <c:choose>
-                        <c:when test="${requestScope.page.page == Pages.PROFILE.page}">
+                        <c:when test="${page.page == Pages.PROFILE.page}">
                             <p class="nav-link">Profile</p>
                         </c:when>
 
@@ -56,7 +58,7 @@
 
                 <c:when test="${sessionScope.account.role == 1}">
                     <c:choose>
-                        <c:when test="${requestScope.page.page == Pages.MANAGE.page}">
+                        <c:when test="${page.page == Pages.MANAGE.page}">
                             <p class="nav-link">Manage</p>
                         </c:when>
 
@@ -68,7 +70,7 @@
 
                 <c:otherwise>
                     <c:choose>
-                        <c:when test="${requestScope.page.page == Pages.LOGIN.page}">
+                        <c:when test="${page.page == Pages.LOGIN.page}">
                             <p class="nav-link">Login</p>
                         </c:when>
 

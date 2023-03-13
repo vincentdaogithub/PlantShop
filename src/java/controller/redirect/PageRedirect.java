@@ -8,6 +8,8 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import security.error.Errors;
 import security.filter.Accesses;
 
@@ -19,10 +21,19 @@ public class PageRedirect extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
         Accesses accessStatus = (Accesses) request.getAttribute("authenticationStatus");
 
         if (accessStatus == Accesses.DENIED) {
-            ErrorRedirect.redirect(Errors.ACCESS_DENIED, request, response);
+            if (session.getAttribute("account") == null) {
+                session.setAttribute("lastPage", session.getAttribute("lastPage"));
+                request.setAttribute("page", Pages.LOGIN);
+                request.getRequestDispatcher(Pages.LOGIN.getURL()).forward(request, response);
+                return;
+            } else {
+                ErrorRedirect.redirect(Errors.ACCESS_DENIED, request, response);
+                return;
+            }
         }
 
         request.getRequestDispatcher(Servlets.CONTROLLER.getServletURL()).include(request, response);

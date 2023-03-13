@@ -18,7 +18,7 @@
 
         <script src="/PlantShop/js/main.js" defer></script>
 
-        <title>Viridis - Cart</title>
+        <title>Viridis - Order</title>
     </head>
     
     <c:set value="${fn:escapeXml(searchQuery)}${fn:escapeXml(sortQuery)}" var="query" />
@@ -132,25 +132,25 @@
                 </section>
     
                 <section class="list">
-                    <h2>Cart list:</h2>
+                    <h2>Order list:</h2>
     
                     <c:choose>
-                        <c:when test="${requestScope.cart == null || empty requestScope.cart}">
-                            <h2>The cart is empty. <a href="/PlantShop/PageRedirect?page=store">Add one now!</a></h2>
+                        <c:when test="${requestScope.orders == null || empty requestScope.orders}">
+                            <h2>The order list is empty. <a href="/PlantShop/PageRedirect?page=store">Add one now!</a></h2>
                         </c:when>
     
                         <c:otherwise>
                             <fmt:parseNumber var="listSize" integerOnly="true" value="${size % 5 != 0 ? size / 5 + 1 : size / 5}" />
     
                             <div class="list-index">
-                                <a class="begin-list" href="/PlantShop/PageRedirect?page=cart&amp;index=0${query}">&lt;&lt;</a>
-                                <a class="decrease-index" href="/PlantShop/PageRedirect?page=cart&amp;index=${index - 1}${query}">&lt;</a>
+                                <a class="begin-list" href="/PlantShop/PageRedirect?page=order&amp;index=0${query}">&lt;&lt;</a>
+                                <a class="decrease-index" href="/PlantShop/PageRedirect?page=order&amp;index=${index - 1}${query}">&lt;</a>
                                 <div class="index">page ${index + 1} of ${listSize}</div>
-                                <a class="increase-index" href="/PlantShop/PageRedirect?page=cart&amp;index=${index + 1 >= listSize ? listSize - 1 : index + 1}${query}">&gt;</a>
-                                <a class="end-list" href="/PlantShop/PageRedirect?page=cart&amp;index=${listSize - 1}${query}">&gt;&gt;</a>
+                                <a class="increase-index" href="/PlantShop/PageRedirect?page=order&amp;index=${index + 1 >= listSize ? listSize - 1 : index + 1}${query}">&gt;</a>
+                                <a class="end-list" href="/PlantShop/PageRedirect?page=order&amp;index=${listSize - 1}${query}">&gt;&gt;</a>
                             </div>
     
-                            <c:forEach items="${requestScope.cart}" var="order" begin="${index * 5}" end="${index * 5 + 4}">
+                            <c:forEach items="${requestScope.orders}" var="order" begin="${index * 5}" end="${index * 5 + 4}">
                                 <div class="list-item">
                                     <div class="img-container plant-img square-img-width">
                                         <img src="/PlantShop/ImageRetriever?resource=plant&pid=${order.key.ID}" alt="${fn:escapeXml(order.key.name)}" />

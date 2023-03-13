@@ -7,6 +7,7 @@ public enum Pages {
     CART("cart", "/html/store/cart.jsp", Authentications.OPEN),
     STORE("store", "/html/store/store.jsp", Authentications.OPEN),
     PLANT("plant", "html/store/plant.jsp", Authentications.OPEN),
+    ORDER("order", "html/store/order.jsp", Authentications.USER),
     LOGIN("login", "/html/login/login.jsp", Authentications.OPEN),
     REGISTER("register", "/html/login/register.jsp", Authentications.OPEN),
     PROFILE("profile", "/html/user/profile.jsp", Authentications.USER),
