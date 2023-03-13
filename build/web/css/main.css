@@ -263,6 +263,54 @@ footer {
 
 /* -------------------------------------------------- */
 
+/* label and input */
+
+label,
+input {
+    font-size: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    width: auto;
+    padding: 0.2rem;
+    border: 0.1rem solid #000;
+    border-radius: 0.2rem;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input:not([type="submit"], [type="file"]) {
+    color: #40513B;
+    background-color: #EDF1D6;
+}
+
+input[type="submit"],
+input[type="file"] {
+    color:#EDF1D6;
+    background-color: #609966;
+    cursor: pointer;
+
+    transition: all 0.2s ease-in;
+}
+
+input[type="submit"]:hover,
+input[type="file"]:hover,
+input[type="submit"]:focus,
+input[type="file"]:focus {
+    color: #40513B;
+    background-color: #EDF1D6;
+}
+
+input[type="radio"] {
+    margin-right: 1rem;
+}
+
+/* -------------------------------------------------- */
+
 /* responsive layout */
 
 @media screen and (max-width: 1200px) {

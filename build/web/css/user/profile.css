@@ -36,47 +36,14 @@
     height: 20vh;
 }
 
-label,
-input {
-    font-size: 1rem;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-input {
-    padding: 0.5rem;
-    border: 0.1rem solid #000;
-}
-
-input:not([type="submit"]),
-input:not([type="file"]) {
-    color: #40513B;
-    background: none;
-}
-
 input[type="submit"],
 input[type="file"] {
-    width: 100%;
-    color: #EDF1D6;
-    background-color: #609966;
-}
-
-input[type="submit"]:hover,
-input[type="file"]:hover,
-input[type="submit"]:focus,
-input[type="file"]:focus {
-    color: #40513B;
-    background-color: #EDF1D6;
+    width: 100% !important;
 }
 
 .change-ava,
 .logout {
-    width: calc(100% - 2rem);
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+    width: calc(100% - 2rem) !important;
 }
 
 .input {
@@ -143,4 +110,15 @@ input[type="file"]:focus {
 
 form > *:nth-child(n + 2) {
     margin-top: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .profile {
+        flex-flow: column nowrap;
+    }
+
+    .ava-panel,
+    .info-panel {
+        width: 100%;
+    }
 }

@@ -27,22 +27,22 @@
                     <h2 class="title">Register</h2>
 
                     <div class="input-container">
-                        <label for="email">Email:</label><br />
+                        <label for="email">Email:</label>
                         <input id="email" type="email" name="email" placeholder="email..." required />
                     </div>
                     
                     <div class="input-container">
-                        <label for="password">Password:</label><br />
+                        <label for="password">Password:</label>
                         <input id="password" type="password" name="password" placeholder="password..." required />
                     </div>
 
                     <div class="input-container">
-                        <label for="fullname">Full name:</label><br />
+                        <label for="fullname">Full name:</label>
                         <input id="fullname" type="text" name="fullname" placeholder="fullname..." required />
                     </div>
 
                     <div class="input-container">
-                        <label for="phone">Phone number:</label><br />
+                        <label for="phone">Phone number:</label>
                         <input id="phone" type="tel" name="phone" placeholder="phone..." required />
                     </div>
 

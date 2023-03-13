@@ -4,24 +4,18 @@ import util.UserInput;
 
 public enum CartActions {
     
-    ADD("add", "/AddToCartServlet"),
-    UPDATE("update", "/UpdateCartServlet"),
-    REMOVE("remove", "/RemoveCartServlet");
+    ADD("add"),
+    UPDATE("update"),
+    REMOVE("remove");
 
     private String action;
-    private String URL;
 
-    CartActions(String action, String URL) {
+    CartActions(String action) {
         this.action = action;
-        this.URL = URL;
     }
 
     public final String getAction() {
         return this.action;
-    }
-
-    public final String getURL() {
-        return this.URL;
     }
 
     public static final CartActions convertStringToAction(String input) {

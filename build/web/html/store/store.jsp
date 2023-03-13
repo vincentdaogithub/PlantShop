@@ -123,7 +123,7 @@
                             
                         <c:forEach items="${requestScope.plants}" var="plant" begin="${index * 5}" end="${index * 5 + 4}">
                             <div class="list-item-container">
-                                <div class="img-container plant-img square-img-height">
+                                <div class="img-container plant-img square-img-width">
                                     <img src="/PlantShop/ImageRetriever?resource=plant&amp;pid=${plant.ID}" alt="${fn:escapeXml(plant.name)}" />
                                 </div>
         
@@ -134,10 +134,10 @@
         
                                     <form class="add-to-cart-container" action="/PlantShop/PageRedirect?page=store${query}" method="post">
                                         <div class="add-to-cart-box">
-                                            <div class="decrease-quantity" onclick="setQuantity(this, '-')" tabindex="0"><p class="scr-reader">Decrease quantity</p>-</div>
+                                            <button class="decrease-quantity" type="button" onclick="setQuantity(this, '-')"><p class="scr-reader">Decrease quantity</p>-</button>
                                             <label class="scr-reader" for="plant-quantity">Plant quantity for <c:out value="${plant.name}" /></label>
-                                            <input id="plant-quantity" class="add-to-cart" type="number" name="quantity" placeholder="quantity..." min="0" step="1" required />
-                                            <div class="increase-quantity" onclick="setQuantity(this, '+')" tabindex="0"><p class="scr-reader">Increase quantity</p>+</div>
+                                            <input id="plant-quantity-${plant.ID}" class="add-to-cart" type="number" name="quantity" placeholder="quantity..." min="0" step="1" required />
+                                            <button class="increase-quantity" type="button" onclick="setQuantity(this, '+')"><p class="scr-reader">Increase quantity</p>+</button>
                                         </div>
         
                                         <input type="hidden" name="action" value="cart-update" />

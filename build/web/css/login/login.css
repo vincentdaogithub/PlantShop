@@ -35,46 +35,16 @@ form > *:nth-child(n + 2) {
 
 .input-container {
     width: 50%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 label,
-input {
+input:not([type="submit"], [type="file"]) {
     width: 100%;
-    display: block;
-    font-size: 1rem;
-}
-
-input {
-    font-family: 'Courier New', Courier, monospace;
-    color: #40513B;
-    background-color: #EDF1D6;
-    
-    padding: 0.5rem;
-    border: 0.1rem solid #40513B;
-    border-radius: 0.2rem;
-    box-sizing: border-box;
-}
-
-input[type="submit"] {
-    width: auto;
-    cursor: pointer;
-
-    color: #EDF1D6;
-    background-color: #609966;
-    transition: color 0.2s ease-in,
-                background-color 0.2s ease-in;
-}
-
-input[type="submit"]:hover {
-    color: #40513B;
-    background-color: #EDF1D6;
-    border: 0.1rem solid #000;
-}
-
-input[type="submit"]:focus {
-    color: #40513B;
-    background-color: #EDF1D6;
-    border: 0.1rem solid #000;
 }
 
 .register-link {

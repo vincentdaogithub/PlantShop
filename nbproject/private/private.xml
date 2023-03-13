@@ -4,9 +4,24 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/code/PRJ301/PlantShop/web/html/login/register.jsp</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/filter/cart/CartUpdateFilter.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/dao/account/AccountDAO.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/business/cart/CartUpdateServlet.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/controller/redirect/PageRedirect.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/security/filter/AuthenticationFilter.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/controller/resource/Resources.java</file>
             <file>file:/D:/code/PRJ301/PlantShop/web/html/store/cart.jsp</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/business/account/UpdateServlet.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/filter/controller/ControllerFilter.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/filter/resource/ImageUploadFilter.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/controller/Controller.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/business/account/Updates.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/business/cart/CartActions.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/filter/account/UpdateFilter.java</file>
             <file>file:/D:/code/PRJ301/PlantShop/web/html/login/login.jsp</file>
             <file>file:/D:/code/PRJ301/PlantShop/web/html/user/profile.jsp</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/controller/resource/ImageUploadServlet.java</file>
+            <file>file:/D:/code/PRJ301/PlantShop/src/java/controller/redirect/ErrorRedirect.java</file>
         </group>
     </open-files>
 </project-private>

@@ -128,7 +128,7 @@
 
                         <c:forEach items="${requestScope.cart}" var="order" begin="${index * 5}" end="${index * 5 + 4}">
                             <div class="list-item-container">
-                                <div class="img-container plant-img square-img-height">
+                                <div class="img-container plant-img square-img-width">
                                     <img src="/PlantShop/ImageRetriever?resource=plant&pid=${order.key.ID}" />
                                 </div>
 
@@ -158,9 +158,26 @@
                                         <input class="add-button" type="submit" value="Update" />
                                     </form>
 
-                                    <p>
-                                        Total: ${order.value} * ${order.key.price} = ${order.value * order.key.price}$
-                                    </p>
+                                    <p>Total: ${order.value} * ${order.key.price} = ${order.value * order.key.price}$</p>
+
+                                    <div class="order-function">
+                                        <form class="remove" action="/PlantShop/PageRedirect?page=cart" method="post">
+                                            <input type="hidden" name="action" value="cart-update" />
+                                            <input type="hidden" name="update" value="remove" />
+                                            <input type="hidden" name="pid" value="${order.key.ID}" />
+
+                                            <label class="hidden" for="remove-${order.key.ID}">Remove order for ${fn:escapeXml(order.key.name)}</label>
+                                            <input id="remove-${order.key.ID}" type="submit" value="Remove" />
+                                        </form>
+
+                                        <form class="checkout" action="/PlantShop/PageRedirect?page=cart" method="post">
+                                            <input type="hidden" name="action" value="checkout" />
+                                            <input type="hidden" name="checkout" value="${order.key.ID}" />
+
+                                            <label class="hidden" for="checkout-${order.key.ID}">Check out for ${fn:escapeXml(order.key.name)}</label>
+                                            <input type="submit" value="Checkout" />
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </c:forEach>

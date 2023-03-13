@@ -57,6 +57,12 @@ a {
     margin-top: 1rem;
 }
 
+.search-name > input[type="submit"],
+.search-price > input[type="submit"],
+.sort > input[type="submit"] {
+    width: 100%;
+}
+
 form > *:nth-child(n + 2) {
     margin-top: 1rem;
 }
@@ -73,33 +79,6 @@ form > *:nth-child(n + 2) {
 .label-input.radio {
     justify-content: flex-start;
     flex-flow: row nowrap;
-}
-
-input:not([type="radio"]) {
-    font-size: 1rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-    width: 100%;
-    padding: 0.2rem;
-    box-sizing: border-box;
-}
-
-input[type="radio"] {
-    margin-right: 1rem;
-}
-
-input[type="submit"] {
-    font-weight: bold;
-    border: none;
-    color: #EDF1D6;
-    background-color: #609966;
-
-    cursor: pointer;
-    transition: background-color 0.2s linear;
-}
-
-input[type="submit"]:hover {
-    background-color: #40513B;
 }
 
 .list-container {
@@ -124,7 +103,6 @@ input[type="submit"]:hover {
 }
 
 .list-item-container {
-    height: 20vw;
     overflow: hidden;
 
     display: flex;
@@ -134,7 +112,7 @@ input[type="submit"]:hover {
 }
 
 .plant-img {
-    height: 100%;
+    width: 30%;
     margin-right: 1rem;
 }
 
@@ -146,6 +124,10 @@ input[type="submit"]:hover {
     flex-flow: column nowrap;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.list-item-info-container > *:nth-child(n + 2) {
+    margin-top: 1rem;
 }
 
 .info-box {
@@ -168,8 +150,6 @@ input[type="submit"]:hover {
 }
 
 .add-to-cart-box {
-    width: 100%;
-
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
@@ -184,21 +164,17 @@ input[type="submit"]:hover {
     box-sizing: border-box;
 
     cursor: pointer;
-    color: #EDF1D6;
-    background-color: #609966;
-    transition: background-color 0.2s linear;
+    color: #40513B;
+    background: none;
+    border: none;
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.decrease-quantity:hover,
-.increase-quantity:hover {
-    background-color: #40513B;
-}
-
 .add-to-cart {
+    width: calc(5rem + 0.4rem) !important;
     height: 100%;
     border: 0.1rem solid #40513B;
 }
@@ -208,7 +184,7 @@ input[type="submit"]:hover {
 }
 
 .list-index {
-    width: 100%;
+    width: calc(100% - 2rem);
     height: 1rem;
     font-size: 1rem;
 
@@ -243,6 +219,19 @@ input[type="submit"]:hover {
     margin-left: 1rem;
 }
 
+.order-function {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.remove {
+    margin-right: 1rem;
+}
+
 @media screen and (max-width: 768px) {
     main {
         flex-flow: column nowrap;
@@ -262,6 +251,6 @@ input[type="submit"]:hover {
     }
 
     .list-item-container {
-        height: 20vh;
+        flex-flow: column nowrap;
     }
 }
