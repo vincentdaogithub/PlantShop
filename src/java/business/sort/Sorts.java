@@ -7,7 +7,7 @@ public enum Sorts {
     PRICE_ASC("price-asc"),
     PRICE_DSC("price-dsc");
 
-    private String sort;
+    private final String sort;
 
     Sorts(String sort) {
         this.sort = sort;

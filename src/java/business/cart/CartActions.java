@@ -8,7 +8,7 @@ public enum CartActions {
     UPDATE("update"),
     REMOVE("remove");
 
-    private String action;
+    private final String action;
 
     CartActions(String action) {
         this.action = action;

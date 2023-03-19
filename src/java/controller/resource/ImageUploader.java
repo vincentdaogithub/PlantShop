@@ -15,7 +15,7 @@ import javax.servlet.http.Part;
 import security.error.Errors;
 
 @MultipartConfig
-public class ImageUploadServlet extends HttpServlet {
+public class ImageUploader extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
     

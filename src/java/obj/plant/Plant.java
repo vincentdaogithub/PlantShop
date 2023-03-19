@@ -10,8 +10,8 @@ public class Plant implements Serializable {
     private String name;
     private int price;
     private String description;
-    private int status;
-    private int categoryID;
+    private PlantStatuses status;
+    private PlantCategories category;
 
     public Plant() {
 
@@ -19,18 +19,18 @@ public class Plant implements Serializable {
         this.name = "";
         this.price = 0;
         this.description = "";
-        this.status = 0;
-        this.categoryID = 0;
+        this.status = PlantStatuses.INACTIVE;
+        this.category = PlantCategories.UNDEFINED;
     }
 
-    public Plant(int ID, String name, int price, String description, int status, int categoryID) {
+    public Plant(int ID, String name, int price, String description, PlantStatuses status, PlantCategories category) {
 
         this.ID = ID;
         this.name = name;
         this.price = price;
         this.description = description;
         this.status = status;
-        this.categoryID = categoryID;
+        this.category = category;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Plant implements Serializable {
         }
 
         final Plant other = (Plant) obj;
-        return this.ID == other.ID;
+        return this.ID == other.getID();
     }
 
     /**
@@ -113,28 +113,28 @@ public class Plant implements Serializable {
     /**
      * @return the status
      */
-    public int getStatus() {
+    public PlantStatuses getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(int status) {
+    public void setStatus(PlantStatuses status) {
         this.status = status;
     }
 
     /**
-     * @return the categoryID
+     * @return the category
      */
-    public int getCategoryID() {
-        return categoryID;
+    public PlantCategories getCategory() {
+        return category;
     }
 
     /**
-     * @param categoryID the categoryID to set
+     * @param category the categoryID to set
      */
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
+    public void setCategory(PlantCategories category) {
+        this.category = category;
     }
 }

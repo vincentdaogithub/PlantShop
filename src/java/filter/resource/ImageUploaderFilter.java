@@ -18,7 +18,7 @@ import util.CheckFormat;
 import util.UserInput;
 
 @MultipartConfig
-public class ImageUploadFilter implements Filter {
+public class ImageUploaderFilter implements Filter {
 
     private final String IMAGE_PATH_AVA = "users\\";
     private final String IMAGE_PATH_PLANT = "plants\\";

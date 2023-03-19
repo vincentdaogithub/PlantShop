@@ -102,7 +102,7 @@
         
                         <form class="sort" action="/PlantShop/PageRedirect?page=cart${fn:escapeXml(searchQuery)}" method="post">
                             <div class="input radio">
-                                <input id="order-time" type="radio" name="sort" value="order-time" ${requestScope.sortCheck == Sorts.NAME_ASC.sort ? 'checked' : ''} />
+                                <input id="order-time" type="radio" name="sort" value="order-time" ${requestScope.sortCheck == Sorts.ORDER_TIME.sort ? 'checked' : ''} />
                                 <label for="order-time">By order time</label>
                             </div>
     
@@ -171,17 +171,17 @@
                                         <form id="update-${order.key.ID}" class="quantity-update" data-toggle="off" action="/PlantShop/PageRedirect?page=cart${query}" method="post" style="display: none;">
                                             <div class="quantity-update-input">
                                                 <div class="decrease-quantity" onclick="setQuantity(this, '-')" tabindex="0"><p class="scr-reader">Decrease quantity</p>-</div>
-    
+
                                                 <label class="scr-reader" for="quantity-${order.key.ID}">Plant quantity for ${fn:escapeXml(order.key.name)}" /></label>
                                                 <input id="quantity-${order.key.ID}" type="number" name="quantity" placeholder="quantity..." min="0" step="1" required />
-    
+
                                                 <div class="increase-quantity" onclick="setQuantity(this, '+')" tabindex="0"><p class="scr-reader">Increase quantity</p>+</div>
                                             </div>
-            
+
                                             <input type="hidden" name="action" value="cart-update" />
                                             <input type="hidden" name="update" value="update" />
                                             <input type="hidden" name="pid" value="${order.key.ID}" />
-    
+
                                             <input type="submit" value="Update" />
                                         </form>
     
@@ -198,8 +198,9 @@
                                             </form>
     
                                             <form action="/PlantShop/PageRedirect?page=order" method="post">
-                                                <input type="hidden" name="action" value="checkout" />
-                                                <input type="hidden" name="checkout" value="${order.key.ID}" />
+                                                <input type="hidden" name="action" value="order-update" />
+                                                <input type="hidden" name="update" value="add" />
+                                                <input type="hidden" name="pid" value="${order.key.ID}" />
     
                                                 <label class="hidden" for="checkout-${order.key.ID}">Checkout for ${fn:escapeXml(order.key.name)}</label>
                                                 <input id="checkout-${order.key.ID}" type="submit" value="Checkout" />
@@ -209,9 +210,9 @@
                                 </div>
                             </c:forEach>
     
-                            <form class="checkout-all" action="/PlantShop/PageRedirect?page=order" method="post">
-                                <input type="hidden" name="action" value="checkout" />
-                                <input type="hidden" name="checkout" value="all" />
+                            <form class="checkout-all" action="/PlantShop/PageRedirect?page=cart" method="post">
+                                <input type="hidden" name="action" value="order-update" />
+                                <input type="hidden" name="update" value="add-all" />
     
                                 <label class="hidden" for="checkout-all">Checkout all</label>
                                 <input id="checkout-all" type="submit" value="Checkout all" />

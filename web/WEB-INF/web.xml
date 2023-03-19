@@ -37,7 +37,7 @@
     <filter-mapping>
         <filter-name>LocalDBFilter</filter-name>
         <servlet-name>ImageRetriever</servlet-name>
-        <servlet-name>ImageUploadServlet</servlet-name>
+        <servlet-name>ImageUploader</servlet-name>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
@@ -51,12 +51,12 @@
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
     <filter>
-        <filter-name>ImageUploadFilter</filter-name>
-        <filter-class>filter.resource.ImageUploadFilter</filter-class>
+        <filter-name>ImageUploaderFilter</filter-name>
+        <filter-class>filter.resource.ImageUploaderFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>ImageUploadFilter</filter-name>
-        <servlet-name>ImageUploadServlet</servlet-name>
+        <filter-name>ImageUploaderFilter</filter-name>
+        <servlet-name>ImageUploader</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
     <filter>
@@ -65,15 +65,6 @@
     </filter>
     <filter-mapping>
         <filter-name>StoreFilter</filter-name>
-        <servlet-name>StoreServlet</servlet-name>
-        <dispatcher>INCLUDE</dispatcher>
-    </filter-mapping>
-    <filter>
-        <filter-name>StoreDisplayFilter</filter-name>
-        <filter-class>filter.store.StoreDisplayFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>StoreDisplayFilter</filter-name>
         <servlet-name>StoreServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
@@ -96,12 +87,21 @@
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
     <filter>
-        <filter-name>CartDisplayFilter</filter-name>
-        <filter-class>filter.cart.CartDisplayFilter</filter-class>
+        <filter-name>OrderFilter</filter-name>
+        <filter-class>filter.order.OrderFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>CartDisplayFilter</filter-name>
-        <servlet-name>CartServlet</servlet-name>
+        <filter-name>OrderFilter</filter-name>
+        <servlet-name>OrderServlet</servlet-name>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+    <filter>
+        <filter-name>OrderUpdateFilter</filter-name>
+        <filter-class>filter.order.OrderUpdateFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>OrderUpdateFilter</filter-name>
+        <servlet-name>OrderUpdateServlet</servlet-name>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
     <filter>
@@ -240,12 +240,28 @@
         <url-pattern>/ImageRetriever</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ImageUploadServlet</servlet-name>
-        <servlet-class>controller.resource.ImageUploadServlet</servlet-class>
+        <servlet-name>ImageUploader</servlet-name>
+        <servlet-class>controller.resource.ImageUploader</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ImageUploadServlet</servlet-name>
-        <url-pattern>/ImageUploadServlet</url-pattern>
+        <servlet-name>ImageUploader</servlet-name>
+        <url-pattern>/ImageUploader</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>business.order.OrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/OrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>OrderUpdateServlet</servlet-name>
+        <servlet-class>business.order.OrderUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderUpdateServlet</servlet-name>
+        <url-pattern>/OrderUpdateServlet</url-pattern>
     </servlet-mapping>
     <!-- Configs -->
     <session-config>

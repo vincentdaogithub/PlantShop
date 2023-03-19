@@ -1,6 +1,6 @@
 package controller.redirect;
 
-import controller.ServletMappings;
+import controller.DisplayServlets;
 import controller.Servlets;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import security.error.Errors;
 import security.filter.Accesses;
 
@@ -40,7 +39,7 @@ public class PageRedirect extends HttpServlet {
 
         Pages requestPage = (Pages) request.getAttribute("requestPage");
 
-        for (ServletMappings servletMapping : ServletMappings.values()) {
+        for (DisplayServlets servletMapping : DisplayServlets.values()) {
             if (servletMapping.getPage() == requestPage) {
                 request.getRequestDispatcher(servletMapping.getServlet().getServletURL()).include(request, response);
                 break;

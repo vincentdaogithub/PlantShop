@@ -5,7 +5,8 @@ public enum Servlets {
     CONTROLLER("/Controller"),
     STORE("/StoreServlet"),
     CART("/CartServlet"),
-    IMAGE_UPLOAD("/ImageUploadServlet");
+    IMAGE_UPLOAD("/ImageUploader"),
+    ORDER("/OrderServlet");
 
     private final String servlet;
 

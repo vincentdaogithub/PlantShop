@@ -37,7 +37,7 @@ a {
 
 .menu > a {
     transition: color 0.2s ease-in,
-                background-color 0.2s ease-in;
+        background-color 0.2s ease-in;
 }
 
 .menu > a:hover,
@@ -121,7 +121,7 @@ form > *:nth-child(n + 2) {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    justify-items: center;
+    align-items: center;
 }
 
 .input.radio {
@@ -140,7 +140,7 @@ form > *:nth-child(n + 2) {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    justify-items: center;
+    align-items: center;
 }
 
 .list >*:nth-last-child(n + 2) {
@@ -172,6 +172,14 @@ form > *:nth-child(n + 2) {
     flex-flow: column nowrap;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.order-info {
+    align-items: flex-start;
+}
+
+.order-info > .order-update {
+    align-self: center;
 }
 
 .info > *:nth-child(n + 2) {

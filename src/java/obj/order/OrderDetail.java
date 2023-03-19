@@ -1,30 +1,29 @@
 package obj.order;
 
 import java.io.Serializable;
+import obj.plant.Plant;
 
-public class OrderDetail implements Serializable, Comparable<OrderDetail> {
-    
-    private static long serialVersionUID = 1L;
+public class OrderDetail implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    private int detailID;
     private int orderID;
-    private int PID;
+    private Plant plant;
     private int quantity;
 
     public OrderDetail() {
+        this.detailID = 0;
         this.orderID = 0;
-        this.PID = 0;
+        this.plant = new Plant();
         this.quantity = 0;
     }
 
-    public OrderDetail(int orderID, int PID, int quantity) {
+    public OrderDetail(int detailID, int orderID, Plant plant, int quantity) {
+        this.detailID = detailID;
         this.orderID = orderID;
-        this.PID = PID;
+        this.plant = plant;
         this.quantity = quantity;
-    }
-
-    @Override
-    public final int compareTo(OrderDetail object) {
-        return Integer.compare(orderID, object.getPID());
     }
 
     /**
@@ -35,17 +34,45 @@ public class OrderDetail implements Serializable, Comparable<OrderDetail> {
     }
 
     /**
-     * @return the PID
+     * @return the detailID
      */
-    public int getPID() {
-        return PID;
+    public int getDetailID() {
+        return detailID;
     }
 
     /**
-     * @param PID the PID to set
+     * @param detailID the detailID to set
      */
-    public void setPID(int PID) {
-        this.PID = PID;
+    public void setDetailID(int detailID) {
+        this.detailID = detailID;
+    }
+
+    /**
+     * @return the orderID
+     */
+    public int getOrderID() {
+        return orderID;
+    }
+
+    /**
+     * @param orderID the orderID to set
+     */
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
+    /**
+     * @return the PID
+     */
+    public Plant getPlant() {
+        return plant;
+    }
+
+    /**
+     * @param plant the PID to set
+     */
+    public void setPlant(Plant plant) {
+        this.plant = plant;
     }
 
     /**

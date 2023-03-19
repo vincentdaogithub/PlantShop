@@ -2,14 +2,15 @@ package controller;
 
 import controller.redirect.Pages;
 
-public enum ServletMappings {
+public enum DisplayServlets {
     STORE(Pages.STORE, Servlets.STORE),
-    CART(Pages.CART, Servlets.CART);
+    CART(Pages.CART, Servlets.CART),
+    ORDER(Pages.ORDER, Servlets.ORDER);
 
-    private Pages page;
-    private Servlets servlet;
+    private final Pages page;
+    private final Servlets servlet;
 
-    ServletMappings(Pages page, Servlets servlet) {
+    DisplayServlets(Pages page, Servlets servlet) {
         this.page = page;
         this.servlet = servlet;
     }

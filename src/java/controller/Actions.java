@@ -6,10 +6,11 @@ public enum Actions {
     REGISTER("register", "/RegisterServlet"),
     USER_UPDATE("user-update", "/UpdateServlet"),
     LOG_OUT("logout", "/LogOutServlet"),
-    CART_UPDATE("cart-update", "/CartUpdateServlet");
+    CART_UPDATE("cart-update", "/CartUpdateServlet"),
+    ORDER_UPDATE("order-update", "/OrderUpdateServlet");
 
-    private String action;
-    private String url;
+    private final String action;
+    private final String url;
 
     Actions(String action, String url) {
         this.action = action;
