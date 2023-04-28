@@ -31,48 +31,6 @@
                     <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h1>
                 </div>
             </section>
-
-            <!-- <section class="intro-content-container">
-                <div class="intro-content">
-                    <div class="img-container content-img">
-                        <img src="/PlantShop/img/resource/placeholder.jpg" alt="plant" />
-                    </div>
-
-                    <div class="content-text">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-
-                <div class="intro-content">
-                    <div class="img-container content-img">
-                        <img src="/PlantShop/img/resource/placeholder.jpg" alt="plant" />
-                    </div>
-
-                    <div class="content-text">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-
-                <div class="intro-content">
-                    <div class="img-container content-img">
-                        <img src="/PlantShop/img/resource/placeholder.jpg" alt="plant" />
-                    </div>
-
-                    <div class="content-text">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-
-                <div class="intro-content">
-                    <div class="img-container content-img">
-                        <img src="/PlantShop/img/resource/placeholder.jpg" alt="plant" />
-                    </div>
-
-                    <div class="content-text">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-            </section> -->
         </main>
 
         <jsp:include page="/html/template/footer.jsp" />

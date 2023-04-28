@@ -2,7 +2,6 @@ package filter.resource;
 
 import controller.redirect.ErrorRedirect;
 import controller.resource.Resources;
-
 import java.io.File;
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -14,6 +13,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import obj.account.Account;
 import security.error.Errors;
+import security.filter.Authentications;
 import util.CheckFormat;
 import util.UserInput;
 
@@ -51,6 +51,16 @@ public class ImageRetrieverFilter implements Filter {
                 }
 
                 builder.append(IMAGE_PATH_AVA);
+
+                if (account.getRole() == Authentications.ADMIN.getCode()) {
+                    Integer id = UserInput.toInt(request.getParameter("id"));
+
+                    if (id != null) {
+                        builder.append(id);
+                        break;
+                    }
+                }
+
                 builder.append(account.getID());
                 break;
 

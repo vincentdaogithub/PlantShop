@@ -59,7 +59,7 @@
                     <div class="search-function">
                         <h2>Search</h2>
 
-                        <form class="search-name" action="/PlantShop/PageRedirect?page=order" method="post">
+                        <form class="search" action="/PlantShop/PageRedirect?page=order" method="post">
                             <h3>By name:</h3>
 
                             <div class="input">
@@ -70,7 +70,7 @@
                             <input type="submit" value="Search" />
                         </form>
 
-                        <form class="search-price" action="/PlantShop/PageRedirect?page=order" method="post">
+                        <form class="search" action="/PlantShop/PageRedirect?page=order" method="post">
                             <h3>By price:</h3>
 
                             <div class="input radio">
@@ -153,7 +153,7 @@
 
                             <c:forEach items="${requestScope.orders}" var="order" begin="${index * 5}" end="${index * 5 + 4}">
                                 <div class="list-item">
-                                    <div class="img-container plant-img square-img-width">
+                                    <div class="img-container item-img square-img-height">
                                         <img src="/PlantShop/ImageRetriever?resource=plant&pid=${order.value.plant.ID}" alt="plant ${order.value.plant.ID}" />
                                     </div>
 
@@ -165,11 +165,8 @@
                                         <p>Order ID: ${order.key.orderID}</p>
                                         <p>Pay: ${order.value.quantity} * ${order.value.plant.price}$ = ${order.value.quantity * order.value.plant.price}$</p>
                                         <p>Status: ${order.key.status.status}</p>
-                                        <p>Order date - Shipping date: ${order.key.orderDate} ~ ${order.key.shipDate}</p>
-
-                                        <c:if test="${order.key.status == OrderStatuses.PROCESSING}">
-
-                                        </c:if>
+                                        <p>Order date: ${order.key.orderDate}</p>
+                                        <p>Shipping date: ${order.key.shipDate}</p>
 
                                         <c:choose>
                                             <c:when test="${order.key.status == OrderStatuses.PROCESSING}">

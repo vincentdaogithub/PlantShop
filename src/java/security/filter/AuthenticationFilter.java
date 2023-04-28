@@ -26,7 +26,15 @@ public class AuthenticationFilter implements Filter {
             HttpServletRequest httpServletRequest = (HttpServletRequest) request;
             Account account = (Account) httpServletRequest.getSession().getAttribute("account");
 
-            if (account == null || account.getRole() != authentication) {
+            if (account == null) {
+                request.setAttribute("authenticationStatus", Accesses.DENIED);
+            } else if (authentication == Authentications.LOGGED_IN.getCode()) {
+                if (account.getRole() >= Authentications.USER.getCode()) {
+                    request.setAttribute("authenticationStatus", Accesses.APPROVED);
+                } else {
+                    request.setAttribute("authenticationStatus", Accesses.DENIED);
+                }
+            } else if (account.getRole() != authentication) {
                 request.setAttribute("authenticationStatus", Accesses.DENIED);
             }
         }

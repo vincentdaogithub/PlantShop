@@ -7,7 +7,8 @@ public enum Actions {
     USER_UPDATE("user-update", "/UpdateServlet"),
     LOG_OUT("logout", "/LogOutServlet"),
     CART_UPDATE("cart-update", "/CartUpdateServlet"),
-    ORDER_UPDATE("order-update", "/OrderUpdateServlet");
+    ORDER_UPDATE("order-update", "/OrderUpdateServlet"),
+    ADMIN("admin", "/AdminServlet");
 
     private final String action;
     private final String url;

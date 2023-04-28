@@ -4,6 +4,9 @@ import business.account.Updates;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import obj.account.Account;
 import util.DBUtils;
 import util.HashUtils;
@@ -11,7 +14,28 @@ import util.SQLBuilder;
 
 public class AccountDAO {
 
-    private static final String ACCOUNT_DB = "Accounts";
+    private static final String ACCOUNTS_TABLE = "Accounts";
+    private static final String ACCOUNT_ID = "accID";
+    private static final String ACCOUNT_EMAIL = "email";
+    private static final String ACCOUNT_PASSWORD = "password";
+    private static final String ACCOUNT_FULLNAME = "fullname";
+    private static final String ACCOUNT_PHONE = "phone";
+    private static final String ACCOUNT_STATUS = "status";
+    private static final String ACCOUNT_ROLE = "role";
+
+    private static final String GET_ACCOUNT_EMAIL_QUERY = String.format(
+            "SELECT * FROM %s WHERE %s = ? COLLATE Latin1_General_CS_AS",
+            ACCOUNTS_TABLE, ACCOUNT_EMAIL);
+
+    private static final String GET_ACCOUNT_QUERY = String.format(
+            "SELECT * FROM %s WHERE %s = ?", ACCOUNTS_TABLE, ACCOUNT_ID);
+
+    private static final String GET_ACCOUNTS_QUERY = String.format(
+            "SELECT * FROM %s", ACCOUNTS_TABLE);
+
+    private static final String UPDATE_ACCOUNT_STATUS = String.format(
+            "UPDATE %s SET %s = ? WHERE %s = ?",
+            ACCOUNTS_TABLE, ACCOUNT_STATUS, ACCOUNT_ID);
 
     public static final Account getAccount(String email, String password) {
 
@@ -21,7 +45,7 @@ public class AccountDAO {
 
         SQLBuilder builder = new SQLBuilder();
         builder.addLine("SELECT *");
-        builder.addLine("FROM " + ACCOUNT_DB);
+        builder.addLine("FROM " + ACCOUNTS_TABLE);
         builder.addLine("WHERE email = ?");
         builder.addLine("COLLATE Latin1_General_CS_AS");
 
@@ -52,16 +76,16 @@ public class AccountDAO {
             return null;
         }
     }
-    
+
     public static final Account getAccount(String email) {
-        
+
         if (email == null) {
             throw new NullPointerException();
         }
 
         SQLBuilder builder = new SQLBuilder();
         builder.addLine("SELECT *");
-        builder.addLine("FROM " + ACCOUNT_DB);
+        builder.addLine("FROM " + ACCOUNTS_TABLE);
         builder.addLine("WHERE email = ?");
         builder.addLine("COLLATE Latin1_General_CS_AS");
 
@@ -91,6 +115,46 @@ public class AccountDAO {
         }
     }
 
+    public static final List<Account> getAccounts() {
+
+        try (
+                Connection connection = DBUtils.makeConnection();) {
+
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+
+            try (
+                    PreparedStatement getAccounts = connection.prepareStatement(GET_ACCOUNTS_QUERY);) {
+
+                ResultSet results = getAccounts.executeQuery();
+                List<Account> accounts = new ArrayList<>();
+
+                while (results.next()) {
+                    Account account = new Account(
+                            results.getInt(ACCOUNT_ID),
+                            results.getString(ACCOUNT_EMAIL),
+                            results.getString(ACCOUNT_PASSWORD),
+                            results.getString(ACCOUNT_FULLNAME),
+                            results.getString(ACCOUNT_PHONE),
+                            results.getInt(ACCOUNT_STATUS),
+                            results.getInt(ACCOUNT_ROLE)
+                    );
+
+                    accounts.add(account);
+                }
+
+                connection.commit();
+                return accounts;
+
+            } catch (Exception e) {
+                connection.rollback();
+                return new ArrayList<>();
+            }
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
     public static final boolean addAccount(Account account) {
         if (account == null) {
             throw new NullPointerException();
@@ -98,7 +162,7 @@ public class AccountDAO {
 
         SQLBuilder builder = new SQLBuilder();
         builder.addLine("SELECT *");
-        builder.addLine("FROM " + ACCOUNT_DB);
+        builder.addLine("FROM " + ACCOUNTS_TABLE);
         builder.addLine("WHERE email = ?");
         builder.addLine("COLLATE Latin1_General_CS_AS");
 
@@ -120,7 +184,7 @@ public class AccountDAO {
         }
 
         builder = new SQLBuilder();
-        builder.addLine("INSERT INTO " + ACCOUNT_DB + " (email, password, fullname, phone, status, role)");
+        builder.addLine("INSERT INTO " + ACCOUNTS_TABLE + " (email, password, fullname, phone, status, role)");
         builder.addLine("VALUES (?, ?, ?, ?, ?, ?)");
 
         try (
@@ -142,7 +206,7 @@ public class AccountDAO {
     public static final boolean updateAccount(Updates update, String email, String updateValue) {
 
         SQLBuilder builder = new SQLBuilder();
-        builder.addLine("UPDATE " + ACCOUNT_DB);
+        builder.addLine("UPDATE " + ACCOUNTS_TABLE);
         String updateString = updateValue;
 
         switch (update) {
@@ -172,12 +236,44 @@ public class AccountDAO {
 
         try (
                 Connection connection = DBUtils.makeConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(builder.toString());
-        ) {
+                PreparedStatement preparedStatement = connection.prepareStatement(builder.toString());) {
             preparedStatement.setString(1, updateString);
             preparedStatement.setString(2, email);
 
             return preparedStatement.executeUpdate() == 1;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static final boolean updateStatus(Integer accountID, Integer status) {
+        if (accountID == null || status == null) {
+            throw new NullPointerException();
+        }
+
+        try (
+                Connection connection = DBUtils.makeConnection();) {
+
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+
+            try (
+                    PreparedStatement updateStatus = connection.prepareStatement(UPDATE_ACCOUNT_STATUS);) {
+
+                updateStatus.setInt(1, status);
+                updateStatus.setInt(2, accountID);
+
+                if (updateStatus.executeUpdate() != 1) {
+                    throw new SQLException("Can't update status");
+                }
+
+                connection.commit();
+                return true;
+
+            } catch (Exception e) {
+                connection.rollback();
+                return false;
+            }
         } catch (Exception e) {
             return false;
         }

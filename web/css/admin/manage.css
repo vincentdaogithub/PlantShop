@@ -1,0 +1,36 @@
+.admin-functions {
+    margin: 2rem 2rem 0 2rem;
+    width: calc(100% - 4rem);
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.admin-functions > * {
+    width: 100%;
+    height: 20vh;
+    text-decoration: none;
+
+    color: #EDF1D6;
+    background-color: #609966;
+    border: 0.1rem solid #000;
+    border-radius: 2rem;
+    transition: color 0.2s ease-in,
+        background-color 0.2s ease-in;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-functions > *:hover,
+.admin-functions > *:focus {
+    color: #40513B;
+    background-color: #EDF1D6;
+}
+
+.admin-functions > *:nth-child(n + 2) {
+    margin-top: 1rem;
+}

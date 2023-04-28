@@ -43,6 +43,10 @@ public class OrderDAO {
             "SELECT * FROM %s AS a JOIN %s AS b ON a.%s = b.%s and %s = ?",
             ORDER_TABLE, DETAIL_TABLE, ORDER_ID_ORDER, ORDER_ID_DETAIL, ACCOUNT_ID);
 
+    private static final String GET_ALL_ORDERS_QUERY = String.format(
+            "SELECT * FROM %s AS a JOIN %s AS b ON a.%s = b.%s",
+            ORDER_TABLE, DETAIL_TABLE, ORDER_ID_ORDER, ORDER_ID_DETAIL);
+
     private static final String INSERT_ORDER_QUERY = String.format(
             "INSERT INTO %s(%s, %s, %s, %s) VALUES (?, ?, ?, ?)",
             ORDER_TABLE, ORDER_DATE, SHIP_DATE, STATUS, ACCOUNT_ID);
@@ -324,6 +328,60 @@ public class OrderDAO {
                 updateOrders.executeUpdate();
 
                 getOrders.setInt(1, accountID);
+                ResultSet results = getOrders.executeQuery();
+                Map<Order, OrderDetail> orderMap = new LinkedHashMap<>();
+
+                while (results.next()) {
+                    Order order = new Order(
+                            results.getInt(ORDER_ID_ORDER),
+                            results.getDate(ORDER_DATE).toLocalDate(),
+                            results.getDate(SHIP_DATE).toLocalDate(),
+                            OrderStatuses.convertIntToStatus(results.getInt(STATUS)),
+                            results.getInt(ACCOUNT_ID)
+                    );
+
+                    Plant plant = PlantDAO.getPlant(results.getInt(PLANT_ID));
+
+                    if (plant == null) {
+                        throw new SQLException("Can't get plant");
+                    }
+
+                    OrderDetail orderDetail = new OrderDetail(
+                            results.getInt(DETAIL_ID),
+                            results.getInt(ORDER_ID_DETAIL),
+                            plant,
+                            results.getInt(QUANTITY)
+                    );
+
+                    orderMap.put(order, orderDetail);
+                }
+
+                connection.commit();
+                return orderMap;
+            } catch (Exception exception) {
+                connection.rollback();
+                return new LinkedHashMap<>();
+            }
+        } catch (Exception exception) {
+            return new LinkedHashMap<>();
+        }
+    }
+
+    public static final Map<Order, OrderDetail> getOrders() {
+
+        try (
+                Connection connection = DBUtils.makeConnection();) {
+
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+
+            try (
+                    PreparedStatement getOrders = connection.prepareStatement(GET_ALL_ORDERS_QUERY);
+                    PreparedStatement updateOrders = connection.prepareStatement(UPDATE_ORDER_COMPLETED_QUERY);) {
+
+                updateOrders.setDate(1, Date.valueOf(LocalDate.now()));
+                updateOrders.executeUpdate();
+
                 ResultSet results = getOrders.executeQuery();
                 Map<Order, OrderDetail> orderMap = new LinkedHashMap<>();
 

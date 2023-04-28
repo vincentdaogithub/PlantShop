@@ -10,8 +10,9 @@ public class Plant implements Serializable {
     private String name;
     private int price;
     private String description;
-    private PlantStatuses status;
-    private PlantCategories category;
+    private int status;
+    private int categoryID;
+    private String categoryName;
 
     public Plant() {
 
@@ -19,18 +20,20 @@ public class Plant implements Serializable {
         this.name = "";
         this.price = 0;
         this.description = "";
-        this.status = PlantStatuses.INACTIVE;
-        this.category = PlantCategories.UNDEFINED;
+        this.status = 0;
+        this.categoryID = 0;
+        this.categoryName = "";
     }
 
-    public Plant(int ID, String name, int price, String description, PlantStatuses status, PlantCategories category) {
+    public Plant(int ID, String name, int price, String description, int status, int categoryID, String categoryName) {
 
         this.ID = ID;
         this.name = name;
         this.price = price;
         this.description = description;
         this.status = status;
-        this.category = category;
+        this.categoryID = categoryID;
+        this.categoryName = categoryName;
     }
 
     @Override
@@ -113,28 +116,42 @@ public class Plant implements Serializable {
     /**
      * @return the status
      */
-    public PlantStatuses getStatus() {
+    public int getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(PlantStatuses status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
     /**
-     * @return the category
+     * @return the categoryID
      */
-    public PlantCategories getCategory() {
-        return category;
+    public int getCategoryID() {
+        return categoryID;
     }
 
     /**
-     * @param category the categoryID to set
+     * @param categoryID the categoryID to set
      */
-    public void setCategory(PlantCategories category) {
-        this.category = category;
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    /**
+     * @return the categoryName
+     */
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    /**
+     * @param categoryName the categoryName to set
+     */
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

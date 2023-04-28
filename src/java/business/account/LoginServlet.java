@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import obj.account.Account;
+import security.filter.Authentications;
 
 public class LoginServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -27,6 +29,10 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("requestPage", Pages.LOGIN);
             request.setAttribute("loginFail", true);
         } else {
+            if (account.getRole() == Authentications.ADMIN.getCode()) {
+                request.setAttribute("requestPage", Pages.MANAGE);
+            }
+
             request.getSession().setAttribute("account", account);
         }
     }

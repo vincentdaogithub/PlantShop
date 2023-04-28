@@ -20,7 +20,7 @@ import util.UserInput;
 
 @MultipartConfig
 public class UpdateFilter implements Filter {
-    
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -88,7 +88,7 @@ public class UpdateFilter implements Filter {
         }
 
         if (update == Updates.PASSWORD) {
-            request.setAttribute("password", "new-password");
+            request.setAttribute("password", updateValue);
         } else {
             request.setAttribute("password", password);
         }

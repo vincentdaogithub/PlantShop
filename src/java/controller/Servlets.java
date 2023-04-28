@@ -6,7 +6,11 @@ public enum Servlets {
     STORE("/StoreServlet"),
     CART("/CartServlet"),
     IMAGE_UPLOAD("/ImageUploader"),
-    ORDER("/OrderServlet");
+    ORDER("/OrderServlet"),
+    ADMIN_ACCOUNTS("/AdminAccountsServlet"),
+    ADMIN_ORDERS("/AdminOrdersServlet"),
+    ADMIN_PLANTS("/AdminPlantsServlet"),
+    ADMIN_CATEGORIES("/AdminCategoriesServlet");
 
     private final String servlet;
 

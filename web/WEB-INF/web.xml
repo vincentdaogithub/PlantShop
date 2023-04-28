@@ -163,6 +163,26 @@
         <servlet-name>PageRedirect</servlet-name>
         <servlet-class>controller.redirect.PageRedirect</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAccountsServlet</servlet-name>
+        <servlet-class>business.admin.AdminAccountsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>business.admin.AdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminOrdersServlet</servlet-name>
+        <servlet-class>business.admin.AdminOrdersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminPlantsServlet</servlet-name>
+        <servlet-class>business.admin.AdminPlantsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminCategoriesServlet</servlet-name>
+        <servlet-class>business.admin.AdminCategoriesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PageRedirect</servlet-name>
         <url-pattern>/PageRedirect</url-pattern>
@@ -264,6 +284,26 @@
         <url-pattern>/OrderUpdateServlet</url-pattern>
     </servlet-mapping>
     <!-- Configs -->
+    <servlet-mapping>
+        <servlet-name>AdminAccountsServlet</servlet-name>
+        <url-pattern>/AdminAccountsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/AdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminOrdersServlet</servlet-name>
+        <url-pattern>/AdminOrdersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminPlantsServlet</servlet-name>
+        <url-pattern>/AdminPlantsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminCategoriesServlet</servlet-name>
+        <url-pattern>/AdminCategoriesServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>10</session-timeout>
     </session-config>

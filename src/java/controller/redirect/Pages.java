@@ -10,9 +10,14 @@ public enum Pages {
     ORDER("order", "html/store/order.jsp", Authentications.USER),
     LOGIN("login", "/html/login/login.jsp", Authentications.OPEN),
     REGISTER("register", "/html/login/register.jsp", Authentications.OPEN),
-    PROFILE("profile", "/html/user/profile.jsp", Authentications.USER),
+    PROFILE("profile", "/html/user/profile.jsp", Authentications.LOGGED_IN),
     MANAGE("manage", "/html/admin/manage.jsp", Authentications.ADMIN),
-    ERROR("error", "/html/error/error.jsp", Authentications.SERVER);
+    ERROR("error", "/html/error/error.jsp", Authentications.SERVER),
+    MANAGE_ACCOUNTS("manage-accounts", "html/admin/manage_accounts.jsp", Authentications.ADMIN),
+    VIEW_ORDERS("view-orders", "/html/admin/view_orders.jsp", Authentications.ADMIN),
+    MANAGE_PLANTS("manage-plants", "/html/admin/manage_plants.jsp", Authentications.ADMIN),
+    MANAGE_CATEGORIES("manage-categories", "/html/admin/manage_categories.jsp", Authentications.ADMIN),
+    CREATE_PLANT("create-plant", "/html/admin/create_plant.jsp", Authentications.ADMIN);
 
     private final String page;
     private final String url;

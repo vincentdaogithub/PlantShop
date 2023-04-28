@@ -1,12 +1,12 @@
 package obj.account;
 
-public enum AccountStatus {
+public enum AccountStatuses {
     ACTIVE(1),
     INACTIVE(0);
 
     private final int status;
 
-    AccountStatus(int status) {
+    AccountStatuses(int status) {
         this.status = status;
     }
 

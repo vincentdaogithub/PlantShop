@@ -1,7 +1,7 @@
 package dao.account;
 
 import obj.account.Account;
-import obj.account.AccountStatus;
+import obj.account.AccountStatuses;
 import obj.account.Accounts;
 
 public class AccountFactory {
@@ -17,7 +17,7 @@ public class AccountFactory {
                 password,
                 fullname,
                 phone,
-                AccountStatus.ACTIVE.getStatus(),
+                AccountStatuses.ACTIVE.getStatus(),
                 role.getRole());
     }
 }

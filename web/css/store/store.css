@@ -1,3 +1,5 @@
+@import "../list.css";
+
 main {
     display: flex;
     flex-flow: column nowrap;
@@ -51,150 +53,6 @@ a {
     background-color: #609966;
 }
 
-.display {
-    width: calc(100% - 4rem);
-    margin: 2rem;
-
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.list-function {
-    width: 20%;
-    color: #40513B;
-    background-color: #EDF1D6;
-    border: 0.1rem solid #000;
-    border-radius: 1rem;
-    overflow: hidden;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.list-function > * {
-    width: 80%;
-}
-
-.list-function > *:nth-last-child(n + 2) {
-    margin: 1rem 1rem 0 1rem;
-}
-
-.list-function > *:last-child {
-    margin: 1rem;
-}
-
-.search-function > *:nth-child(n + 2),
-.sort-function > *:nth-child(n + 2) {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.search-function > h2,
-.sort-function > h2 {
-    text-align: left;
-}
-
-.search-function > *:nth-child(n + 2),
-.sort-function > *:nth-child(n + 2) {
-    margin-top: 1rem;
-}
-
-.search-name > input[type="submit"],
-.search-price > input[type="submit"],
-.sort > input[type="submit"] {
-    width: 100%;
-}
-
-form > *:nth-child(n + 2) {
-    margin-top: 1rem;
-}
-
-.input {
-    width: 100%;
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.input.radio {
-    justify-content: flex-start;
-    flex-flow: row nowrap;
-}
-
-.list {
-    width: 70%;
-    color: #40513B;
-    background-color: #EDF1D6;
-    border: 0.1rem solid #000;
-    border-radius: 1rem;
-    overflow: hidden;
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.list >*:nth-last-child(n + 2) {
-    margin: 1rem 1rem 0 1rem;
-}
-
-.list >*:last-child {
-    margin: 1rem 1rem 1rem 1rem;
-}
-
-.list-item {
-    overflow: hidden;
-
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.plant-img {
-    width: 30%;
-}
-
-.info {
-    width: 60%;
-    height: 100%;
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.order-info {
-    align-items: flex-start;
-}
-
-.order-info > .order-update {
-    align-self: center;
-}
-
-.info > *:nth-child(n + 2) {
-    margin-top: 1rem;
-}
-
-.info-box {
-    text-align: center;
-}
-
-.link {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
 .quantity-update {
     width: 50%;
 
@@ -237,41 +95,6 @@ form > *:nth-child(n + 2) {
     align-items: center;
 }
 
-.list-index {
-    width: calc(100% - 2rem);
-    height: 1rem;
-    font-size: 1rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.list-index > *:not(.index) {
-    height: 1rem;
-    color: #40513B;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    text-decoration: none;
-}
-
-.list-index > *:not(.index):hover {
-    text-decoration: underline;
-}
-
-.begin-list,
-.decrease-index {
-    margin-right: 1rem;
-}
-
-.increase-index,
-.end-list {
-    margin-left: 1rem;
-}
-
 .order-function {
     width: 100%;
 
@@ -292,39 +115,4 @@ form > *:nth-child(n + 2) {
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-}
-
-@media screen and (max-width: 768px) {
-    main {
-        flex-flow: column nowrap;
-        align-items: center;
-    }
-
-    .display {
-        width: 100%;
-        margin-top: 2rem;
-
-        flex-flow: column nowrap;
-    }
-
-    .list-function {
-        width: 100%;
-        margin-bottom: 2rem;
-    }
-
-    .list {
-        width: 100%;
-    }
-
-    .list-item {
-        flex-flow: column nowrap;
-    }
-
-    .plant-img {
-        width: 50%;
-    }
-
-    .info {
-        width: 100%;
-    }
 }
